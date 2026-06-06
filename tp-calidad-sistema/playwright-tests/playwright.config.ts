@@ -7,8 +7,8 @@ export default defineConfig({
   testDir: './tests',
   globalSetup: './global-setup.ts',
 
-  // Cada archivo spec corre en paralelo en su propio worker.
-  // Tests DENTRO de un mismo archivo corren en secuencia (safe para el demo compartido).
+  // Cada archivo spec corre en su propio worker (5 archivos → 4 workers simultáneos).
+  // Tests DENTRO de un mismo archivo corren en secuencia (seguro para el demo compartido).
   fullyParallel: false,
   forbidOnly: !!process.env.CI,
   retries: 1,

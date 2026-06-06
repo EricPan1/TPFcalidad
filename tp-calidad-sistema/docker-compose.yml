@@ -16,11 +16,11 @@ services:
       resources:
         limits:
           cpus: '4'
-          memory: 4G
+          memory: 8G
         reservations:
-          cpus: '2'
-          memory: 1G
-    shm_size: '1gb'
+          cpus: '4'
+          memory: 2G
+    shm_size: '2gb'
     restart: "no"
     networks:
       - qa-network

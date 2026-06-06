@@ -1,2 +1,884 @@
- Container tp-calidad-sistema-e2e-tests-run-e1183efcc0e7 Creating 
- Container tp-calidad-sistema-e2e-tests-run-e1183efcc0e7 Created 
+ Container tp-calidad-sistema-e2e-tests-run-6b40137b41f7 Creating 
+ Container tp-calidad-sistema-e2e-tests-run-6b40137b41f7 Created 
+[global-setup] Sesion de Admin guardada en /app/.auth/admin.json
+
+Running 25 tests using 4 workers
+
+  ✓  1 [chromium] › sprint-n/add-employee.spec.ts:22:7 › Sprint N – Add Employee (Admin) › CP-006 [SMOKE] El formulario de alta carga correctamente (8.8s)
+  ✓  2 [chromium] › sprint-n1/edit-employee-report-to.spec.ts:45:7 › Sprint N+1 – Edit Employee Report-to (Admin) › CP-016 [SMOKE] La pestaña Report-to carga correctamente (13.0s)
+  ✘  3 [chromium] › sprint-n1/edit-employee-report-to.spec.ts:52:7 › Sprint N+1 – Edit Employee Report-to (Admin) › CP-017 [REGRESSION] La sección Supervisors tiene botón Add visible (11.3s)
+  ✓  4 [chromium] › sprint-n/add-employee.spec.ts:30:7 › Sprint N – Add Employee (Admin) › CP-007 [REGRESSION] Crear empleado con datos mínimos obligatorios (16.1s)
+  ✘  5 [chromium] › sprint-n/my-info-qualifications.spec.ts:43:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-011 [SMOKE] La pestaña Qualifications carga y muestra sus secciones (24.9s)
+  ✘  6 [chromium] › sprint-n/employee-list.spec.ts:22:7 › Sprint N – Employee List (Admin) › CP-001 [SMOKE][REGRESSION] La tabla de empleados carga correctamente (25.2s)
+  ✓  7 [chromium] › sprint-n/add-employee.spec.ts:63:7 › Sprint N – Add Employee (Admin) › CP-008 [REGRESSION] Guardar sin datos muestra errores de validación (6.9s)
+  ✘  8 [chromium] › sprint-n/add-employee.spec.ts:74:7 › Sprint N – Add Employee (Admin) › CP-009 El campo Employee ID se pre-popula automáticamente (6.1s)
+  ✘  9 [chromium] › sprint-n1/edit-employee-report-to.spec.ts:52:7 › Sprint N+1 – Edit Employee Report-to (Admin) › CP-017 [REGRESSION] La sección Supervisors tiene botón Add visible (retry #1) (13.4s)
+  ✘  10 [chromium] › sprint-n/add-employee.spec.ts:74:7 › Sprint N – Add Employee (Admin) › CP-009 El campo Employee ID se pre-popula automáticamente (retry #1) (6.5s)
+  ✘  11 [chromium] › sprint-n1/edit-employee-report-to.spec.ts:64:7 › Sprint N+1 – Edit Employee Report-to (Admin) › CP-018 [REGRESSION] Formulario de agregar supervisor muestra campos requeridos (11.8s)
+  ✘  12 [chromium] › sprint-n/my-info-qualifications.spec.ts:43:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-011 [SMOKE] La pestaña Qualifications carga y muestra sus secciones (retry #1) (25.7s)
+  ✘  13 [chromium] › sprint-n/employee-list.spec.ts:22:7 › Sprint N – Employee List (Admin) › CP-001 [SMOKE][REGRESSION] La tabla de empleados carga correctamente (retry #1) (25.9s)
+  ✘  14 [chromium] › sprint-n1/edit-employee-report-to.spec.ts:64:7 › Sprint N+1 – Edit Employee Report-to (Admin) › CP-018 [REGRESSION] Formulario de agregar supervisor muestra campos requeridos (retry #1) (12.6s)
+  ✘  15 [chromium] › sprint-n/add-employee.spec.ts:82:7 › Sprint N – Add Employee (Admin) › CP-010 El botón Cancel regresa al listado sin crear empleado (23.8s)
+  ✘  16 [chromium] › sprint-n/employee-list.spec.ts:32:7 › Sprint N – Employee List (Admin) › CP-002 [REGRESSION] Búsqueda por nombre filtra resultados (23.2s)
+  ✘  17 [chromium] › sprint-n/my-info-qualifications.spec.ts:50:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-012 [REGRESSION] Se puede agregar Work Experience (23.7s)
+  ✘  18 [chromium] › sprint-n1/edit-employee-report-to.spec.ts:82:7 › Sprint N+1 – Edit Employee Report-to (Admin) › CP-019 Cancel en formulario de supervisor no guarda cambios (11.6s)
+  ✘  19 [chromium] › sprint-n1/edit-employee-report-to.spec.ts:82:7 › Sprint N+1 – Edit Employee Report-to (Admin) › CP-019 Cancel en formulario de supervisor no guarda cambios (retry #1) (12.2s)
+  ✘  20 [chromium] › sprint-n/add-employee.spec.ts:82:7 › Sprint N – Add Employee (Admin) › CP-010 El botón Cancel regresa al listado sin crear empleado (retry #1) (23.8s)
+  ✘  21 [chromium] › sprint-n/employee-list.spec.ts:32:7 › Sprint N – Employee List (Admin) › CP-002 [REGRESSION] Búsqueda por nombre filtra resultados (retry #1) (23.5s)
+  ✓  22 [chromium] › sprint-n2/admin-add-user.spec.ts:22:7 › Sprint N+2 – Admin Add User (Admin) › CP-021 [SMOKE] El listado de usuarios carga correctamente (6.3s)
+  ✓  23 [chromium] › sprint-n1/edit-employee-report-to.spec.ts:100:7 › Sprint N+1 – Edit Employee Report-to (Admin) › CP-020 [SMOKE] La sección Subordinates está presente en la página (11.3s)
+  ✘  24 [chromium] › sprint-n/my-info-qualifications.spec.ts:50:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-012 [REGRESSION] Se puede agregar Work Experience (retry #1) (24.6s)
+  -  25 [chromium] › sprint-n/employee-list.spec.ts:54:7 › Sprint N – Employee List (Admin) › CP-003 [REGRESSION] Búsqueda por Employee ID muestra resultado específico
+  ✓  26 [chromium] › sprint-n2/admin-add-user.spec.ts:33:7 › Sprint N+2 – Admin Add User (Admin) › CP-022 [REGRESSION] Formulario de alta contiene todos los campos requeridos (8.3s)
+  ✓  27 [chromium] › sprint-n/employee-list.spec.ts:75:7 › Sprint N – Employee List (Admin) › CP-004 El botón Reset limpia los campos de búsqueda (6.1s)
+  ✓  28 [chromium] › sprint-n2/admin-add-user.spec.ts:51:7 › Sprint N+2 – Admin Add User (Admin) › CP-023 [REGRESSION] Guardar formulario vacío muestra errores de validación (8.1s)
+  ✓  29 [chromium] › sprint-n/employee-list.spec.ts:86:7 › Sprint N – Employee List (Admin) › CP-005 [SMOKE] La tabla contiene las columnas esperadas (6.4s)
+  ✘  30 [chromium] › sprint-n/my-info-qualifications.spec.ts:78:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-013 [REGRESSION] Se puede agregar Education (22.4s)
+  ✓  31 [chromium] › sprint-n2/admin-add-user.spec.ts:67:7 › Sprint N+2 – Admin Add User (Admin) › CP-024 Contraseñas no coincidentes muestran error de confirmación (8.3s)
+  ✘  32 [chromium] › sprint-n2/admin-add-user.spec.ts:85:7 › Sprint N+2 – Admin Add User (Admin) › CP-025 [SMOKE] Se puede filtrar el listado por User Role (6.2s)
+  ✘  33 [chromium] › sprint-n2/admin-add-user.spec.ts:85:7 › Sprint N+2 – Admin Add User (Admin) › CP-025 [SMOKE] Se puede filtrar el listado por User Role (retry #1) (6.2s)
+  ✘  34 [chromium] › sprint-n/my-info-qualifications.spec.ts:78:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-013 [REGRESSION] Se puede agregar Education (retry #1) (22.8s)
+  ✘  35 [chromium] › sprint-n/my-info-qualifications.spec.ts:99:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-014 Guardar Work Experience sin datos muestra validación (22.2s)
+  ✘  36 [chromium] › sprint-n/my-info-qualifications.spec.ts:99:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-014 Guardar Work Experience sin datos muestra validación (retry #1) (22.5s)
+  ✘  37 [chromium] › sprint-n/my-info-qualifications.spec.ts:116:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-015 Las secciones Skills y Languages están presentes en la página (22.0s)
+  ✘  38 [chromium] › sprint-n/my-info-qualifications.spec.ts:116:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-015 Las secciones Skills y Languages están presentes en la página (retry #1) (22.3s)
+
+
+  1) [chromium] › sprint-n/add-employee.spec.ts:74:7 › Sprint N – Add Employee (Admin) › CP-009 El campo Employee ID se pre-popula automáticamente 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m0[39m
+    Received:   [31m0[39m
+
+      76 |     const empIdInput = page.locator('.oxd-form input.oxd-input').nth(1);
+      77 |     const value = await empIdInput.inputValue();
+    > 78 |     expect(value.length).toBeGreaterThan(0);
+         |                          ^
+      79 |     expect(Number(value)).toBeGreaterThan(0);
+      80 |   });
+      81 |
+
+        at /app/tests/sprint-n/add-employee.spec.ts:78:26
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/sprint-n-add-employee-Sprint-N-–-Add-Employee--d71d0-campo-Employee-ID-se-pre-popula-automáticamente-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/sprint-n-add-employee-Sprint-N-–-Add-Employee--d71d0-campo-Employee-ID-se-pre-popula-automáticamente-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m0[39m
+    Received:   [31m0[39m
+
+      76 |     const empIdInput = page.locator('.oxd-form input.oxd-input').nth(1);
+      77 |     const value = await empIdInput.inputValue();
+    > 78 |     expect(value.length).toBeGreaterThan(0);
+         |                          ^
+      79 |     expect(Number(value)).toBeGreaterThan(0);
+      80 |   });
+      81 |
+
+        at /app/tests/sprint-n/add-employee.spec.ts:78:26
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/sprint-n-add-employee-Sprint-N-–-Add-Employee--d71d0-campo-Employee-ID-se-pre-popula-automáticamente-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/sprint-n-add-employee-Sprint-N-–-Add-Employee--d71d0-campo-Employee-ID-se-pre-popula-automáticamente-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/sprint-n-add-employee-Sprint-N-–-Add-Employee--d71d0-campo-Employee-ID-se-pre-popula-automáticamente-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/sprint-n-add-employee-Sprint-N-–-Add-Employee--d71d0-campo-Employee-ID-se-pre-popula-automáticamente-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › sprint-n/add-employee.spec.ts:82:7 › Sprint N – Add Employee (Admin) › CP-010 El botón Cancel regresa al listado sin crear empleado 
+
+    Error: [31mTimed out 15000ms waiting for [39m[2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m()[22m
+
+    Locator: getByRole('heading', { name: 'Employee List' })
+    Expected: visible
+    Received: hidden
+    Call log:
+      [2m- expect.toBeVisible with timeout 15000ms[22m
+    [2m  - waiting for getByRole('heading', { name: 'Employee List' })[22m
+
+
+      87 |     await page.waitForURL(`**\/pim\/viewEmployeeList`, { timeout: 15_000 });
+      88 |
+    > 89 |     await expect(page.getByRole('heading', { name: 'Employee List' })).toBeVisible();
+         |                                                                        ^
+      90 |   });
+      91 | });
+      92 |
+
+        at /app/tests/sprint-n/add-employee.spec.ts:89:72
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/sprint-n-add-employee-Sprint-N-–-Add-Employee--6c9a7-ón-Cancel-regresa-al-listado-sin-crear-empleado-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/sprint-n-add-employee-Sprint-N-–-Add-Employee--6c9a7-ón-Cancel-regresa-al-listado-sin-crear-empleado-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: [31mTimed out 15000ms waiting for [39m[2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m()[22m
+
+    Locator: getByRole('heading', { name: 'Employee List' })
+    Expected: visible
+    Received: hidden
+    Call log:
+      [2m- expect.toBeVisible with timeout 15000ms[22m
+    [2m  - waiting for getByRole('heading', { name: 'Employee List' })[22m
+
+
+      87 |     await page.waitForURL(`**\/pim\/viewEmployeeList`, { timeout: 15_000 });
+      88 |
+    > 89 |     await expect(page.getByRole('heading', { name: 'Employee List' })).toBeVisible();
+         |                                                                        ^
+      90 |   });
+      91 | });
+      92 |
+
+        at /app/tests/sprint-n/add-employee.spec.ts:89:72
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/sprint-n-add-employee-Sprint-N-–-Add-Employee--6c9a7-ón-Cancel-regresa-al-listado-sin-crear-empleado-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/sprint-n-add-employee-Sprint-N-–-Add-Employee--6c9a7-ón-Cancel-regresa-al-listado-sin-crear-empleado-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/sprint-n-add-employee-Sprint-N-–-Add-Employee--6c9a7-ón-Cancel-regresa-al-listado-sin-crear-empleado-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/sprint-n-add-employee-Sprint-N-–-Add-Employee--6c9a7-ón-Cancel-regresa-al-listado-sin-crear-empleado-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [chromium] › sprint-n/employee-list.spec.ts:22:7 › Sprint N – Employee List (Admin) › CP-001 [SMOKE][REGRESSION] La tabla de empleados carga correctamente 
+
+    Error: [31mTimed out 15000ms waiting for [39m[2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m()[22m
+
+    Locator: getByRole('heading', { name: 'Employee List' })
+    Expected: visible
+    Received: hidden
+    Call log:
+      [2m- expect.toBeVisible with timeout 15000ms[22m
+    [2m  - waiting for getByRole('heading', { name: 'Employee List' })[22m
+
+
+      21 |
+      22 |   test('CP-001 [SMOKE][REGRESSION] La tabla de empleados carga correctamente', async ({ page }) => {
+    > 23 |     await expect(page.getByRole('heading', { name: 'Employee List' })).toBeVisible();
+         |                                                                        ^
+      24 |     const table = page.locator('.oxd-table');
+      25 |     await expect(table).toBeVisible();
+      26 |
+
+        at /app/tests/sprint-n/employee-list.spec.ts:23:72
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/sprint-n-employee-list-Sprint-N-–-Employee-Lis-5bdc2-SSION-La-tabla-de-empleados-carga-correctamente-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/sprint-n-employee-list-Sprint-N-–-Employee-Lis-5bdc2-SSION-La-tabla-de-empleados-carga-correctamente-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: [31mTimed out 15000ms waiting for [39m[2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m()[22m
+
+    Locator: getByRole('heading', { name: 'Employee List' })
+    Expected: visible
+    Received: hidden
+    Call log:
+      [2m- expect.toBeVisible with timeout 15000ms[22m
+    [2m  - waiting for getByRole('heading', { name: 'Employee List' })[22m
+
+
+      21 |
+      22 |   test('CP-001 [SMOKE][REGRESSION] La tabla de empleados carga correctamente', async ({ page }) => {
+    > 23 |     await expect(page.getByRole('heading', { name: 'Employee List' })).toBeVisible();
+         |                                                                        ^
+      24 |     const table = page.locator('.oxd-table');
+      25 |     await expect(table).toBeVisible();
+      26 |
+
+        at /app/tests/sprint-n/employee-list.spec.ts:23:72
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/sprint-n-employee-list-Sprint-N-–-Employee-Lis-5bdc2-SSION-La-tabla-de-empleados-carga-correctamente-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/sprint-n-employee-list-Sprint-N-–-Employee-Lis-5bdc2-SSION-La-tabla-de-empleados-carga-correctamente-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/sprint-n-employee-list-Sprint-N-–-Employee-Lis-5bdc2-SSION-La-tabla-de-empleados-carga-correctamente-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/sprint-n-employee-list-Sprint-N-–-Employee-Lis-5bdc2-SSION-La-tabla-de-empleados-carga-correctamente-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [chromium] › sprint-n/employee-list.spec.ts:32:7 › Sprint N – Employee List (Admin) › CP-002 [REGRESSION] Búsqueda por nombre filtra resultados 
+
+    Error: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      [2m- waiting for locator('.oxd-autocomplete-dropdown').locator('span').first()[22m
+
+
+      37 |     const dropdown = page.locator('.oxd-autocomplete-dropdown');
+      38 |     if (await dropdown.isVisible()) {
+    > 39 |       await dropdown.locator('span').first().click();
+         |                                              ^
+      40 |     }
+      41 |
+      42 |     await page.getByRole('button', { name: 'Search' }).click();
+
+        at /app/tests/sprint-n/employee-list.spec.ts:39:46
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/sprint-n-employee-list-Sprint-N-–-Employee-Lis-3a1b3-EGRESSION-Búsqueda-por-nombre-filtra-resultados-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/sprint-n-employee-list-Sprint-N-–-Employee-Lis-3a1b3-EGRESSION-Búsqueda-por-nombre-filtra-resultados-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      [2m- waiting for locator('.oxd-autocomplete-dropdown').locator('span').first()[22m
+
+
+      37 |     const dropdown = page.locator('.oxd-autocomplete-dropdown');
+      38 |     if (await dropdown.isVisible()) {
+    > 39 |       await dropdown.locator('span').first().click();
+         |                                              ^
+      40 |     }
+      41 |
+      42 |     await page.getByRole('button', { name: 'Search' }).click();
+
+        at /app/tests/sprint-n/employee-list.spec.ts:39:46
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/sprint-n-employee-list-Sprint-N-–-Employee-Lis-3a1b3-EGRESSION-Búsqueda-por-nombre-filtra-resultados-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/sprint-n-employee-list-Sprint-N-–-Employee-Lis-3a1b3-EGRESSION-Búsqueda-por-nombre-filtra-resultados-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/sprint-n-employee-list-Sprint-N-–-Employee-Lis-3a1b3-EGRESSION-Búsqueda-por-nombre-filtra-resultados-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/sprint-n-employee-list-Sprint-N-–-Employee-Lis-3a1b3-EGRESSION-Búsqueda-por-nombre-filtra-resultados-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [chromium] › sprint-n/my-info-qualifications.spec.ts:43:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-011 [SMOKE] La pestaña Qualifications carga y muestra sus secciones 
+
+    Error: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      [2m- waiting for locator('.oxd-table-body .oxd-table-row').first().locator('.oxd-table-cell').nth(1).locator('a, span').first()[22m
+
+
+      25 |   } else {
+      26 |     // Fallback: hacer clic en el nombre del empleado
+    > 27 |     await firstRow.locator('.oxd-table-cell').nth(1).locator('a, span').first().click();
+         |                                                                                 ^
+      28 |   }
+      29 |   await page.waitForLoadState('networkidle');
+      30 |
+
+        at navigateToFirstEmployeeQualifications (/app/tests/sprint-n/my-info-qualifications.spec.ts:27:81)
+        at /app/tests/sprint-n/my-info-qualifications.spec.ts:44:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/sprint-n-my-info-qualifications-Sprint-N-–-My--6562f-ña-Qualifications-carga-y-muestra-sus-secciones-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/sprint-n-my-info-qualifications-Sprint-N-–-My--6562f-ña-Qualifications-carga-y-muestra-sus-secciones-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      [2m- waiting for locator('.oxd-table-body .oxd-table-row').first().locator('.oxd-table-cell').nth(1).locator('a, span').first()[22m
+
+
+      25 |   } else {
+      26 |     // Fallback: hacer clic en el nombre del empleado
+    > 27 |     await firstRow.locator('.oxd-table-cell').nth(1).locator('a, span').first().click();
+         |                                                                                 ^
+      28 |   }
+      29 |   await page.waitForLoadState('networkidle');
+      30 |
+
+        at navigateToFirstEmployeeQualifications (/app/tests/sprint-n/my-info-qualifications.spec.ts:27:81)
+        at /app/tests/sprint-n/my-info-qualifications.spec.ts:44:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/sprint-n-my-info-qualifications-Sprint-N-–-My--6562f-ña-Qualifications-carga-y-muestra-sus-secciones-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/sprint-n-my-info-qualifications-Sprint-N-–-My--6562f-ña-Qualifications-carga-y-muestra-sus-secciones-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/sprint-n-my-info-qualifications-Sprint-N-–-My--6562f-ña-Qualifications-carga-y-muestra-sus-secciones-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/sprint-n-my-info-qualifications-Sprint-N-–-My--6562f-ña-Qualifications-carga-y-muestra-sus-secciones-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) [chromium] › sprint-n/my-info-qualifications.spec.ts:50:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-012 [REGRESSION] Se puede agregar Work Experience 
+
+    Error: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      [2m- waiting for locator('.oxd-table-body .oxd-table-row').first().locator('.oxd-table-cell').nth(1).locator('a, span').first()[22m
+
+
+      25 |   } else {
+      26 |     // Fallback: hacer clic en el nombre del empleado
+    > 27 |     await firstRow.locator('.oxd-table-cell').nth(1).locator('a, span').first().click();
+         |                                                                                 ^
+      28 |   }
+      29 |   await page.waitForLoadState('networkidle');
+      30 |
+
+        at navigateToFirstEmployeeQualifications (/app/tests/sprint-n/my-info-qualifications.spec.ts:27:81)
+        at /app/tests/sprint-n/my-info-qualifications.spec.ts:51:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/sprint-n-my-info-qualifications-Sprint-N-–-My--8aace-012-REGRESSION-Se-puede-agregar-Work-Experience-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/sprint-n-my-info-qualifications-Sprint-N-–-My--8aace-012-REGRESSION-Se-puede-agregar-Work-Experience-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      [2m- waiting for locator('.oxd-table-body .oxd-table-row').first().locator('.oxd-table-cell').nth(1).locator('a, span').first()[22m
+
+
+      25 |   } else {
+      26 |     // Fallback: hacer clic en el nombre del empleado
+    > 27 |     await firstRow.locator('.oxd-table-cell').nth(1).locator('a, span').first().click();
+         |                                                                                 ^
+      28 |   }
+      29 |   await page.waitForLoadState('networkidle');
+      30 |
+
+        at navigateToFirstEmployeeQualifications (/app/tests/sprint-n/my-info-qualifications.spec.ts:27:81)
+        at /app/tests/sprint-n/my-info-qualifications.spec.ts:51:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/sprint-n-my-info-qualifications-Sprint-N-–-My--8aace-012-REGRESSION-Se-puede-agregar-Work-Experience-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/sprint-n-my-info-qualifications-Sprint-N-–-My--8aace-012-REGRESSION-Se-puede-agregar-Work-Experience-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/sprint-n-my-info-qualifications-Sprint-N-–-My--8aace-012-REGRESSION-Se-puede-agregar-Work-Experience-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/sprint-n-my-info-qualifications-Sprint-N-–-My--8aace-012-REGRESSION-Se-puede-agregar-Work-Experience-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7) [chromium] › sprint-n/my-info-qualifications.spec.ts:78:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-013 [REGRESSION] Se puede agregar Education 
+
+    Error: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      [2m- waiting for locator('.oxd-table-body .oxd-table-row').first().locator('.oxd-table-cell').nth(1).locator('a, span').first()[22m
+
+
+      25 |   } else {
+      26 |     // Fallback: hacer clic en el nombre del empleado
+    > 27 |     await firstRow.locator('.oxd-table-cell').nth(1).locator('a, span').first().click();
+         |                                                                                 ^
+      28 |   }
+      29 |   await page.waitForLoadState('networkidle');
+      30 |
+
+        at navigateToFirstEmployeeQualifications (/app/tests/sprint-n/my-info-qualifications.spec.ts:27:81)
+        at /app/tests/sprint-n/my-info-qualifications.spec.ts:79:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/sprint-n-my-info-qualifications-Sprint-N-–-My--01b9d-in-CP-013-REGRESSION-Se-puede-agregar-Education-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/sprint-n-my-info-qualifications-Sprint-N-–-My--01b9d-in-CP-013-REGRESSION-Se-puede-agregar-Education-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      [2m- waiting for locator('.oxd-table-body .oxd-table-row').first().locator('.oxd-table-cell').nth(1).locator('a, span').first()[22m
+
+
+      25 |   } else {
+      26 |     // Fallback: hacer clic en el nombre del empleado
+    > 27 |     await firstRow.locator('.oxd-table-cell').nth(1).locator('a, span').first().click();
+         |                                                                                 ^
+      28 |   }
+      29 |   await page.waitForLoadState('networkidle');
+      30 |
+
+        at navigateToFirstEmployeeQualifications (/app/tests/sprint-n/my-info-qualifications.spec.ts:27:81)
+        at /app/tests/sprint-n/my-info-qualifications.spec.ts:79:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/sprint-n-my-info-qualifications-Sprint-N-–-My--01b9d-in-CP-013-REGRESSION-Se-puede-agregar-Education-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/sprint-n-my-info-qualifications-Sprint-N-–-My--01b9d-in-CP-013-REGRESSION-Se-puede-agregar-Education-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/sprint-n-my-info-qualifications-Sprint-N-–-My--01b9d-in-CP-013-REGRESSION-Se-puede-agregar-Education-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/sprint-n-my-info-qualifications-Sprint-N-–-My--01b9d-in-CP-013-REGRESSION-Se-puede-agregar-Education-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  8) [chromium] › sprint-n/my-info-qualifications.spec.ts:99:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-014 Guardar Work Experience sin datos muestra validación 
+
+    Error: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      [2m- waiting for locator('.oxd-table-body .oxd-table-row').first().locator('.oxd-table-cell').nth(1).locator('a, span').first()[22m
+
+
+      25 |   } else {
+      26 |     // Fallback: hacer clic en el nombre del empleado
+    > 27 |     await firstRow.locator('.oxd-table-cell').nth(1).locator('a, span').first().click();
+         |                                                                                 ^
+      28 |   }
+      29 |   await page.waitForLoadState('networkidle');
+      30 |
+
+        at navigateToFirstEmployeeQualifications (/app/tests/sprint-n/my-info-qualifications.spec.ts:27:81)
+        at /app/tests/sprint-n/my-info-qualifications.spec.ts:100:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/sprint-n-my-info-qualifications-Sprint-N-–-My--dee1d-ar-Work-Experience-sin-datos-muestra-validación-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/sprint-n-my-info-qualifications-Sprint-N-–-My--dee1d-ar-Work-Experience-sin-datos-muestra-validación-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      [2m- waiting for locator('.oxd-table-body .oxd-table-row').first().locator('.oxd-table-cell').nth(1).locator('a, span').first()[22m
+
+
+      25 |   } else {
+      26 |     // Fallback: hacer clic en el nombre del empleado
+    > 27 |     await firstRow.locator('.oxd-table-cell').nth(1).locator('a, span').first().click();
+         |                                                                                 ^
+      28 |   }
+      29 |   await page.waitForLoadState('networkidle');
+      30 |
+
+        at navigateToFirstEmployeeQualifications (/app/tests/sprint-n/my-info-qualifications.spec.ts:27:81)
+        at /app/tests/sprint-n/my-info-qualifications.spec.ts:100:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/sprint-n-my-info-qualifications-Sprint-N-–-My--dee1d-ar-Work-Experience-sin-datos-muestra-validación-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/sprint-n-my-info-qualifications-Sprint-N-–-My--dee1d-ar-Work-Experience-sin-datos-muestra-validación-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/sprint-n-my-info-qualifications-Sprint-N-–-My--dee1d-ar-Work-Experience-sin-datos-muestra-validación-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/sprint-n-my-info-qualifications-Sprint-N-–-My--dee1d-ar-Work-Experience-sin-datos-muestra-validación-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  9) [chromium] › sprint-n/my-info-qualifications.spec.ts:116:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-015 Las secciones Skills y Languages están presentes en la página 
+
+    Error: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      [2m- waiting for locator('.oxd-table-body .oxd-table-row').first().locator('.oxd-table-cell').nth(1).locator('a, span').first()[22m
+
+
+      25 |   } else {
+      26 |     // Fallback: hacer clic en el nombre del empleado
+    > 27 |     await firstRow.locator('.oxd-table-cell').nth(1).locator('a, span').first().click();
+         |                                                                                 ^
+      28 |   }
+      29 |   await page.waitForLoadState('networkidle');
+      30 |
+
+        at navigateToFirstEmployeeQualifications (/app/tests/sprint-n/my-info-qualifications.spec.ts:27:81)
+        at /app/tests/sprint-n/my-info-qualifications.spec.ts:117:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/sprint-n-my-info-qualifications-Sprint-N-–-My--089c1-Skills-y-Languages-están-presentes-en-la-página-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/sprint-n-my-info-qualifications-Sprint-N-–-My--089c1-Skills-y-Languages-están-presentes-en-la-página-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      [2m- waiting for locator('.oxd-table-body .oxd-table-row').first().locator('.oxd-table-cell').nth(1).locator('a, span').first()[22m
+
+
+      25 |   } else {
+      26 |     // Fallback: hacer clic en el nombre del empleado
+    > 27 |     await firstRow.locator('.oxd-table-cell').nth(1).locator('a, span').first().click();
+         |                                                                                 ^
+      28 |   }
+      29 |   await page.waitForLoadState('networkidle');
+      30 |
+
+        at navigateToFirstEmployeeQualifications (/app/tests/sprint-n/my-info-qualifications.spec.ts:27:81)
+        at /app/tests/sprint-n/my-info-qualifications.spec.ts:117:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/sprint-n-my-info-qualifications-Sprint-N-–-My--089c1-Skills-y-Languages-están-presentes-en-la-página-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/sprint-n-my-info-qualifications-Sprint-N-–-My--089c1-Skills-y-Languages-están-presentes-en-la-página-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/sprint-n-my-info-qualifications-Sprint-N-–-My--089c1-Skills-y-Languages-están-presentes-en-la-página-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/sprint-n-my-info-qualifications-Sprint-N-–-My--089c1-Skills-y-Languages-están-presentes-en-la-página-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  10) [chromium] › sprint-n1/edit-employee-report-to.spec.ts:52:7 › Sprint N+1 – Edit Employee Report-to (Admin) › CP-017 [REGRESSION] La sección Supervisors tiene botón Add visible 
+
+    Error: expect.toBeVisible: Error: strict mode violation: locator('.orangehrm-card-container').filter({ hasText: /supervisors/i }).first().getByRole('button', { name: 'Add' }) resolved to 3 elements:
+        1) <button type="button" data-v-10d463b7="" data-v-3dab643a…>…</button> aka locator('div').filter({ hasText: /^Assigned Supervisors Add No Records FoundNameReporting MethodActions$/ }).getByRole('button')
+        2) <button type="button" data-v-10d463b7="" data-v-3dab643a…>…</button> aka locator('div').filter({ hasText: /^Assigned Subordinates Add No Records FoundNameReporting MethodActions$/ }).getByRole('button')
+        3) <button type="button" data-v-10d463b7="" data-v-3dab643a…>…</button> aka getByRole('button', { name: ' Add' }).nth(2)
+
+    Call log:
+      [2m- expect.toBeVisible with timeout 15000ms[22m
+    [2m  - waiting for locator('.orangehrm-card-container').filter({ hasText: /supervisors/i }).first().getByRole('button', { name: 'Add' })[22m
+
+
+      59 |
+      60 |     const addBtn = supervisorsSection.getByRole('button', { name: 'Add' });
+    > 61 |     await expect(addBtn).toBeVisible();
+         |                          ^
+      62 |   });
+      63 |
+      64 |   test('CP-018 [REGRESSION] Formulario de agregar supervisor muestra campos requeridos', async ({ page }) => {
+
+        at /app/tests/sprint-n1/edit-employee-report-to.spec.ts:61:26
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/sprint-n1-edit-employee-report-to-Sprint-N-1-–-b69f4--La-sección-Supervisors-tiene-botón-Add-visible-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/sprint-n1-edit-employee-report-to-Sprint-N-1-–-b69f4--La-sección-Supervisors-tiene-botón-Add-visible-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect.toBeVisible: Error: strict mode violation: locator('.orangehrm-card-container').filter({ hasText: /supervisors/i }).first().getByRole('button', { name: 'Add' }) resolved to 3 elements:
+        1) <button type="button" data-v-10d463b7="" data-v-3dab643a…>…</button> aka locator('div').filter({ hasText: /^Assigned Supervisors Add No Records FoundNameReporting MethodActions$/ }).getByRole('button')
+        2) <button type="button" data-v-10d463b7="" data-v-3dab643a…>…</button> aka locator('div').filter({ hasText: /^Assigned Subordinates Add No Records FoundNameReporting MethodActions$/ }).getByRole('button')
+        3) <button type="button" data-v-10d463b7="" data-v-3dab643a…>…</button> aka getByRole('button', { name: ' Add' }).nth(2)
+
+    Call log:
+      [2m- expect.toBeVisible with timeout 15000ms[22m
+    [2m  - waiting for locator('.orangehrm-card-container').filter({ hasText: /supervisors/i }).first().getByRole('button', { name: 'Add' })[22m
+
+
+      59 |
+      60 |     const addBtn = supervisorsSection.getByRole('button', { name: 'Add' });
+    > 61 |     await expect(addBtn).toBeVisible();
+         |                          ^
+      62 |   });
+      63 |
+      64 |   test('CP-018 [REGRESSION] Formulario de agregar supervisor muestra campos requeridos', async ({ page }) => {
+
+        at /app/tests/sprint-n1/edit-employee-report-to.spec.ts:61:26
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/sprint-n1-edit-employee-report-to-Sprint-N-1-–-b69f4--La-sección-Supervisors-tiene-botón-Add-visible-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/sprint-n1-edit-employee-report-to-Sprint-N-1-–-b69f4--La-sección-Supervisors-tiene-botón-Add-visible-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/sprint-n1-edit-employee-report-to-Sprint-N-1-–-b69f4--La-sección-Supervisors-tiene-botón-Add-visible-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/sprint-n1-edit-employee-report-to-Sprint-N-1-–-b69f4--La-sección-Supervisors-tiene-botón-Add-visible-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  11) [chromium] › sprint-n1/edit-employee-report-to.spec.ts:64:7 › Sprint N+1 – Edit Employee Report-to (Admin) › CP-018 [REGRESSION] Formulario de agregar supervisor muestra campos requeridos 
+
+    Error: locator.click: Error: strict mode violation: locator('.orangehrm-card-container').filter({ hasText: /supervisors/i }).first().getByRole('button', { name: 'Add' }) resolved to 3 elements:
+        1) <button type="button" data-v-10d463b7="" data-v-3dab643a…>…</button> aka locator('div').filter({ hasText: /^Assigned Supervisors Add No Records FoundNameReporting MethodActions$/ }).getByRole('button')
+        2) <button type="button" data-v-10d463b7="" data-v-3dab643a…>…</button> aka locator('div').filter({ hasText: /^Assigned Subordinates Add No Records FoundNameReporting MethodActions$/ }).getByRole('button')
+        3) <button type="button" data-v-10d463b7="" data-v-3dab643a…>…</button> aka getByRole('button', { name: ' Add' }).nth(2)
+
+    Call log:
+      [2m- waiting for locator('.orangehrm-card-container').filter({ hasText: /supervisors/i }).first().getByRole('button', { name: 'Add' })[22m
+
+
+      68 |       .filter({ hasText: /supervisors/i }).first();
+      69 |
+    > 70 |     await supervisorsSection.getByRole('button', { name: 'Add' }).click();
+         |                                                                   ^
+      71 |     await page.waitForLoadState('networkidle');
+      72 |
+      73 |     // Debe aparecer un campo de búsqueda de empleado (autocomplete)
+
+        at /app/tests/sprint-n1/edit-employee-report-to.spec.ts:70:67
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/sprint-n1-edit-employee-report-to-Sprint-N-1-–-32ca1-de-agregar-supervisor-muestra-campos-requeridos-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/sprint-n1-edit-employee-report-to-Sprint-N-1-–-32ca1-de-agregar-supervisor-muestra-campos-requeridos-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: locator.click: Error: strict mode violation: locator('.orangehrm-card-container').filter({ hasText: /supervisors/i }).first().getByRole('button', { name: 'Add' }) resolved to 3 elements:
+        1) <button type="button" data-v-10d463b7="" data-v-3dab643a…>…</button> aka locator('div').filter({ hasText: /^Assigned Supervisors Add No Records FoundNameReporting MethodActions$/ }).getByRole('button')
+        2) <button type="button" data-v-10d463b7="" data-v-3dab643a…>…</button> aka locator('div').filter({ hasText: /^Assigned Subordinates Add No Records FoundNameReporting MethodActions$/ }).getByRole('button')
+        3) <button type="button" data-v-10d463b7="" data-v-3dab643a…>…</button> aka getByRole('button', { name: ' Add' }).nth(2)
+
+    Call log:
+      [2m- waiting for locator('.orangehrm-card-container').filter({ hasText: /supervisors/i }).first().getByRole('button', { name: 'Add' })[22m
+
+
+      68 |       .filter({ hasText: /supervisors/i }).first();
+      69 |
+    > 70 |     await supervisorsSection.getByRole('button', { name: 'Add' }).click();
+         |                                                                   ^
+      71 |     await page.waitForLoadState('networkidle');
+      72 |
+      73 |     // Debe aparecer un campo de búsqueda de empleado (autocomplete)
+
+        at /app/tests/sprint-n1/edit-employee-report-to.spec.ts:70:67
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/sprint-n1-edit-employee-report-to-Sprint-N-1-–-32ca1-de-agregar-supervisor-muestra-campos-requeridos-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/sprint-n1-edit-employee-report-to-Sprint-N-1-–-32ca1-de-agregar-supervisor-muestra-campos-requeridos-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/sprint-n1-edit-employee-report-to-Sprint-N-1-–-32ca1-de-agregar-supervisor-muestra-campos-requeridos-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/sprint-n1-edit-employee-report-to-Sprint-N-1-–-32ca1-de-agregar-supervisor-muestra-campos-requeridos-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  12) [chromium] › sprint-n1/edit-employee-report-to.spec.ts:82:7 › Sprint N+1 – Edit Employee Report-to (Admin) › CP-019 Cancel en formulario de supervisor no guarda cambios 
+
+    Error: locator.click: Error: strict mode violation: locator('.orangehrm-card-container').filter({ hasText: /supervisors/i }).first().getByRole('button', { name: 'Add' }) resolved to 3 elements:
+        1) <button type="button" data-v-10d463b7="" data-v-3dab643a…>…</button> aka locator('div').filter({ hasText: /^Assigned Supervisors Add No Records FoundNameReporting MethodActions$/ }).getByRole('button')
+        2) <button type="button" data-v-10d463b7="" data-v-3dab643a…>…</button> aka locator('div').filter({ hasText: /^Assigned Subordinates Add No Records FoundNameReporting MethodActions$/ }).getByRole('button')
+        3) <button type="button" data-v-10d463b7="" data-v-3dab643a…>…</button> aka getByRole('button', { name: ' Add' }).nth(2)
+
+    Call log:
+      [2m- waiting for locator('.orangehrm-card-container').filter({ hasText: /supervisors/i }).first().getByRole('button', { name: 'Add' })[22m
+
+
+      88 |     const initialRowCount = await supervisorsSection.locator('.oxd-table-row').count();
+      89 |
+    > 90 |     await supervisorsSection.getByRole('button', { name: 'Add' }).click();
+         |                                                                   ^
+      91 |     await page.waitForLoadState('networkidle');
+      92 |
+      93 |     await page.getByRole('button', { name: 'Cancel' }).last().click();
+
+        at /app/tests/sprint-n1/edit-employee-report-to.spec.ts:90:67
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/sprint-n1-edit-employee-report-to-Sprint-N-1-–-42d4a-l-en-formulario-de-supervisor-no-guarda-cambios-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/sprint-n1-edit-employee-report-to-Sprint-N-1-–-42d4a-l-en-formulario-de-supervisor-no-guarda-cambios-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: locator.click: Error: strict mode violation: locator('.orangehrm-card-container').filter({ hasText: /supervisors/i }).first().getByRole('button', { name: 'Add' }) resolved to 3 elements:
+        1) <button type="button" data-v-10d463b7="" data-v-3dab643a…>…</button> aka locator('div').filter({ hasText: /^Assigned Supervisors Add No Records FoundNameReporting MethodActions$/ }).getByRole('button')
+        2) <button type="button" data-v-10d463b7="" data-v-3dab643a…>…</button> aka locator('div').filter({ hasText: /^Assigned Subordinates Add No Records FoundNameReporting MethodActions$/ }).getByRole('button')
+        3) <button type="button" data-v-10d463b7="" data-v-3dab643a…>…</button> aka getByRole('button', { name: ' Add' }).nth(2)
+
+    Call log:
+      [2m- waiting for locator('.orangehrm-card-container').filter({ hasText: /supervisors/i }).first().getByRole('button', { name: 'Add' })[22m
+
+
+      88 |     const initialRowCount = await supervisorsSection.locator('.oxd-table-row').count();
+      89 |
+    > 90 |     await supervisorsSection.getByRole('button', { name: 'Add' }).click();
+         |                                                                   ^
+      91 |     await page.waitForLoadState('networkidle');
+      92 |
+      93 |     await page.getByRole('button', { name: 'Cancel' }).last().click();
+
+        at /app/tests/sprint-n1/edit-employee-report-to.spec.ts:90:67
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/sprint-n1-edit-employee-report-to-Sprint-N-1-–-42d4a-l-en-formulario-de-supervisor-no-guarda-cambios-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/sprint-n1-edit-employee-report-to-Sprint-N-1-–-42d4a-l-en-formulario-de-supervisor-no-guarda-cambios-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/sprint-n1-edit-employee-report-to-Sprint-N-1-–-42d4a-l-en-formulario-de-supervisor-no-guarda-cambios-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/sprint-n1-edit-employee-report-to-Sprint-N-1-–-42d4a-l-en-formulario-de-supervisor-no-guarda-cambios-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  13) [chromium] › sprint-n2/admin-add-user.spec.ts:85:7 › Sprint N+2 – Admin Add User (Admin) › CP-025 [SMOKE] Se puede filtrar el listado por User Role 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m0[39m
+    Received:   [31m0[39m
+
+       97 |     const rows = page.locator('.oxd-table-body .oxd-table-row');
+       98 |     const count = await rows.count();
+    >  99 |     expect(count).toBeGreaterThan(0);
+          |                   ^
+      100 |   });
+      101 | });
+      102 |
+
+        at /app/tests/sprint-n2/admin-add-user.spec.ts:99:19
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/sprint-n2-admin-add-user-Sprint-N-2-–-Admin-Ad-7f64a-SMOKE-Se-puede-filtrar-el-listado-por-User-Role-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/sprint-n2-admin-add-user-Sprint-N-2-–-Admin-Ad-7f64a-SMOKE-Se-puede-filtrar-el-listado-por-User-Role-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m0[39m
+    Received:   [31m0[39m
+
+       97 |     const rows = page.locator('.oxd-table-body .oxd-table-row');
+       98 |     const count = await rows.count();
+    >  99 |     expect(count).toBeGreaterThan(0);
+          |                   ^
+      100 |   });
+      101 | });
+      102 |
+
+        at /app/tests/sprint-n2/admin-add-user.spec.ts:99:19
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/sprint-n2-admin-add-user-Sprint-N-2-–-Admin-Ad-7f64a-SMOKE-Se-puede-filtrar-el-listado-por-User-Role-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/sprint-n2-admin-add-user-Sprint-N-2-–-Admin-Ad-7f64a-SMOKE-Se-puede-filtrar-el-listado-por-User-Role-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/sprint-n2-admin-add-user-Sprint-N-2-–-Admin-Ad-7f64a-SMOKE-Se-puede-filtrar-el-listado-por-User-Role-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/sprint-n2-admin-add-user-Sprint-N-2-–-Admin-Ad-7f64a-SMOKE-Se-puede-filtrar-el-listado-por-User-Role-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  Slow test file: [chromium] › sprint-n/my-info-qualifications.spec.ts (3.9m)
+  Slow test file: [chromium] › sprint-n/employee-list.spec.ts (1.9m)
+  Slow test file: [chromium] › sprint-n1/edit-employee-report-to.spec.ts (1.6m)
+  Slow test file: [chromium] › sprint-n/add-employee.spec.ts (1.5m)
+  Slow test file: [chromium] › sprint-n2/admin-add-user.spec.ts (43.4s)
+  Consider splitting slow test files to speed up parallel execution
+  13 failed
+    [chromium] › sprint-n/add-employee.spec.ts:74:7 › Sprint N – Add Employee (Admin) › CP-009 El campo Employee ID se pre-popula automáticamente 
+    [chromium] › sprint-n/add-employee.spec.ts:82:7 › Sprint N – Add Employee (Admin) › CP-010 El botón Cancel regresa al listado sin crear empleado 
+    [chromium] › sprint-n/employee-list.spec.ts:22:7 › Sprint N – Employee List (Admin) › CP-001 [SMOKE][REGRESSION] La tabla de empleados carga correctamente 
+    [chromium] › sprint-n/employee-list.spec.ts:32:7 › Sprint N – Employee List (Admin) › CP-002 [REGRESSION] Búsqueda por nombre filtra resultados 
+    [chromium] › sprint-n/my-info-qualifications.spec.ts:43:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-011 [SMOKE] La pestaña Qualifications carga y muestra sus secciones 
+    [chromium] › sprint-n/my-info-qualifications.spec.ts:50:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-012 [REGRESSION] Se puede agregar Work Experience 
+    [chromium] › sprint-n/my-info-qualifications.spec.ts:78:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-013 [REGRESSION] Se puede agregar Education 
+    [chromium] › sprint-n/my-info-qualifications.spec.ts:99:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-014 Guardar Work Experience sin datos muestra validación 
+    [chromium] › sprint-n/my-info-qualifications.spec.ts:116:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-015 Las secciones Skills y Languages están presentes en la página 
+    [chromium] › sprint-n1/edit-employee-report-to.spec.ts:52:7 › Sprint N+1 – Edit Employee Report-to (Admin) › CP-017 [REGRESSION] La sección Supervisors tiene botón Add visible 
+    [chromium] › sprint-n1/edit-employee-report-to.spec.ts:64:7 › Sprint N+1 – Edit Employee Report-to (Admin) › CP-018 [REGRESSION] Formulario de agregar supervisor muestra campos requeridos 
+    [chromium] › sprint-n1/edit-employee-report-to.spec.ts:82:7 › Sprint N+1 – Edit Employee Report-to (Admin) › CP-019 Cancel en formulario de supervisor no guarda cambios 
+    [chromium] › sprint-n2/admin-add-user.spec.ts:85:7 › Sprint N+2 – Admin Add User (Admin) › CP-025 [SMOKE] Se puede filtrar el listado por User Role 
+  1 skipped
+  11 passed (4.1m)
+
+To open last HTML report run:
+
+  npx playwright show-report
+
+

@@ -39,6 +39,54 @@ Reemplazá `tu_api_key_aqui` por tu API key real y guardá el archivo.
 
 ---
 
+## Configurar recursos según tu máquina (opcional, antes de hacer build)
+
+Si tu computadora tiene más o menos de 4 núcleos y 8 GB de RAM, podés ajustar estas dos cosas:
+
+### 1. Cambiar CPU y memoria del contenedor
+
+Abrí el archivo `tp-calidad-sistema/docker-compose.yml` y buscá la sección `e2e-tests`:
+
+```yaml
+    deploy:
+      resources:
+        limits:
+          cpus: '4'          # ← máximo de CPUs que puede usar
+          memory: 8G         # ← máximo de RAM que puede usar
+        reservations:
+          cpus: '4'          # ← CPUs reservadas desde el inicio
+          memory: 2G         # ← RAM reservada desde el inicio
+    shm_size: '2gb'         # ← memoria compartida para Chromium
+```
+
+**Recomendaciones según tu hardware:**
+
+| Tu máquina | cpus limit | memory limit | shm_size |
+|-----------|-----------|-------------|----------|
+| 2 núcleos, 4 GB RAM | 2 | 4G | 1gb |
+| 4 núcleos, 8 GB RAM (default) | 4 | 8G | 2gb |
+| 8 núcleos, 16 GB RAM | 8 | 16G | 4gb |
+
+### 2. Cambiar número de workers (paralelismo)
+
+Abrí `tp-calidad-sistema/playwright-tests/playwright.config.ts` y buscá esta línea:
+
+```typescript
+  workers: 4,  // ← número de tests que corren en paralelo
+```
+
+**Recomendaciones:**
+
+| Tu máquina | workers | resultado |
+|-----------|---------|-----------|
+| 2 núcleos | 2 | ~2 tests simultáneos |
+| 4 núcleos (default) | 4 | ~4 tests simultáneos |
+| 8 núcleos | 6-8 | ~6-8 tests simultáneos |
+
+**Nota:** Más workers = más rápido, pero más recursos. Si tu máquina se traba, baja el número.
+
+---
+
 ## Construir las imagenes (hacer UNA sola vez, o si cambias el código)
 
 Este paso descarga todo lo necesario. Puede tardar varios minutos la primera vez.
