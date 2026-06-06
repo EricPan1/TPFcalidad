@@ -67,9 +67,9 @@ services:
       - "8080:80"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
-      - ./dashboard:/usr/share/nginx/html:ro
-      - playwright-report:/usr/share/nginx/html/playwright-report:ro
-      - api-report:/usr/share/nginx/html/api-report:ro
+      - ./dashboard:/var/www/dashboard:ro
+      - playwright-report:/var/www/playwright-report:ro
+      - api-report:/var/www/api-report:ro
     networks:
       - qa-network
     restart: unless-stopped
