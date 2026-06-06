@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
 
-  # ── Ejecutores de pruebas (se levantan con: docker-compose --profile test run --rm <nombre>) ──
+  # ── Ejecutores de pruebas (correr con: docker compose run --rm e2e-tests / api-tests) ──
 
   e2e-tests:
     build:
@@ -14,8 +14,7 @@ services:
     volumes:
       - allure-results:/allure-results
       - playwright-report:/app/playwright-report
-    profiles:
-      - test
+    restart: "no"
     networks:
       - qa-network
 
@@ -27,12 +26,11 @@ services:
       - WEATHER_API_KEY=${WEATHER_API_KEY:-REEMPLAZAR_CON_TU_KEY}
     volumes:
       - api-report:/app/api-report
-    profiles:
-      - test
+    restart: "no"
     networks:
       - qa-network
 
-  # ── Servicios permanentes (se levantan con: docker-compose up -d) ──
+  # ── Servicios permanentes (correr con: docker compose up -d) ──
 
   allure:
     image: frankescobar/allure-docker-service:latest
