@@ -24,6 +24,7 @@ usage() {
   echo -e "  ${GREEN}pdf${RESET}     Genera Plan_de_Pruebas_General.pdf en este directorio"
   echo -e "  ${GREEN}casos${RESET}   Genera Casos_de_Prueba_Frontend.pdf en este directorio"
   echo -e "  ${GREEN}api${RESET}     Genera Casos_de_Prueba_API_Clima.pdf en este directorio"
+  echo -e "  ${GREEN}excel${RESET}   Genera Casos_de_Prueba_OrangeHRM.xlsx desde el último run de tests"
   echo -e "  ${GREEN}down${RESET}    Detiene y elimina todos los contenedores y volúmenes"
   echo -e "  ${GREEN}logs${RESET}    Muestra logs de todos los servicios en tiempo real\n"
   echo -e "Antes de correr por primera vez:"
@@ -91,6 +92,17 @@ cmd_api() {
   echo -e "\n${GREEN}✔ Listo: $(pwd)/Casos_de_Prueba_API_Clima.pdf${RESET}\n"
 }
 
+cmd_excel() {
+  if [ ! -f "playwright-report/results.json" ]; then
+    echo -e "${YELLOW}⚠  No existe playwright-report/results.json${RESET}"
+    echo -e "   Primero corré: ${CYAN}bash start.sh test${RESET}\n"
+    exit 1
+  fi
+  echo -e "${BOLD}Generando Casos_de_Prueba_OrangeHRM.xlsx...${RESET}"
+  docker compose run --rm excel-generator
+  echo -e "\n${GREEN}✔ Listo: $(pwd)/Casos_de_Prueba_OrangeHRM.xlsx${RESET}\n"
+}
+
 case "$COMANDO" in
   up)    header; cmd_up ;;
   test)  header; cmd_test ;;
@@ -98,6 +110,7 @@ case "$COMANDO" in
   pdf)   header; cmd_pdf ;;
   casos) header; cmd_casos ;;
   api)   header; cmd_api ;;
+  excel) header; cmd_excel ;;
   down)  header; cmd_down ;;
   logs)  docker compose logs -f ;;
   *)     usage ;;

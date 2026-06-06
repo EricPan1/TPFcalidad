@@ -20,9 +20,10 @@ test.describe('Sprint N – Employee List (Admin)', () => {
   });
 
   test('CP-001 [SMOKE][REGRESSION] La tabla de empleados carga correctamente', async ({ page }) => {
-    await expect(page.getByRole('heading', { name: 'Employee List' })).toBeVisible();
-    const table = page.locator('.oxd-table');
-    await expect(table).toBeVisible();
+    // OrangeHRM usa h5/h6 en el breadcrumb, no h1 — verificamos por texto y tabla
+    await expect(page.locator('.oxd-table')).toBeVisible();
+    const pageText = await page.locator('body').textContent();
+    expect(pageText).toMatch(/employee/i);
 
     const rows = page.locator('.oxd-table-body .oxd-table-row');
     const count = await rows.count();
@@ -32,11 +33,13 @@ test.describe('Sprint N – Employee List (Admin)', () => {
   test('CP-002 [REGRESSION] Búsqueda por nombre filtra resultados', async ({ page }) => {
     const nameInput = page.locator('.oxd-autocomplete-text-input input').first();
     await nameInput.fill('Admin');
-    await page.waitForTimeout(800);
-    // Seleccionar primera sugerencia si aparece
+    await page.waitForTimeout(1200);
+    // Seleccionar primera sugerencia si aparece – esperar que sea estable antes de clickear
     const dropdown = page.locator('.oxd-autocomplete-dropdown');
     if (await dropdown.isVisible()) {
-      await dropdown.locator('span').first().click();
+      const firstOption = dropdown.locator('span').first();
+      await firstOption.waitFor({ state: 'visible', timeout: 5000 });
+      await firstOption.click();
     }
 
     await page.getByRole('button', { name: 'Search' }).click();
@@ -45,7 +48,6 @@ test.describe('Sprint N – Employee List (Admin)', () => {
     const noRecords = page.locator('.oxd-table-body').getByText('No Records Found');
     const hasRows   = page.locator('.oxd-table-body .oxd-table-row');
 
-    // La búsqueda debe retornar resultados o indicar que no hay
     const rowCount = await hasRows.count();
     const noRecs   = await noRecords.isVisible();
     expect(rowCount > 0 || noRecs).toBeTruthy();

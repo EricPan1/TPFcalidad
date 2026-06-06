@@ -14,26 +14,11 @@ import { loginAsAdmin, BASE_URL } from '../helpers/auth';
 
 async function navigateToReportTo(page: any) {
   await page.goto(`${BASE_URL}/web/index.php/pim/viewEmployeeList`);
-  await page.waitForLoadState('networkidle');
+  await page.waitForSelector('.oxd-table-row--clickable', { timeout: 15_000 });
+  await page.locator('.oxd-table-row--clickable').first().click();
+  await page.waitForURL('**/pim/viewPersonalDetails/**', { timeout: 15_000 });
 
-  // Ir al primer empleado editable
-  const firstRow   = page.locator('.oxd-table-body .oxd-table-row').first();
-  const editButton = firstRow.locator('button i.bi-pencil-fill').first()
-    .or(firstRow.locator('[data-v-*] button').first());
-
-  // Navegar directamente al employee editable usando el link de edición
-  const editLinks = firstRow.locator('a[href*="viewPersonalDetails"]');
-  if (await editLinks.count() > 0) {
-    await editLinks.first().click();
-  } else {
-    await firstRow.locator('button').first().click();
-  }
-  await page.waitForLoadState('networkidle');
-
-  // Buscar y hacer clic en la pestaña Report-to
-  const reportToTab = page.locator('a.orangehrm-tabs-item, [role="tab"]')
-    .filter({ hasText: /report.to/i });
-  await reportToTab.first().click();
+  await page.locator('.orangehrm-tabs-item').filter({ hasText: /report.to/i }).click();
   await page.waitForLoadState('networkidle');
 }
 
@@ -51,49 +36,42 @@ test.describe('Sprint N+1 – Edit Employee Report-to (Admin)', () => {
 
   test('CP-017 [REGRESSION] La sección Supervisors tiene botón Add visible', async ({ page }) => {
     await navigateToReportTo(page);
-
-    const supervisorsSection = page.locator('.orangehrm-card-container')
-      .filter({ hasText: /supervisors/i }).first();
-
-    await expect(supervisorsSection).toBeVisible();
-
-    const addBtn = supervisorsSection.getByRole('button', { name: 'Add' });
+    // La página Report-to tiene dos secciones: Supervisors y Subordinates.
+    // El primer botón Add de la página corresponde a Supervisors.
+    const addBtn = page.getByRole('button', { name: 'Add' }).first();
     await expect(addBtn).toBeVisible();
+    // Verificar que el texto "Supervisors" está en la página
+    await expect(page.getByText('Assigned Supervisors').first()).toBeVisible();
   });
 
   test('CP-018 [REGRESSION] Formulario de agregar supervisor muestra campos requeridos', async ({ page }) => {
     await navigateToReportTo(page);
-
-    const supervisorsSection = page.locator('.orangehrm-card-container')
-      .filter({ hasText: /supervisors/i }).first();
-
-    await supervisorsSection.getByRole('button', { name: 'Add' }).click();
+    // Primer botón Add = sección Supervisors
+    await page.getByRole('button', { name: 'Add' }).first().click();
     await page.waitForLoadState('networkidle');
 
-    // Debe aparecer un campo de búsqueda de empleado (autocomplete)
+    // Debe aparecer un autocomplete para buscar el empleado supervisor
     const autocomplete = page.locator('.oxd-autocomplete-text-input input').last();
     await expect(autocomplete).toBeVisible();
 
-    // Debe haber un dropdown de método de reporte
+    // Debe haber un dropdown de Reporting Method
     const methodSelect = page.locator('.oxd-select-wrapper').last();
     await expect(methodSelect).toBeVisible();
   });
 
   test('CP-019 Cancel en formulario de supervisor no guarda cambios', async ({ page }) => {
     await navigateToReportTo(page);
+    const initialRowCount = await page.locator('.oxd-table-row').count();
 
-    const supervisorsSection = page.locator('.orangehrm-card-container')
-      .filter({ hasText: /supervisors/i }).first();
-
-    const initialRowCount = await supervisorsSection.locator('.oxd-table-row').count();
-
-    await supervisorsSection.getByRole('button', { name: 'Add' }).click();
+    // Abrir formulario de Supervisors (primer Add)
+    await page.getByRole('button', { name: 'Add' }).first().click();
     await page.waitForLoadState('networkidle');
 
     await page.getByRole('button', { name: 'Cancel' }).last().click();
     await page.waitForLoadState('networkidle');
 
-    const finalRowCount = await supervisorsSection.locator('.oxd-table-row').count();
+    // El número de filas no debe haber aumentado
+    const finalRowCount = await page.locator('.oxd-table-row').count();
     expect(finalRowCount).toBe(initialRowCount);
   });
 

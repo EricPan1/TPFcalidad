@@ -16,22 +16,14 @@ import { loginAsAdmin, BASE_URL } from '../helpers/auth';
 
 async function navigateToFirstEmployeeQualifications(page: any) {
   await page.goto(`${BASE_URL}/web/index.php/pim/viewEmployeeList`);
-  await page.waitForLoadState('networkidle');
-
-  const firstRow    = page.locator('.oxd-table-body .oxd-table-row').first();
-  const editButton  = firstRow.locator('button').filter({ hasText: /edit/i });
-  if (await editButton.count() > 0) {
-    await editButton.click();
-  } else {
-    // Fallback: hacer clic en el nombre del empleado
-    await firstRow.locator('.oxd-table-cell').nth(1).locator('a, span').first().click();
-  }
-  await page.waitForLoadState('networkidle');
+  // Esperar que aparezcan filas clickeables
+  await page.waitForSelector('.oxd-table-row--clickable', { timeout: 15_000 });
+  // Clickear la primera fila — navega al perfil del empleado
+  await page.locator('.oxd-table-row--clickable').first().click();
+  await page.waitForURL('**/pim/viewPersonalDetails/**', { timeout: 15_000 });
 
   // Navegar a la pestaña Qualifications
-  const qualTab = page.getByRole('tab', { name: 'Qualifications' })
-    .or(page.locator('a.orangehrm-tabs-item').filter({ hasText: 'Qualifications' }));
-  await qualTab.first().click();
+  await page.locator('.orangehrm-tabs-item').filter({ hasText: 'Qualifications' }).click();
   await page.waitForLoadState('networkidle');
 }
 

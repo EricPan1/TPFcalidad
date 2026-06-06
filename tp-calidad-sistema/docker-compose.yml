@@ -73,6 +73,18 @@ services:
     networks:
       - qa-network
 
+  # Genera Casos_de_Prueba_OrangeHRM.xlsx desde playwright-report/results.json
+  excel-generator:
+    build:
+      context: ./excel-generator
+    container_name: qa_excel_generator
+    volumes:
+      - .:/work
+      - playwright-report:/work/playwright-report
+    restart: "no"
+    networks:
+      - qa-network
+
   # ── Servicios permanentes (correr con: docker compose up -d) ──
 
   allure:
