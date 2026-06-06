@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard QA – Taller Calidad Software</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <style>
+    body { background: #0d1117; color: #e6edf3; font-family: 'Segoe UI', sans-serif; }
+    .hero { background: linear-gradient(135deg, #161b22 0%, #21262d 100%);
+            border-bottom: 1px solid #30363d; padding: 2.5rem 0 2rem; }
+    .hero h1 { font-size: 1.9rem; font-weight: 700; }
+    .hero .subtitle { color: #8b949e; font-size: 0.95rem; }
+    .card-tool {
+      background: #161b22; border: 1px solid #30363d; border-radius: 12px;
+      transition: transform .2s, border-color .2s;
+      text-decoration: none; color: inherit; display: block;
+    }
+    .card-tool:hover { transform: translateY(-3px); border-color: #58a6ff; color: #e6edf3; }
+    .card-tool .icon { font-size: 2.2rem; }
+    .sprint-badge { font-size: 0.75rem; }
+    .section-title { color: #8b949e; font-size: 0.8rem; text-transform: uppercase;
+                     letter-spacing: .1em; border-bottom: 1px solid #30363d; padding-bottom: 6px; }
+    .sprint-row { background: #161b22; border: 1px solid #30363d; border-radius: 8px; }
+    .tech-badge { background: #21262d; border: 1px solid #30363d; border-radius: 4px;
+                  padding: 2px 8px; font-size: 0.78rem; color: #79c0ff; display: inline-block; margin: 2px; }
+    .status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+    .dot-green { background: #3fb950; }
+    .dot-yellow { background: #d29922; }
+    table { color: #e6edf3; }
+    th { color: #8b949e !important; font-weight: 500; }
+    tr { border-color: #30363d !important; }
+    .table-dark-custom { background: #161b22; }
+  </style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero mb-4">
+  <div class="container">
+    <div class="d-flex align-items-center gap-3 mb-2">
+      <i class="bi bi-clipboard2-check-fill text-success fs-2"></i>
+      <div>
+        <h1 class="mb-0">Dashboard de Calidad de Software</h1>
+        <p class="subtitle mb-0">OrangeHRM – Sprints N / N+1 / N+2 / N+3 &nbsp;|&nbsp; Taller Calidad – TP Final</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container pb-5">
+
+  <!-- Herramientas -->
+  <p class="section-title mb-3">Acceso rápido a herramientas</p>
+  <div class="row g-3 mb-5">
+
+    <div class="col-sm-6 col-md-4">
+      <a href="http://localhost:5050" target="_blank" class="card-tool p-4">
+        <div class="d-flex align-items-center gap-3">
+          <div class="icon text-warning"><i class="bi bi-bar-chart-line-fill"></i></div>
+          <div>
+            <div class="fw-semibold">Allure Reports</div>
+            <div class="small text-muted">Resultados de pruebas E2E</div>
+            <div><span class="tech-badge">puerto 5050</span></div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-sm-6 col-md-4">
+      <a href="http://localhost:3000" target="_blank" class="card-tool p-4">
+        <div class="d-flex align-items-center gap-3">
+          <div class="icon text-danger"><i class="bi bi-bug-fill"></i></div>
+          <div>
+            <div class="fw-semibold">Bug Tracker</div>
+            <div class="small text-muted">Gestión de defectos</div>
+            <div><span class="tech-badge">puerto 3000</span></div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-sm-6 col-md-4">
+      <a href="/playwright-report/" target="_blank" class="card-tool p-4">
+        <div class="d-flex align-items-center gap-3">
+          <div class="icon text-info"><i class="bi bi-display"></i></div>
+          <div>
+            <div class="fw-semibold">Playwright Report</div>
+            <div class="small text-muted">HTML report E2E (último run)</div>
+            <div><span class="tech-badge">Chromium</span></div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-sm-6 col-md-4">
+      <a href="/api-report/" target="_blank" class="card-tool p-4">
+        <div class="d-flex align-items-center gap-3">
+          <div class="icon text-success"><i class="bi bi-cloud-fill"></i></div>
+          <div>
+            <div class="fw-semibold">API Report</div>
+            <div class="small text-muted">Newman – Weather API</div>
+            <div><span class="tech-badge">20 casos</span></div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-sm-6 col-md-4">
+      <a href="https://opensource-demo.orangehrmlive.com" target="_blank" class="card-tool p-4">
+        <div class="d-flex align-items-center gap-3">
+          <div class="icon" style="color:#f97316"><i class="bi bi-person-workspace"></i></div>
+          <div>
+            <div class="fw-semibold">OrangeHRM Demo</div>
+            <div class="small text-muted">Sistema bajo prueba</div>
+            <div><span class="tech-badge">admin / admin123</span></div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-sm-6 col-md-4">
+      <a href="https://www.weatherapi.com" target="_blank" class="card-tool p-4">
+        <div class="d-flex align-items-center gap-3">
+          <div class="icon" style="color:#60a5fa"><i class="bi bi-cloud-lightning-fill"></i></div>
+          <div>
+            <div class="fw-semibold">WeatherAPI.com</div>
+            <div class="small text-muted">API del Clima – Sprint N+3</div>
+            <div><span class="tech-badge">REST</span><span class="tech-badge">JSON</span></div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+  </div>
+
+  <!-- Sprints -->
+  <p class="section-title mb-3">Incrementos por Sprint</p>
+  <div class="row g-3 mb-5">
+
+    <div class="col-md-6">
+      <div class="sprint-row p-3">
+        <div class="d-flex justify-content-between align-items-start mb-2">
+          <span class="fw-bold">Sprint N</span>
+          <span class="badge bg-primary sprint-badge">Backend + Frontend</span>
+        </div>
+        <ul class="list-unstyled mb-2 small">
+          <li><i class="bi bi-check-circle-fill text-success me-1"></i>Backend Employee List</li>
+          <li><i class="bi bi-check-circle-fill text-success me-1"></i>Backend Add Employee</li>
+          <li><i class="bi bi-check-circle-fill text-success me-1"></i>Pantalla Employee List</li>
+          <li><i class="bi bi-check-circle-fill text-success me-1"></i>Pantalla My Info – Qualifications</li>
+        </ul>
+        <div>
+          <span class="tech-badge">CP-001 a CP-015</span>
+          <span class="tech-badge">15 casos</span>
+          <span class="tech-badge">Playwright</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="sprint-row p-3">
+        <div class="d-flex justify-content-between align-items-start mb-2">
+          <span class="fw-bold">Sprint N+1</span>
+          <span class="badge bg-info sprint-badge text-dark">Backend + Frontend</span>
+        </div>
+        <ul class="list-unstyled mb-2 small">
+          <li><i class="bi bi-check-circle-fill text-success me-1"></i>Backend My Info – Qualifications</li>
+          <li><i class="bi bi-check-circle-fill text-success me-1"></i>Backend Edit Employee – Report to</li>
+          <li><i class="bi bi-check-circle-fill text-success me-1"></i>Pantalla Edit Employee – Report to</li>
+        </ul>
+        <div>
+          <span class="tech-badge">CP-016 a CP-020</span>
+          <span class="tech-badge">5 casos</span>
+          <span class="tech-badge">Playwright</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="sprint-row p-3">
+        <div class="d-flex justify-content-between align-items-start mb-2">
+          <span class="fw-bold">Sprint N+2</span>
+          <span class="badge bg-warning sprint-badge text-dark">Back + Front</span>
+        </div>
+        <ul class="list-unstyled mb-2 small">
+          <li><i class="bi bi-check-circle-fill text-success me-1"></i>Backend Admin – Add User</li>
+          <li><i class="bi bi-check-circle-fill text-success me-1"></i>Frontend Admin – Add User</li>
+          <li><i class="bi bi-check-circle-fill text-success me-1"></i>Asignación de perfil a usuario existente</li>
+        </ul>
+        <div>
+          <span class="tech-badge">CP-021 a CP-025</span>
+          <span class="tech-badge">5 casos</span>
+          <span class="tech-badge">Playwright</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="sprint-row p-3">
+        <div class="d-flex justify-content-between align-items-start mb-2">
+          <span class="fw-bold">Sprint N+3</span>
+          <span class="badge bg-success sprint-badge">Widget Clima</span>
+        </div>
+        <ul class="list-unstyled mb-2 small">
+          <li><i class="bi bi-check-circle-fill text-success me-1"></i>Backend Widget Clima</li>
+          <li><i class="bi bi-check-circle-fill text-success me-1"></i>Frontend Widget Clima</li>
+          <li><i class="bi bi-check-circle-fill text-success me-1"></i>Integración Weather API</li>
+        </ul>
+        <div>
+          <span class="tech-badge">CP-API-001 a CP-API-020</span>
+          <span class="tech-badge">20 casos</span>
+          <span class="tech-badge">Newman</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Cobertura -->
+  <p class="section-title mb-3">Cobertura de casos de prueba</p>
+  <div class="table-responsive mb-5">
+    <table class="table table-sm align-middle" style="background:#161b22; border-radius:8px; overflow:hidden;">
+      <thead>
+        <tr style="background:#21262d;">
+          <th class="ps-3">Módulo / Endpoint</th>
+          <th>Sprint</th>
+          <th>Casos</th>
+          <th>Smoke</th>
+          <th>Herramienta</th>
+          <th>Tipo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="ps-3">Employee List</td><td>N</td><td>5</td><td>CP-001, CP-005</td><td><span class="tech-badge">Playwright</span></td><td>E2E</td></tr>
+        <tr><td class="ps-3">Add Employee</td><td>N</td><td>5</td><td>CP-006</td><td><span class="tech-badge">Playwright</span></td><td>E2E</td></tr>
+        <tr><td class="ps-3">My Info – Qualifications</td><td>N</td><td>5</td><td>CP-011</td><td><span class="tech-badge">Playwright</span></td><td>E2E</td></tr>
+        <tr><td class="ps-3">Edit Employee – Report to</td><td>N+1</td><td>5</td><td>CP-016, CP-020</td><td><span class="tech-badge">Playwright</span></td><td>E2E</td></tr>
+        <tr><td class="ps-3">Admin – Add User</td><td>N+2</td><td>5</td><td>CP-021, CP-025</td><td><span class="tech-badge">Playwright</span></td><td>E2E</td></tr>
+        <tr><td class="ps-3">/current.json</td><td>N+3</td><td>5</td><td>CP-API-001</td><td><span class="tech-badge">Newman</span></td><td>API</td></tr>
+        <tr><td class="ps-3">/forecast.json</td><td>N+3</td><td>5</td><td>CP-API-006</td><td><span class="tech-badge">Newman</span></td><td>API</td></tr>
+        <tr><td class="ps-3">/history.json</td><td>N+3</td><td>5</td><td>CP-API-011</td><td><span class="tech-badge">Newman</span></td><td>API</td></tr>
+        <tr><td class="ps-3">/alerts.json</td><td>N+3</td><td>5</td><td>CP-API-016</td><td><span class="tech-badge">Newman</span></td><td>API</td></tr>
+        <tr style="background:#21262d;"><td class="ps-3 fw-bold">TOTAL</td><td>–</td><td class="fw-bold">45</td><td>–</td><td>–</td><td>–</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Stack tecnológico -->
+  <p class="section-title mb-3">Stack tecnológico utilizado</p>
+  <div class="row g-3 mb-4">
+    <div class="col-md-4">
+      <div class="sprint-row p-3">
+        <div class="fw-semibold mb-2"><i class="bi bi-display me-1 text-info"></i>Pruebas E2E Frontend</div>
+        <div>
+          <span class="tech-badge">Playwright 1.40</span>
+          <span class="tech-badge">TypeScript</span>
+          <span class="tech-badge">Chromium</span>
+          <span class="tech-badge">Allure Reporter</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="sprint-row p-3">
+        <div class="fw-semibold mb-2"><i class="bi bi-cloud me-1 text-success"></i>Pruebas de API</div>
+        <div>
+          <span class="tech-badge">Newman 6</span>
+          <span class="tech-badge">Postman Collection v2.1</span>
+          <span class="tech-badge">HTMLExtra Reporter</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="sprint-row p-3">
+        <div class="fw-semibold mb-2"><i class="bi bi-gear me-1 text-warning"></i>Infraestructura</div>
+        <div>
+          <span class="tech-badge">Docker Compose</span>
+          <span class="tech-badge">Allure Docker Service</span>
+          <span class="tech-badge">nginx</span>
+          <span class="tech-badge">Node.js</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="text-center text-muted small mt-4">
+    Taller de Control de Calidad de Software – Trabajo Final Integrador<br/>
+    Licenciatura en Tecnologías Digitales / Licenciatura en Ciencias de Datos
+  </p>
+
+</div>
+
+</body>
+</html>

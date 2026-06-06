@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bug Tracker – Taller Calidad Software</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <style>
+    body { background: #f0f2f5; }
+    .navbar { background: #2c3e50 !important; }
+    .stat-card { border-left: 4px solid; }
+    .stat-open        { border-color: #dc3545; }
+    .stat-in-progress { border-color: #ffc107; }
+    .stat-resolved    { border-color: #198754; }
+    .stat-total       { border-color: #0d6efd; }
+    .badge-CRITICAL { background: #7b1fa2; }
+    .badge-HIGH     { background: #dc3545; }
+    .badge-MEDIUM   { background: #fd7e14; }
+    .badge-LOW      { background: #198754; }
+    .badge-OPEN        { background: #dc3545; }
+    .badge-IN_PROGRESS { background: #ffc107; color: #000 !important; }
+    .badge-RESOLVED    { background: #198754; }
+    .badge-CLOSED      { background: #6c757d; }
+    .bug-row { cursor: pointer; }
+    .bug-row:hover { background: #e9ecef; }
+    pre { white-space: pre-wrap; word-break: break-word; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-dark mb-4">
+  <div class="container">
+    <span class="navbar-brand fw-bold">
+      <i class="bi bi-bug-fill me-2"></i>Bug Tracker – Taller Calidad Software
+    </span>
+    <button class="btn btn-outline-light btn-sm" onclick="openModal()">
+      <i class="bi bi-plus-lg me-1"></i>Nuevo Bug
+    </button>
+  </div>
+</nav>
+
+<div class="container">
+
+  <!-- Stats -->
+  <div class="row g-3 mb-4" id="stats-row">
+    <div class="col-6 col-md-3">
+      <div class="card stat-card stat-total p-3 text-center">
+        <div class="fs-1 fw-bold text-primary" id="stat-total">–</div>
+        <div class="text-muted small">Total</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="card stat-card stat-open p-3 text-center">
+        <div class="fs-1 fw-bold text-danger" id="stat-open">–</div>
+        <div class="text-muted small">Abiertos</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="card stat-card stat-in-progress p-3 text-center">
+        <div class="fs-1 fw-bold text-warning" id="stat-in-progress">–</div>
+        <div class="text-muted small">En Progreso</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="card stat-card stat-resolved p-3 text-center">
+        <div class="fs-1 fw-bold text-success" id="stat-resolved">–</div>
+        <div class="text-muted small">Resueltos</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filtros -->
+  <div class="card mb-3">
+    <div class="card-body py-2">
+      <div class="row g-2 align-items-center">
+        <div class="col-auto"><strong class="small">Filtrar:</strong></div>
+        <div class="col-auto">
+          <select class="form-select form-select-sm" id="filter-sprint" onchange="applyFilters()">
+            <option value="">Todos los sprints</option>
+            <option>Sprint N</option>
+            <option>Sprint N+1</option>
+            <option>Sprint N+2</option>
+            <option>Sprint N+3</option>
+          </select>
+        </div>
+        <div class="col-auto">
+          <select class="form-select form-select-sm" id="filter-status" onchange="applyFilters()">
+            <option value="">Todos los estados</option>
+            <option>OPEN</option>
+            <option>IN_PROGRESS</option>
+            <option>RESOLVED</option>
+            <option>CLOSED</option>
+          </select>
+        </div>
+        <div class="col-auto">
+          <select class="form-select form-select-sm" id="filter-severity" onchange="applyFilters()">
+            <option value="">Todas las severidades</option>
+            <option>CRITICAL</option>
+            <option>HIGH</option>
+            <option>MEDIUM</option>
+            <option>LOW</option>
+          </select>
+        </div>
+        <div class="col-auto">
+          <button class="btn btn-outline-secondary btn-sm" onclick="clearFilters()">
+            <i class="bi bi-x-circle me-1"></i>Limpiar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabla -->
+  <div class="card">
+    <div class="card-body p-0">
+      <table class="table table-hover mb-0">
+        <thead class="table-dark">
+          <tr>
+            <th class="ps-3" style="width:60px">ID</th>
+            <th>Título</th>
+            <th style="width:110px">Sprint</th>
+            <th style="width:100px">Severidad</th>
+            <th style="width:120px">Estado</th>
+            <th style="width:90px">Acción</th>
+          </tr>
+        </thead>
+        <tbody id="bugs-tbody">
+          <tr><td colspan="6" class="text-center py-4 text-muted">Cargando...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Detalle / Crear -->
+<div class="modal fade" id="bugModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-dark text-white">
+        <h5 class="modal-title" id="modal-title">Detalle del Bug</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+      <div class="modal-footer" id="modal-footer"></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  let allBugs = [];
+  let bsModal;
+
+  document.addEventListener('DOMContentLoaded', () => {
+    bsModal = new bootstrap.Modal(document.getElementById('bugModal'));
+    loadStats();
+    loadBugs();
+  });
+
+  async function loadStats() {
+    const s = await fetch('/api/stats').then(r => r.json());
+    document.getElementById('stat-total').textContent       = s.total;
+    document.getElementById('stat-open').textContent        = s.open;
+    document.getElementById('stat-in-progress').textContent = s.in_progress;
+    document.getElementById('stat-resolved').textContent    = s.resolved + s.closed;
+  }
+
+  async function loadBugs() {
+    allBugs = await fetch('/api/bugs').then(r => r.json());
+    renderBugs(allBugs);
+  }
+
+  function renderBugs(bugs) {
+    const tbody = document.getElementById('bugs-tbody');
+    if (!bugs.length) {
+      tbody.innerHTML = '<tr><td colspan="6" class="text-center py-4 text-muted">No hay bugs con los filtros aplicados.</td></tr>';
+      return;
+    }
+    tbody.innerHTML = bugs.map(b => `
+      <tr class="bug-row" onclick="showBug(${b.id})">
+        <td class="ps-3 text-muted">#${b.id}</td>
+        <td><strong>${esc(b.title)}</strong><br><small class="text-muted">${esc(b.module || '')}</small></td>
+        <td><span class="badge bg-secondary">${esc(b.sprint || '–')}</span></td>
+        <td><span class="badge badge-${b.severity}">${b.severity}</span></td>
+        <td><span class="badge badge-${b.status}">${b.status.replace('_', ' ')}</span></td>
+        <td>
+          <button class="btn btn-sm btn-outline-primary" onclick="event.stopPropagation();showBug(${b.id})">
+            <i class="bi bi-eye"></i>
+          </button>
+          <button class="btn btn-sm btn-outline-danger ms-1" onclick="event.stopPropagation();deleteBug(${b.id})">
+            <i class="bi bi-trash"></i>
+          </button>
+        </td>
+      </tr>`).join('');
+  }
+
+  function applyFilters() {
+    const sprint   = document.getElementById('filter-sprint').value;
+    const status   = document.getElementById('filter-status').value;
+    const severity = document.getElementById('filter-severity').value;
+    let filtered = allBugs;
+    if (sprint)   filtered = filtered.filter(b => b.sprint   === sprint);
+    if (status)   filtered = filtered.filter(b => b.status   === status);
+    if (severity) filtered = filtered.filter(b => b.severity === severity);
+    renderBugs(filtered);
+  }
+
+  function clearFilters() {
+    ['filter-sprint','filter-status','filter-severity'].forEach(id => document.getElementById(id).value = '');
+    renderBugs(allBugs);
+  }
+
+  async function showBug(id) {
+    const b = await fetch(`/api/bugs/${id}`).then(r => r.json());
+    document.getElementById('modal-title').textContent = `BUG-${b.id}: ${b.title}`;
+    document.getElementById('modal-body').innerHTML = `
+      <div class="row mb-2">
+        <div class="col-auto"><span class="badge badge-${b.severity}">${b.severity}</span></div>
+        <div class="col-auto"><span class="badge badge-${b.status}">${b.status.replace('_',' ')}</span></div>
+        <div class="col-auto"><span class="badge bg-secondary">${esc(b.sprint||'–')}</span></div>
+        <div class="col-auto"><span class="badge bg-info text-dark">${esc(b.module||'–')}</span></div>
+      </div>
+      <hr />
+      ${field('Descripción', b.description)}
+      ${field('Pasos para reproducir', b.steps, true)}
+      ${field('Resultado esperado', b.expected)}
+      ${field('Resultado actual', b.actual)}
+      <div class="row mt-3">
+        <div class="col-6">${field('Reportado por', b.reported_by)}</div>
+        <div class="col-6">${field('Asignado a', b.assigned_to)}</div>
+      </div>
+      <div class="row">
+        <div class="col-6">${field('Creado', fmt(b.created_at))}</div>
+        <div class="col-6">${field('Actualizado', fmt(b.updated_at))}</div>
+      </div>`;
+    document.getElementById('modal-footer').innerHTML = `
+      <div class="me-auto d-flex gap-2 flex-wrap">
+        ${statusBtn(b.id, 'OPEN',        b.status)}
+        ${statusBtn(b.id, 'IN_PROGRESS', b.status)}
+        ${statusBtn(b.id, 'RESOLVED',    b.status)}
+        ${statusBtn(b.id, 'CLOSED',      b.status)}
+      </div>
+      <button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>`;
+    bsModal.show();
+  }
+
+  function statusBtn(id, status, current) {
+    const labels = { OPEN:'Abrir', IN_PROGRESS:'En Progreso', RESOLVED:'Resolver', CLOSED:'Cerrar' };
+    const active = status === current ? 'active' : '';
+    return `<button class="btn btn-sm btn-outline-dark ${active}" onclick="changeStatus(${id},'${status}')">${labels[status]}</button>`;
+  }
+
+  async function changeStatus(id, status) {
+    await fetch(`/api/bugs/${id}`, { method: 'PATCH', headers: {'Content-Type':'application/json'}, body: JSON.stringify({status}) });
+    await loadBugs();
+    await loadStats();
+    bsModal.hide();
+  }
+
+  async function deleteBug(id) {
+    if (!confirm(`¿Eliminar BUG-${id}?`)) return;
+    await fetch(`/api/bugs/${id}`, { method: 'DELETE' });
+    await loadBugs();
+    await loadStats();
+  }
+
+  function openModal() {
+    document.getElementById('modal-title').textContent = 'Nuevo Bug';
+    document.getElementById('modal-body').innerHTML = `
+      <div class="row g-3">
+        <div class="col-12"><label class="form-label">Título *</label><input class="form-control" id="f-title" /></div>
+        <div class="col-md-6"><label class="form-label">Sprint</label>
+          <select class="form-select" id="f-sprint">
+            <option></option><option>Sprint N</option><option>Sprint N+1</option><option>Sprint N+2</option><option>Sprint N+3</option>
+          </select></div>
+        <div class="col-md-6"><label class="form-label">Módulo</label><input class="form-control" id="f-module" /></div>
+        <div class="col-md-4"><label class="form-label">Severidad</label>
+          <select class="form-select" id="f-severity">
+            <option>MEDIUM</option><option>CRITICAL</option><option>HIGH</option><option>LOW</option>
+          </select></div>
+        <div class="col-md-4"><label class="form-label">Prioridad</label>
+          <select class="form-select" id="f-priority">
+            <option>MEDIUM</option><option>HIGH</option><option>LOW</option>
+          </select></div>
+        <div class="col-md-4"><label class="form-label">Estado</label>
+          <select class="form-select" id="f-status">
+            <option>OPEN</option><option>IN_PROGRESS</option><option>RESOLVED</option>
+          </select></div>
+        <div class="col-12"><label class="form-label">Descripción</label><textarea class="form-control" id="f-description" rows="2"></textarea></div>
+        <div class="col-12"><label class="form-label">Pasos para reproducir</label><textarea class="form-control" id="f-steps" rows="3" placeholder="1. ...\n2. ...\n3. ..."></textarea></div>
+        <div class="col-12"><label class="form-label">Resultado esperado</label><textarea class="form-control" id="f-expected" rows="2"></textarea></div>
+        <div class="col-12"><label class="form-label">Resultado actual</label><textarea class="form-control" id="f-actual" rows="2"></textarea></div>
+        <div class="col-md-6"><label class="form-label">Reportado por</label><input class="form-control" id="f-reported_by" value="Tester" /></div>
+        <div class="col-md-6"><label class="form-label">Asignado a</label><input class="form-control" id="f-assigned_to" value="Dev Team" /></div>
+      </div>`;
+    document.getElementById('modal-footer').innerHTML = `
+      <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+      <button class="btn btn-danger" onclick="saveBug()"><i class="bi bi-bug-fill me-1"></i>Crear Bug</button>`;
+    bsModal.show();
+  }
+
+  async function saveBug() {
+    const g = id => document.getElementById(id).value.trim();
+    const title = g('f-title');
+    if (!title) { alert('El título es obligatorio'); return; }
+    const body = {
+      title, description: g('f-description'), severity: g('f-severity'),
+      priority: g('f-priority'), status: g('f-status'), sprint: g('f-sprint'),
+      module: g('f-module'), steps: g('f-steps'), expected: g('f-expected'),
+      actual: g('f-actual'), reported_by: g('f-reported_by'), assigned_to: g('f-assigned_to')
+    };
+    await fetch('/api/bugs', { method: 'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body) });
+    bsModal.hide();
+    await loadBugs();
+    await loadStats();
+  }
+
+  function field(label, value, isPre = false) {
+    if (!value) return '';
+    const content = isPre ? `<pre class="bg-light p-2 rounded">${esc(value)}</pre>` : `<p>${esc(value)}</p>`;
+    return `<div class="mb-2"><strong>${label}</strong><br>${content}</div>`;
+  }
+
+  function esc(s) {
+    if (!s) return '';
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function fmt(iso) {
+    if (!iso) return '–';
+    return new Date(iso).toLocaleString('es-AR');
+  }
+</script>
+</body>
+</html>

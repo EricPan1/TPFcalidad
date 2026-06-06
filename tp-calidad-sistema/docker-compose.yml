@@ -1,0 +1,88 @@
+version: '3.8'
+
+services:
+
+  # ── Ejecutores de pruebas (se levantan con: docker-compose --profile test run --rm <nombre>) ──
+
+  e2e-tests:
+    build:
+      context: ./playwright-tests
+    container_name: qa_e2e_tests
+    environment:
+      - ORANGEHRM_URL=https://opensource-demo.orangehrmlive.com
+      - ALLURE_RESULTS_DIR=/allure-results
+    volumes:
+      - allure-results:/allure-results
+      - playwright-report:/app/playwright-report
+    profiles:
+      - test
+    networks:
+      - qa-network
+
+  api-tests:
+    build:
+      context: ./api-tests
+    container_name: qa_api_tests
+    environment:
+      - WEATHER_API_KEY=${WEATHER_API_KEY:-REEMPLAZAR_CON_TU_KEY}
+    volumes:
+      - api-report:/app/api-report
+    profiles:
+      - test
+    networks:
+      - qa-network
+
+  # ── Servicios permanentes (se levantan con: docker-compose up -d) ──
+
+  allure:
+    image: frankescobar/allure-docker-service:latest
+    container_name: qa_allure
+    environment:
+      - CHECK_RESULTS_EVERY_SECONDS=5
+      - KEEP_HISTORY=1
+      - KEEP_HISTORY_LATEST=10
+    ports:
+      - "5050:5050"
+    volumes:
+      - allure-results:/app/allure-results
+      - allure-report:/app/default-reports
+    networks:
+      - qa-network
+    restart: unless-stopped
+
+  bug-tracker:
+    build:
+      context: ./bug-tracker
+    container_name: qa_bug_tracker
+    ports:
+      - "3000:3000"
+    volumes:
+      - bug-data:/app/data
+    networks:
+      - qa-network
+    restart: unless-stopped
+
+  report-server:
+    image: nginx:1.25-alpine
+    container_name: qa_report_server
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./dashboard:/usr/share/nginx/html:ro
+      - playwright-report:/usr/share/nginx/html/playwright-report:ro
+      - api-report:/usr/share/nginx/html/api-report:ro
+    networks:
+      - qa-network
+    restart: unless-stopped
+
+volumes:
+  allure-results:
+  allure-report:
+  playwright-report:
+  api-report:
+  bug-data:
+
+networks:
+  qa-network:
+    driver: bridge

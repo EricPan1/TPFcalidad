@@ -1,0 +1,18 @@
+{
+  "name": "orangehrm-e2e-tests",
+  "version": "1.0.0",
+  "description": "Pruebas E2E automatizadas para OrangeHRM - Taller Calidad Software",
+  "scripts": {
+    "test": "playwright test",
+    "test:sprint-n": "playwright test tests/sprint-n/",
+    "test:sprint-n1": "playwright test tests/sprint-n1/",
+    "test:sprint-n2": "playwright test tests/sprint-n2/",
+    "test:smoke": "playwright test --grep @smoke",
+    "test:regression": "playwright test --grep @regression",
+    "report": "playwright show-report playwright-report"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.40.0",
+    "allure-playwright": "^2.9.2"
+  }
+}

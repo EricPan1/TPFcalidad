@@ -1,0 +1,9 @@
+{
+  "name": "bug-tracker",
+  "version": "1.0.0",
+  "description": "Bug Tracker liviano para TP Final - Taller Calidad Software",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

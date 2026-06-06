@@ -1,0 +1,866 @@
+{
+  "info": {
+    "_postman_id": "f1a2b3c4-d5e6-7890-abcd-ef0123456789",
+    "name": "Weather API - Suite de Pruebas (Sprint N+3)",
+    "description": "Pruebas de contrato para los 4 endpoints de WeatherAPI.com.\nCubre caminos felices y alternos según Actividad 3 del TP Final.\n\nEndpoints cubiertos:\n- /current.json  → Tiempo actual\n- /forecast.json → Pronóstico\n- /history.json  → Histórico\n- /alerts.json   → Alertas",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://api.weatherapi.com/v1",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Realtime Weather API (/current.json)",
+      "description": "Endpoint: GET /current.json\nRetorna el estado del tiempo en tiempo real para una ubicación.",
+      "item": [
+        {
+          "name": "CP-API-001 [SMOKE] [HAPPY] Ciudad válida retorna datos de tiempo actual",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200 OK', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Tiempo de respuesta menor a 3000ms', function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+                  "});",
+                  "",
+                  "pm.test('Respuesta tiene objeto location con campos requeridos', function () {",
+                  "    const body = pm.response.json();",
+                  "    pm.expect(body).to.have.property('location');",
+                  "    pm.expect(body.location).to.have.property('name').that.is.a('string');",
+                  "    pm.expect(body.location).to.have.property('country').that.is.a('string');",
+                  "    pm.expect(body.location).to.have.property('lat').that.is.a('number');",
+                  "    pm.expect(body.location).to.have.property('lon').that.is.a('number');",
+                  "    pm.expect(body.location).to.have.property('localtime').that.is.a('string');",
+                  "});",
+                  "",
+                  "pm.test('Respuesta tiene objeto current con datos de temperatura', function () {",
+                  "    const body = pm.response.json();",
+                  "    pm.expect(body).to.have.property('current');",
+                  "    pm.expect(body.current).to.have.property('temp_c').that.is.a('number');",
+                  "    pm.expect(body.current).to.have.property('temp_f').that.is.a('number');",
+                  "    pm.expect(body.current).to.have.property('humidity').that.is.a('number');",
+                  "    pm.expect(body.current).to.have.property('wind_kph').that.is.a('number');",
+                  "    pm.expect(body.current).to.have.property('feelslike_c').that.is.a('number');",
+                  "});",
+                  "",
+                  "pm.test('El objeto condition contiene texto descriptivo e ícono', function () {",
+                  "    const current = pm.response.json().current;",
+                  "    pm.expect(current).to.have.property('condition');",
+                  "    pm.expect(current.condition).to.have.property('text').that.is.a('string');",
+                  "    pm.expect(current.condition).to.have.property('icon').that.is.a('string');",
+                  "    pm.expect(current.condition.text.length).to.be.above(0);",
+                  "});",
+                  "",
+                  "pm.test('Content-Type es application/json', function () {",
+                  "    pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/current.json?key={{api_key}}&q={{city_valid}}&aqi=yes",
+              "host": ["{{base_url}}"],
+              "path": ["current.json"],
+              "query": [
+                { "key": "key", "value": "{{api_key}}" },
+                { "key": "q",   "value": "{{city_valid}}" },
+                { "key": "aqi", "value": "yes" }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CP-API-002 [HAPPY] Coordenadas GPS retornan datos correctos",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200 OK con coordenadas', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('La ubicación responde a las coordenadas enviadas', function () {",
+                  "    const body = pm.response.json();",
+                  "    pm.expect(body.location).to.have.property('lat');",
+                  "    pm.expect(body.location).to.have.property('lon');",
+                  "    // Buenos Aires: lat ~-34.6, lon ~-58.3",
+                  "    pm.expect(Math.abs(body.location.lat - (-34.6))).to.be.below(1);",
+                  "});",
+                  "",
+                  "pm.test('current.last_updated es un string de fecha', function () {",
+                  "    const body = pm.response.json();",
+                  "    pm.expect(body.current.last_updated).to.be.a('string');",
+                  "    pm.expect(body.current.last_updated).to.match(/\\d{4}-\\d{2}-\\d{2}/);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/current.json?key={{api_key}}&q=-34.6037,-58.3816",
+              "host": ["{{base_url}}"],
+              "path": ["current.json"],
+              "query": [
+                { "key": "key", "value": "{{api_key}}" },
+                { "key": "q",   "value": "-34.6037,-58.3816" }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CP-API-003 [UNHAPPY] Sin API key retorna 401 Unauthorized",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 401 sin API key', function () {",
+                  "    pm.response.to.have.status(401);",
+                  "});",
+                  "",
+                  "pm.test('Respuesta contiene objeto error con código y mensaje', function () {",
+                  "    const body = pm.response.json();",
+                  "    pm.expect(body).to.have.property('error');",
+                  "    pm.expect(body.error).to.have.property('code').that.is.a('number');",
+                  "    pm.expect(body.error).to.have.property('message').that.is.a('string');",
+                  "    pm.expect(body.error.message.length).to.be.above(0);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/current.json?q={{city_valid}}",
+              "host": ["{{base_url}}"],
+              "path": ["current.json"],
+              "query": [
+                { "key": "q", "value": "{{city_valid}}" }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CP-API-004 [UNHAPPY] API key inválida retorna 403 Forbidden",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 403 con API key inválida', function () {",
+                  "    pm.response.to.have.status(403);",
+                  "});",
+                  "",
+                  "pm.test('Error con código de API key inválida (2006 o 2007)', function () {",
+                  "    const body = pm.response.json();",
+                  "    pm.expect(body.error.code).to.be.oneOf([2006, 2007, 2008]);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/current.json?key=INVALID_KEY_123ABC&q={{city_valid}}",
+              "host": ["{{base_url}}"],
+              "path": ["current.json"],
+              "query": [
+                { "key": "key", "value": "INVALID_KEY_123ABC" },
+                { "key": "q",   "value": "{{city_valid}}" }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CP-API-005 [UNHAPPY] Ciudad inexistente retorna 400 con error 1006",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 400 con ciudad inválida', function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "",
+                  "pm.test('Código de error es 1006 (no matching location)', function () {",
+                  "    const body = pm.response.json();",
+                  "    pm.expect(body).to.have.property('error');",
+                  "    pm.expect(body.error.code).to.equal(1006);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/current.json?key={{api_key}}&q={{city_invalid}}",
+              "host": ["{{base_url}}"],
+              "path": ["current.json"],
+              "query": [
+                { "key": "key", "value": "{{api_key}}" },
+                { "key": "q",   "value": "{{city_invalid}}" }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Forecast Weather API (/forecast.json)",
+      "description": "Endpoint: GET /forecast.json\nRetorna el pronóstico del tiempo para los próximos N días.",
+      "item": [
+        {
+          "name": "CP-API-006 [SMOKE] [HAPPY] Pronóstico de 3 días retorna estructura correcta",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200 OK', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Respuesta incluye objetos location, current y forecast', function () {",
+                  "    const body = pm.response.json();",
+                  "    pm.expect(body).to.have.all.keys(['location', 'current', 'forecast']);",
+                  "});",
+                  "",
+                  "pm.test('forecast.forecastday tiene exactamente 3 entradas', function () {",
+                  "    const forecastDay = pm.response.json().forecast.forecastday;",
+                  "    pm.expect(forecastDay).to.be.an('array');",
+                  "    pm.expect(forecastDay.length).to.equal(3);",
+                  "});",
+                  "",
+                  "pm.test('Cada día del pronóstico tiene fecha, day y hour', function () {",
+                  "    const days = pm.response.json().forecast.forecastday;",
+                  "    days.forEach(function(day) {",
+                  "        pm.expect(day).to.have.property('date').that.is.a('string');",
+                  "        pm.expect(day).to.have.property('day');",
+                  "        pm.expect(day).to.have.property('hour').that.is.an('array');",
+                  "        pm.expect(day.hour.length).to.equal(24);",
+                  "    });",
+                  "});",
+                  "",
+                  "pm.test('day contiene temp máxima, mínima y condición', function () {",
+                  "    const day = pm.response.json().forecast.forecastday[0].day;",
+                  "    pm.expect(day).to.have.property('maxtemp_c').that.is.a('number');",
+                  "    pm.expect(day).to.have.property('mintemp_c').that.is.a('number');",
+                  "    pm.expect(day).to.have.property('condition');",
+                  "    pm.expect(day.condition).to.have.property('text');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/forecast.json?key={{api_key}}&q={{city_valid}}&days={{forecast_days}}&aqi=no&alerts=no",
+              "host": ["{{base_url}}"],
+              "path": ["forecast.json"],
+              "query": [
+                { "key": "key",    "value": "{{api_key}}" },
+                { "key": "q",      "value": "{{city_valid}}" },
+                { "key": "days",   "value": "{{forecast_days}}" },
+                { "key": "aqi",    "value": "no" },
+                { "key": "alerts", "value": "no" }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CP-API-007 [HAPPY] Pronóstico de 1 día retorna solo un día",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200 OK', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('forecastday tiene exactamente 1 entrada con days=1', function () {",
+                  "    const forecastDay = pm.response.json().forecast.forecastday;",
+                  "    pm.expect(forecastDay.length).to.equal(1);",
+                  "});",
+                  "",
+                  "pm.test('La fecha del pronóstico es hoy o futura', function () {",
+                  "    const forecastDate = pm.response.json().forecast.forecastday[0].date;",
+                  "    const today = new Date().toISOString().split('T')[0];",
+                  "    pm.expect(forecastDate >= today).to.be.true;",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/forecast.json?key={{api_key}}&q={{city_valid}}&days=1",
+              "host": ["{{base_url}}"],
+              "path": ["forecast.json"],
+              "query": [
+                { "key": "key",  "value": "{{api_key}}" },
+                { "key": "q",    "value": "{{city_valid}}" },
+                { "key": "days", "value": "1" }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CP-API-008 [UNHAPPY] Sin parámetro days usa valor por defecto (1 día)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200 OK sin parámetro days', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('La respuesta sigue teniendo estructura de forecast', function () {",
+                  "    const body = pm.response.json();",
+                  "    pm.expect(body).to.have.property('forecast');",
+                  "    pm.expect(body.forecast.forecastday).to.be.an('array');",
+                  "    pm.expect(body.forecast.forecastday.length).to.be.above(0);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/forecast.json?key={{api_key}}&q={{city_valid}}",
+              "host": ["{{base_url}}"],
+              "path": ["forecast.json"],
+              "query": [
+                { "key": "key", "value": "{{api_key}}" },
+                { "key": "q",   "value": "{{city_valid}}" }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CP-API-009 [UNHAPPY] Ciudad inválida retorna 400",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 400 con ciudad inválida en forecast', function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "",
+                  "pm.test('Error contiene código 1006', function () {",
+                  "    pm.expect(pm.response.json().error.code).to.equal(1006);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/forecast.json?key={{api_key}}&q={{city_invalid}}&days=3",
+              "host": ["{{base_url}}"],
+              "path": ["forecast.json"],
+              "query": [
+                { "key": "key",  "value": "{{api_key}}" },
+                { "key": "q",    "value": "{{city_invalid}}" },
+                { "key": "days", "value": "3" }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CP-API-010 [UNHAPPY] Sin API key retorna 401",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 401 sin key en forecast', function () {",
+                  "    pm.response.to.have.status(401);",
+                  "});",
+                  "",
+                  "pm.test('Respuesta contiene error de autenticación', function () {",
+                  "    const body = pm.response.json();",
+                  "    pm.expect(body).to.have.property('error');",
+                  "    pm.expect(body.error.code).to.be.oneOf([1002, 2006, 2007]);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/forecast.json?q={{city_valid}}&days=3",
+              "host": ["{{base_url}}"],
+              "path": ["forecast.json"],
+              "query": [
+                { "key": "q",    "value": "{{city_valid}}" },
+                { "key": "days", "value": "3" }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "History Weather API (/history.json)",
+      "description": "Endpoint: GET /history.json\nRetorna datos históricos del tiempo para una fecha pasada.",
+      "item": [
+        {
+          "name": "CP-API-011 [SMOKE] [HAPPY] Fecha histórica válida retorna datos",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200 OK con fecha histórica', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Respuesta tiene estructura location + forecast', function () {",
+                  "    const body = pm.response.json();",
+                  "    pm.expect(body).to.have.property('location');",
+                  "    pm.expect(body).to.have.property('forecast');",
+                  "    pm.expect(body.forecast.forecastday).to.be.an('array');",
+                  "});",
+                  "",
+                  "pm.test('La fecha retornada coincide con la solicitada', function () {",
+                  "    const forecastDate = pm.response.json().forecast.forecastday[0].date;",
+                  "    pm.expect(forecastDate).to.equal('2024-01-15');",
+                  "});",
+                  "",
+                  "pm.test('Histórico incluye datos hora a hora (24 registros)', function () {",
+                  "    const hours = pm.response.json().forecast.forecastday[0].hour;",
+                  "    pm.expect(hours).to.be.an('array');",
+                  "    pm.expect(hours.length).to.equal(24);",
+                  "});",
+                  "",
+                  "pm.test('Cada hora tiene temperatura en Celsius y Fahrenheit', function () {",
+                  "    const hours = pm.response.json().forecast.forecastday[0].hour;",
+                  "    hours.slice(0, 3).forEach(function(h) {",
+                  "        pm.expect(h).to.have.property('temp_c').that.is.a('number');",
+                  "        pm.expect(h).to.have.property('temp_f').that.is.a('number');",
+                  "    });",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/history.json?key={{api_key}}&q={{city_valid}}&dt={{history_date}}",
+              "host": ["{{base_url}}"],
+              "path": ["history.json"],
+              "query": [
+                { "key": "key", "value": "{{api_key}}" },
+                { "key": "q",   "value": "{{city_valid}}" },
+                { "key": "dt",  "value": "{{history_date}}" }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CP-API-012 [HAPPY] Histórico con end_dt retorna rango de fechas",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200 OK con rango de fechas', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Retorna más de un día en forecastday', function () {",
+                  "    const days = pm.response.json().forecast.forecastday;",
+                  "    pm.expect(days.length).to.be.above(1);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/history.json?key={{api_key}}&q={{city_valid}}&dt=2024-01-15&end_dt=2024-01-17",
+              "host": ["{{base_url}}"],
+              "path": ["history.json"],
+              "query": [
+                { "key": "key",    "value": "{{api_key}}" },
+                { "key": "q",      "value": "{{city_valid}}" },
+                { "key": "dt",     "value": "2024-01-15" },
+                { "key": "end_dt", "value": "2024-01-17" }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CP-API-013 [UNHAPPY] Fecha futura retorna error 400",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 400 con fecha futura en history', function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "",
+                  "pm.test('Error indica fecha no disponible (código 1008 o similar)', function () {",
+                  "    const body = pm.response.json();",
+                  "    pm.expect(body).to.have.property('error');",
+                  "    pm.expect(body.error).to.have.property('code');",
+                  "    pm.expect(body.error).to.have.property('message');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/history.json?key={{api_key}}&q={{city_valid}}&dt={{future_date}}",
+              "host": ["{{base_url}}"],
+              "path": ["history.json"],
+              "query": [
+                { "key": "key", "value": "{{api_key}}" },
+                { "key": "q",   "value": "{{city_valid}}" },
+                { "key": "dt",  "value": "{{future_date}}" }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CP-API-014 [UNHAPPY] Sin parámetro dt retorna 400",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 400 sin parámetro dt', function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "",
+                  "pm.test('Error informa que dt es requerido', function () {",
+                  "    const body = pm.response.json();",
+                  "    pm.expect(body).to.have.property('error');",
+                  "    pm.expect(body.error.message).to.be.a('string');",
+                  "    pm.expect(body.error.message.length).to.be.above(0);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/history.json?key={{api_key}}&q={{city_valid}}",
+              "host": ["{{base_url}}"],
+              "path": ["history.json"],
+              "query": [
+                { "key": "key", "value": "{{api_key}}" },
+                { "key": "q",   "value": "{{city_valid}}" }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CP-API-015 [UNHAPPY] Sin API key en history retorna 401",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 401 sin key en history', function () {",
+                  "    pm.response.to.have.status(401);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/history.json?q={{city_valid}}&dt={{history_date}}",
+              "host": ["{{base_url}}"],
+              "path": ["history.json"],
+              "query": [
+                { "key": "q",  "value": "{{city_valid}}" },
+                { "key": "dt", "value": "{{history_date}}" }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Alerts Weather API (/alerts.json)",
+      "description": "Endpoint: GET /alerts.json\nRetorna alertas meteorológicas activas para una ubicación.",
+      "item": [
+        {
+          "name": "CP-API-016 [SMOKE] [HAPPY] Solicitud válida retorna estructura de alertas",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200 OK', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Respuesta incluye location y alerts', function () {",
+                  "    const body = pm.response.json();",
+                  "    pm.expect(body).to.have.property('location');",
+                  "    pm.expect(body).to.have.property('alerts');",
+                  "});",
+                  "",
+                  "pm.test('alerts.alert es un array (puede estar vacío)', function () {",
+                  "    const alerts = pm.response.json().alerts;",
+                  "    pm.expect(alerts).to.have.property('alert');",
+                  "    pm.expect(alerts.alert).to.be.an('array');",
+                  "});",
+                  "",
+                  "pm.test('Tiempo de respuesta menor a 3000ms', function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/alerts.json?key={{api_key}}&q={{city_valid}}",
+              "host": ["{{base_url}}"],
+              "path": ["alerts.json"],
+              "query": [
+                { "key": "key", "value": "{{api_key}}" },
+                { "key": "q",   "value": "{{city_valid}}" }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CP-API-017 [HAPPY] Ciudad de EE.UU. con posibles alertas retorna estructura válida",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200 OK con ciudad de EE.UU.', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('alerts.alert es siempre un array (aunque esté vacío)', function () {",
+                  "    const body = pm.response.json();",
+                  "    pm.expect(body.alerts.alert).to.be.an('array');",
+                  "});",
+                  "",
+                  "pm.test('Si hay alertas, cada una tiene headline y severity', function () {",
+                  "    const alertList = pm.response.json().alerts.alert;",
+                  "    if (alertList.length > 0) {",
+                  "        alertList.forEach(function(alert) {",
+                  "            pm.expect(alert).to.have.property('headline').that.is.a('string');",
+                  "            pm.expect(alert).to.have.property('severity').that.is.a('string');",
+                  "            pm.expect(alert).to.have.property('effective').that.is.a('string');",
+                  "            pm.expect(alert).to.have.property('expires').that.is.a('string');",
+                  "        });",
+                  "    }",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/alerts.json?key={{api_key}}&q=Miami",
+              "host": ["{{base_url}}"],
+              "path": ["alerts.json"],
+              "query": [
+                { "key": "key", "value": "{{api_key}}" },
+                { "key": "q",   "value": "Miami" }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CP-API-018 [UNHAPPY] Ciudad inválida retorna 400",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 400 con ciudad inválida en alerts', function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "",
+                  "pm.test('Error tiene código 1006', function () {",
+                  "    pm.expect(pm.response.json().error.code).to.equal(1006);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/alerts.json?key={{api_key}}&q={{city_invalid}}",
+              "host": ["{{base_url}}"],
+              "path": ["alerts.json"],
+              "query": [
+                { "key": "key", "value": "{{api_key}}" },
+                { "key": "q",   "value": "{{city_invalid}}" }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CP-API-019 [UNHAPPY] Sin API key retorna 401",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 401 sin key en alerts', function () {",
+                  "    pm.response.to.have.status(401);",
+                  "});",
+                  "",
+                  "pm.test('Respuesta tiene propiedad error', function () {",
+                  "    pm.expect(pm.response.json()).to.have.property('error');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/alerts.json?q={{city_valid}}",
+              "host": ["{{base_url}}"],
+              "path": ["alerts.json"],
+              "query": [
+                { "key": "q", "value": "{{city_valid}}" }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CP-API-020 [UNHAPPY] Sin parámetro q retorna 400",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 400 sin parámetro q en alerts', function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "",
+                  "pm.test('Error indica que q (location) es requerido', function () {",
+                  "    const body = pm.response.json();",
+                  "    pm.expect(body).to.have.property('error');",
+                  "    pm.expect(body.error.code).to.be.oneOf([1003, 9999]);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/alerts.json?key={{api_key}}",
+              "host": ["{{base_url}}"],
+              "path": ["alerts.json"],
+              "query": [
+                { "key": "key", "value": "{{api_key}}" }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

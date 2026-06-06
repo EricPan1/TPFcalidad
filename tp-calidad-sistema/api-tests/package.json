@@ -1,0 +1,12 @@
+{
+  "name": "weather-api-tests",
+  "version": "1.0.0",
+  "description": "Pruebas de contrato para Weather API - Sprint N+3",
+  "scripts": {
+    "test": "newman run collections/WeatherAPI.postman_collection.json --environment collections/WeatherAPI.postman_environment.json --reporters cli,htmlextra --reporter-htmlextra-export api-report/index.html --reporter-htmlextra-title 'Weather API - Reporte de Pruebas' --reporter-htmlextra-logs --reporter-htmlextra-displayProgressBar"
+  },
+  "dependencies": {
+    "newman": "^6.1.2",
+    "newman-reporter-htmlextra": "^1.22.11"
+  }
+}
