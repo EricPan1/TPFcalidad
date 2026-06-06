@@ -1,0 +1,17 @@
+Actividad 2:
+
+Enunciado:
+
+En base al mindmap creado en la Actividad 1, identificar todos los casos de prueba posibles relacionados con las siguientes: 
+Para la web OrangeHRM: 
+Como usuario admin: 
+PIM - Employee list
+PIM - Add Employee
+PIM - Edit Employee - Report to 
+Admin - Add (asignar perfil a usuario existente)
+Como usuario ESS
+My Info - Qualifications
+
+Selecciona 5 casos de prueba de cada funcionalidad, y escríbelos en forma detallada, indicando: título, objetivos, precondiciones, paso a paso y resultados esperados.
+Identificar casos de Smoke dentro de cada funcionalidad.
+Identificar casos de regresión dentro de cada funcionalidad.

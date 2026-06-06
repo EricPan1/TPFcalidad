@@ -1,0 +1,23 @@
+Actividad 3 Taller Calidad
+
+Los creadores de Orange HRM quieren agregar un servicio nuevo a la aplicación ya que es utilizada por empresas de cualquier parte del mundo, con empleados en muchísimos países. 
+
+El nuevo feature consiste en adicionar un widget al dashboard principal, con el estado del clima, con la información me muestra la imagen mas abajo.
+
+
+Para alimentar ese widget, se consume la información de la siguiente API (en el link esta toda la documentación):
+
+https://rapidapi.com/weatherapi/api/weatherapi-com/playground/apiendpoint_02b3d475-87b4-41dc-a6a0-4afa71708e9a
+
+Endpoints:
+
+Realtime Weather API (/current.json)
+Forecast Weather API (/forecast.json)
+History Weather API (/history.json)
+Alerts Weather API (/alerts.json)
+Actividades:
+
+Leer la documentación de dicha API.
+Crear en Postman todas las pruebas necesarias para validar que cada vez que la misma es actualizada por el proveedor, sigue respetando los contratos definidos y que consume el front end.
+Documentar en un listado todas las pruebas a realizar
+Crear casos de pruebas completos para un camino feliz y otro no feliz o alternativo de cada endpoint que entrega la API.

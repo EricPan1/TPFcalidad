@@ -1,0 +1,9 @@
+Realizar el testing exploratorio de este producto software:
+
+Alumnos de Licenciatura en Tecnologías Digitales y Licenciatura de Datos: https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index
+
+Como resultado del testing exploratorio:
+
+Armar un mapa mental del sitio (Utilizar la herramienta que desees). Identificar funcionalidades principales y secundarias de alguna forma.
+
+Anotar de alguna forma los errores que encuentres, en un block de notas. Importante: lo que anotes debe permitir reproducir el error.
