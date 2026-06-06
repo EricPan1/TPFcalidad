@@ -24,20 +24,33 @@ const raw = JSON.parse(fs.readFileSync(INPUT, 'utf8'));
 // Estructura: suites[file] → suites[describe] → specs[test]
 const groups = [];
 
+function extractError(test) {
+  if (!test?.results?.length) return '';
+  // Tomar el último intento (después de retries)
+  const lastResult = test.results[test.results.length - 1];
+  if (!lastResult?.error) return '';
+  // Quedarse solo con la primera línea del mensaje (sin el stack trace)
+  const msg = lastResult.error.message || '';
+  const firstLine = msg.split('\n').find(l => l.trim().length > 0) || '';
+  // Limpiar códigos ANSI de color
+  return firstLine.replace(/\[[0-9;]*m/g, '').trim();
+}
+
 function walk(suites) {
   for (const suite of (suites || [])) {
     if (suite.specs && suite.specs.length > 0) {
       groups.push({
         name: suite.title,
         cases: suite.specs.map(spec => {
-          const result  = spec.tests?.[0];
-          const status  = result?.status ?? 'unknown';   // 'expected' | 'unexpected' | 'skipped'
-          const retries = result?.results?.length ?? 0;
+          const test    = spec.tests?.[0];
+          const status  = test?.status ?? 'unknown';
+          const retries = (test?.results?.length ?? 1) - 1;
+          const error   = status === 'unexpected' ? extractError(test) : '';
           return {
-            id:      spec.title.split(' ')[0],            // "CP-026"
-            title:   spec.title,
+            title: spec.title,
             status,
             retries,
+            error,
           };
         }),
       });
@@ -65,10 +78,11 @@ const ws = wb.addWorksheet('Casos de Prueba', {
 
 // Encabezado de columnas (fila 1)
 ws.columns = [
-  { header: 'Caso',       key: 'caso',    width: 22 },
-  { header: 'Título',     key: 'titulo',  width: 75 },
-  { header: 'Resultado',  key: 'result',  width: 16 },
-  { header: 'Reintentos', key: 'retry',   width: 13 },
+  { header: 'Caso',             key: 'caso',    width: 22 },
+  { header: 'Título',           key: 'titulo',  width: 70 },
+  { header: 'Resultado',        key: 'result',  width: 14 },
+  { header: 'Detalle del fallo', key: 'error',  width: 60 },
+  { header: 'Reintentos',       key: 'retry',   width: 13 },
 ];
 
 const headerRow = ws.getRow(1);
@@ -87,12 +101,10 @@ groups.forEach((group, gi) => {
   // ── Fila de funcionalidad (cabecera morada) ──────────────────────────────
   const fRow = ws.addRow([
     `Funcionalidad ${gi + 1}: ${group.name}`,
-    '',
-    '',
-    '',
+    '', '', '', '',
   ]);
   fRow.height = 18;
-  ws.mergeCells(fRow.number, 1, fRow.number, 4);
+  ws.mergeCells(fRow.number, 1, fRow.number, 5);
   const fCell = fRow.getCell(1);
   fCell.fill      = { type: 'pattern', pattern: 'solid', fgColor: { argb: COLOR_HEADER_FILL } };
   fCell.font      = { bold: true, color: { argb: COLOR_HEADER_FONT }, size: 10.5 };
@@ -118,9 +130,10 @@ groups.forEach((group, gi) => {
       `Caso ${ci + 1}`,
       c.title,
       resultLabel,
-      c.retries > 1 ? c.retries - 1 : '',
+      c.error || '',
+      c.retries > 0 ? c.retries : '',
     ]);
-    row.height = 16;
+    row.height = c.error ? 30 : 16;
 
     row.eachCell(cell => {
       cell.fill      = { type: 'pattern', pattern: 'solid', fgColor: { argb: fillBg } };
@@ -138,11 +151,18 @@ groups.forEach((group, gi) => {
     };
     resultCell.alignment = { horizontal: 'center', vertical: 'middle' };
 
-    row.getCell(4).alignment = { horizontal: 'center', vertical: 'middle' };
+    // Columna Detalle del fallo — texto en rojo oscuro si hay error
+    const errorCell = row.getCell(4);
+    if (c.error) {
+      errorCell.font      = { color: { argb: 'FF9C0006' }, italic: true, size: 9 };
+      errorCell.alignment = { vertical: 'middle', wrapText: true };
+    }
+
+    row.getCell(5).alignment = { horizontal: 'center', vertical: 'middle' };
   });
 
   // Fila separadora vacía entre grupos
-  const sep = ws.addRow(['', '', '', '']);
+  const sep = ws.addRow(['', '', '', '', '']);
   sep.height = 6;
 });
 
@@ -156,14 +176,13 @@ const totals = groups.reduce((a, g) => {
   return a;
 }, { pass: 0, fail: 0, skip: 0 });
 
-ws.addRow(['', '', '', '']);
+ws.addRow(['', '', '', '', '']);
 const totalRow = ws.addRow([
   `Total: ${caseGlobal} casos`,
   `${totals.pass} PASARON   ·   ${totals.fail} FALLARON   ·   ${totals.skip} SALTADOS`,
-  '',
-  '',
+  '', '', '',
 ]);
-ws.mergeCells(totalRow.number, 1, totalRow.number, 4);
+ws.mergeCells(totalRow.number, 1, totalRow.number, 5);
 totalRow.getCell(1).fill  = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFD9D9D9' } };
 totalRow.getCell(1).font  = { bold: true, size: 10.5 };
 totalRow.getCell(1).alignment = { vertical: 'middle', horizontal: 'center' };

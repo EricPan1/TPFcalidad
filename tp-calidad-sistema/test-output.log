@@ -1,50 +1,1747 @@
- Container tp-calidad-sistema-e2e-tests-run-6b40137b41f7 Creating 
- Container tp-calidad-sistema-e2e-tests-run-6b40137b41f7 Created 
+ Container tp-calidad-sistema-e2e-tests-run-55405ebd33cc Creating 
+ Container tp-calidad-sistema-e2e-tests-run-55405ebd33cc Created 
 [global-setup] Sesion de Admin guardada en /app/.auth/admin.json
 
-Running 25 tests using 4 workers
+Running 75 tests using 4 workers
 
-  ✓  1 [chromium] › sprint-n/add-employee.spec.ts:22:7 › Sprint N – Add Employee (Admin) › CP-006 [SMOKE] El formulario de alta carga correctamente (8.8s)
-  ✓  2 [chromium] › sprint-n1/edit-employee-report-to.spec.ts:45:7 › Sprint N+1 – Edit Employee Report-to (Admin) › CP-016 [SMOKE] La pestaña Report-to carga correctamente (13.0s)
-  ✘  3 [chromium] › sprint-n1/edit-employee-report-to.spec.ts:52:7 › Sprint N+1 – Edit Employee Report-to (Admin) › CP-017 [REGRESSION] La sección Supervisors tiene botón Add visible (11.3s)
-  ✓  4 [chromium] › sprint-n/add-employee.spec.ts:30:7 › Sprint N – Add Employee (Admin) › CP-007 [REGRESSION] Crear empleado con datos mínimos obligatorios (16.1s)
-  ✘  5 [chromium] › sprint-n/my-info-qualifications.spec.ts:43:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-011 [SMOKE] La pestaña Qualifications carga y muestra sus secciones (24.9s)
-  ✘  6 [chromium] › sprint-n/employee-list.spec.ts:22:7 › Sprint N – Employee List (Admin) › CP-001 [SMOKE][REGRESSION] La tabla de empleados carga correctamente (25.2s)
-  ✓  7 [chromium] › sprint-n/add-employee.spec.ts:63:7 › Sprint N – Add Employee (Admin) › CP-008 [REGRESSION] Guardar sin datos muestra errores de validación (6.9s)
-  ✘  8 [chromium] › sprint-n/add-employee.spec.ts:74:7 › Sprint N – Add Employee (Admin) › CP-009 El campo Employee ID se pre-popula automáticamente (6.1s)
-  ✘  9 [chromium] › sprint-n1/edit-employee-report-to.spec.ts:52:7 › Sprint N+1 – Edit Employee Report-to (Admin) › CP-017 [REGRESSION] La sección Supervisors tiene botón Add visible (retry #1) (13.4s)
-  ✘  10 [chromium] › sprint-n/add-employee.spec.ts:74:7 › Sprint N – Add Employee (Admin) › CP-009 El campo Employee ID se pre-popula automáticamente (retry #1) (6.5s)
-  ✘  11 [chromium] › sprint-n1/edit-employee-report-to.spec.ts:64:7 › Sprint N+1 – Edit Employee Report-to (Admin) › CP-018 [REGRESSION] Formulario de agregar supervisor muestra campos requeridos (11.8s)
-  ✘  12 [chromium] › sprint-n/my-info-qualifications.spec.ts:43:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-011 [SMOKE] La pestaña Qualifications carga y muestra sus secciones (retry #1) (25.7s)
-  ✘  13 [chromium] › sprint-n/employee-list.spec.ts:22:7 › Sprint N – Employee List (Admin) › CP-001 [SMOKE][REGRESSION] La tabla de empleados carga correctamente (retry #1) (25.9s)
-  ✘  14 [chromium] › sprint-n1/edit-employee-report-to.spec.ts:64:7 › Sprint N+1 – Edit Employee Report-to (Admin) › CP-018 [REGRESSION] Formulario de agregar supervisor muestra campos requeridos (retry #1) (12.6s)
-  ✘  15 [chromium] › sprint-n/add-employee.spec.ts:82:7 › Sprint N – Add Employee (Admin) › CP-010 El botón Cancel regresa al listado sin crear empleado (23.8s)
-  ✘  16 [chromium] › sprint-n/employee-list.spec.ts:32:7 › Sprint N – Employee List (Admin) › CP-002 [REGRESSION] Búsqueda por nombre filtra resultados (23.2s)
-  ✘  17 [chromium] › sprint-n/my-info-qualifications.spec.ts:50:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-012 [REGRESSION] Se puede agregar Work Experience (23.7s)
-  ✘  18 [chromium] › sprint-n1/edit-employee-report-to.spec.ts:82:7 › Sprint N+1 – Edit Employee Report-to (Admin) › CP-019 Cancel en formulario de supervisor no guarda cambios (11.6s)
-  ✘  19 [chromium] › sprint-n1/edit-employee-report-to.spec.ts:82:7 › Sprint N+1 – Edit Employee Report-to (Admin) › CP-019 Cancel en formulario de supervisor no guarda cambios (retry #1) (12.2s)
-  ✘  20 [chromium] › sprint-n/add-employee.spec.ts:82:7 › Sprint N – Add Employee (Admin) › CP-010 El botón Cancel regresa al listado sin crear empleado (retry #1) (23.8s)
-  ✘  21 [chromium] › sprint-n/employee-list.spec.ts:32:7 › Sprint N – Employee List (Admin) › CP-002 [REGRESSION] Búsqueda por nombre filtra resultados (retry #1) (23.5s)
-  ✓  22 [chromium] › sprint-n2/admin-add-user.spec.ts:22:7 › Sprint N+2 – Admin Add User (Admin) › CP-021 [SMOKE] El listado de usuarios carga correctamente (6.3s)
-  ✓  23 [chromium] › sprint-n1/edit-employee-report-to.spec.ts:100:7 › Sprint N+1 – Edit Employee Report-to (Admin) › CP-020 [SMOKE] La sección Subordinates está presente en la página (11.3s)
-  ✘  24 [chromium] › sprint-n/my-info-qualifications.spec.ts:50:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-012 [REGRESSION] Se puede agregar Work Experience (retry #1) (24.6s)
-  -  25 [chromium] › sprint-n/employee-list.spec.ts:54:7 › Sprint N – Employee List (Admin) › CP-003 [REGRESSION] Búsqueda por Employee ID muestra resultado específico
-  ✓  26 [chromium] › sprint-n2/admin-add-user.spec.ts:33:7 › Sprint N+2 – Admin Add User (Admin) › CP-022 [REGRESSION] Formulario de alta contiene todos los campos requeridos (8.3s)
-  ✓  27 [chromium] › sprint-n/employee-list.spec.ts:75:7 › Sprint N – Employee List (Admin) › CP-004 El botón Reset limpia los campos de búsqueda (6.1s)
-  ✓  28 [chromium] › sprint-n2/admin-add-user.spec.ts:51:7 › Sprint N+2 – Admin Add User (Admin) › CP-023 [REGRESSION] Guardar formulario vacío muestra errores de validación (8.1s)
-  ✓  29 [chromium] › sprint-n/employee-list.spec.ts:86:7 › Sprint N – Employee List (Admin) › CP-005 [SMOKE] La tabla contiene las columnas esperadas (6.4s)
-  ✘  30 [chromium] › sprint-n/my-info-qualifications.spec.ts:78:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-013 [REGRESSION] Se puede agregar Education (22.4s)
-  ✓  31 [chromium] › sprint-n2/admin-add-user.spec.ts:67:7 › Sprint N+2 – Admin Add User (Admin) › CP-024 Contraseñas no coincidentes muestran error de confirmación (8.3s)
-  ✘  32 [chromium] › sprint-n2/admin-add-user.spec.ts:85:7 › Sprint N+2 – Admin Add User (Admin) › CP-025 [SMOKE] Se puede filtrar el listado por User Role (6.2s)
-  ✘  33 [chromium] › sprint-n2/admin-add-user.spec.ts:85:7 › Sprint N+2 – Admin Add User (Admin) › CP-025 [SMOKE] Se puede filtrar el listado por User Role (retry #1) (6.2s)
-  ✘  34 [chromium] › sprint-n/my-info-qualifications.spec.ts:78:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-013 [REGRESSION] Se puede agregar Education (retry #1) (22.8s)
-  ✘  35 [chromium] › sprint-n/my-info-qualifications.spec.ts:99:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-014 Guardar Work Experience sin datos muestra validación (22.2s)
-  ✘  36 [chromium] › sprint-n/my-info-qualifications.spec.ts:99:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-014 Guardar Work Experience sin datos muestra validación (retry #1) (22.5s)
-  ✘  37 [chromium] › sprint-n/my-info-qualifications.spec.ts:116:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-015 Las secciones Skills y Languages están presentes en la página (22.0s)
-  ✘  38 [chromium] › sprint-n/my-info-qualifications.spec.ts:116:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-015 Las secciones Skills y Languages están presentes en la página (retry #1) (22.3s)
+  ✘  1 [chromium] › additional/leave.spec.ts:9:7 › Funcionalidad: Leave – Leave List › CP-056 [SMOKE] La página Leave List carga correctamente (5.5s)
+  ✓  2 [chromium] › additional/admin-config.spec.ts:10:7 › Funcionalidad: Admin – Job Titles › CP-066 [SMOKE] La página Job Titles carga correctamente (5.6s)
+  ✘  3 [chromium] › additional/pim-emergency-dependents.spec.ts:18:7 › Funcionalidad: PIM – Emergency Contacts › CP-036 [SMOKE] La pestaña Emergency Contacts carga correctamente (9.7s)
+  ✓  4 [chromium] › additional/pim-job-immigration.spec.ts:18:7 › Funcionalidad: PIM – Job › CP-046 [SMOKE] La pestaña Job carga para el primer empleado (10.1s)
+  ✘  5 [chromium] › additional/admin-config.spec.ts:16:7 › Funcionalidad: Admin – Job Titles › CP-067 La tabla de Job Titles no está vacía (4.9s)
+  ✘  6 [chromium] › additional/leave.spec.ts:9:7 › Funcionalidad: Leave – Leave List › CP-056 [SMOKE] La página Leave List carga correctamente (retry #1) (6.0s)
+  ✘  7 [chromium] › additional/admin-config.spec.ts:16:7 › Funcionalidad: Admin – Job Titles › CP-067 La tabla de Job Titles no está vacía (retry #1) (5.6s)
+  ✓  8 [chromium] › additional/leave.spec.ts:15:7 › Funcionalidad: Leave – Leave List › CP-057 La tabla de licencias tiene columnas visibles (6.5s)
+  ✓  9 [chromium] › additional/pim-job-immigration.spec.ts:23:7 › Funcionalidad: PIM – Job › CP-047 El campo Job Title es visible en la pestaña Job (9.5s)
+  ✘  10 [chromium] › additional/pim-emergency-dependents.spec.ts:18:7 › Funcionalidad: PIM – Emergency Contacts › CP-036 [SMOKE] La pestaña Emergency Contacts carga correctamente (retry #1) (10.5s)
+  ✓  11 [chromium] › additional/admin-config.spec.ts:24:7 › Funcionalidad: Admin – Job Titles › CP-068 El botón Add Job Title está disponible (5.8s)
+  ✓  12 [chromium] › additional/leave.spec.ts:21:7 › Funcionalidad: Leave – Leave List › CP-058 El filtro Employee Name está disponible en Leave List (5.8s)
+  ✓  13 [chromium] › additional/pim-job-immigration.spec.ts:29:7 › Funcionalidad: PIM – Job › CP-048 El campo Employment Status es visible (10.3s)
+  ✘  14 [chromium] › additional/leave.spec.ts:28:7 › Funcionalidad: Leave – Leave List › CP-059 El botón Search realiza una búsqueda sin errores (6.4s)
+  ✓  15 [chromium] › additional/admin-config.spec.ts:30:7 › Funcionalidad: Admin – Job Titles › CP-069 El formulario de Job Title tiene campo Job Title (8.2s)
+  ✘  16 [chromium] › additional/leave.spec.ts:28:7 › Funcionalidad: Leave – Leave List › CP-059 El botón Search realiza una búsqueda sin errores (retry #1) (5.9s)
+  ✓  17 [chromium] › additional/admin-config.spec.ts:38:7 › Funcionalidad: Admin – Job Titles › CP-070 Guardar formulario vacío de Job Title muestra validación (7.0s)
+  ✘  18 [chromium] › additional/pim-job-immigration.spec.ts:36:7 › Funcionalidad: PIM – Job › CP-049 La pestaña Job tiene al menos 4 campos de formulario (9.3s)
+  ✓  19 [chromium] › additional/admin-config.spec.ts:51:7 › Funcionalidad: Admin – Locations › CP-071 [SMOKE] La página Locations carga correctamente (5.1s)
+  ✓  20 [chromium] › additional/leave.spec.ts:36:7 › Funcionalidad: Leave – Leave List › CP-060 El botón Reset limpia los filtros de Leave List (6.1s)
+  ✘  21 [chromium] › additional/admin-config.spec.ts:57:7 › Funcionalidad: Admin – Locations › CP-072 La tabla de Locations no está vacía (4.9s)
+  ✘  22 [chromium] › additional/pim-emergency-dependents.spec.ts:23:7 › Funcionalidad: PIM – Emergency Contacts › CP-037 El botón Add está visible en Emergency Contacts (27.7s)
+  ✓  23 [chromium] › additional/pim-job-immigration.spec.ts:36:7 › Funcionalidad: PIM – Job › CP-049 La pestaña Job tiene al menos 4 campos de formulario (retry #1) (9.6s)
+  ✘  24 [chromium] › additional/admin-config.spec.ts:57:7 › Funcionalidad: Admin – Locations › CP-072 La tabla de Locations no está vacía (retry #1) (4.7s)
+  ✓  25 [chromium] › additional/pim-job-immigration.spec.ts:43:7 › Funcionalidad: PIM – Job › CP-050 El botón Save está disponible en la pestaña Job (9.2s)
+  ✓  26 [chromium] › additional/admin-config.spec.ts:65:7 › Funcionalidad: Admin – Locations › CP-073 Se puede buscar una Location por nombre (5.6s)
+  ✘  27 [chromium] › additional/leave.spec.ts:49:7 › Funcionalidad: Leave – Leave Types › CP-061 [SMOKE] La página Leave Types carga correctamente (20.9s)
+  ✓  28 [chromium] › additional/admin-config.spec.ts:73:7 › Funcionalidad: Admin – Locations › CP-074 El botón Add Location está disponible (5.5s)
+  ✘  29 [chromium] › additional/pim-job-immigration.spec.ts:52:7 › Funcionalidad: PIM – Immigration › CP-051 [SMOKE] La pestaña Immigration carga correctamente (8.7s)
+  ✘  30 [chromium] › additional/admin-config.spec.ts:79:7 › Funcionalidad: Admin – Locations › CP-075 El botón Reset limpia la búsqueda de Locations (5.3s)
+  ✘  31 [chromium] › additional/pim-emergency-dependents.spec.ts:23:7 › Funcionalidad: PIM – Emergency Contacts › CP-037 El botón Add está visible en Emergency Contacts (retry #1) (26.2s)
+  ✘  32 [chromium] › additional/pim-job-immigration.spec.ts:52:7 › Funcionalidad: PIM – Immigration › CP-051 [SMOKE] La pestaña Immigration carga correctamente (retry #1) (9.8s)
+  ✘  33 [chromium] › additional/admin-config.spec.ts:79:7 › Funcionalidad: Admin – Locations › CP-075 El botón Reset limpia la búsqueda de Locations (retry #1) (6.0s)
+  ✓  34 [chromium] › additional/pim-personal-contact.spec.ts:16:7 › Funcionalidad: PIM – Personal Details › CP-026 [SMOKE] La página Personal Details carga para el primer empleado (8.5s)
+  ✘  35 [chromium] › additional/leave.spec.ts:49:7 › Funcionalidad: Leave – Leave Types › CP-061 [SMOKE] La página Leave Types carga correctamente (retry #1) (22.2s)
+  ✘  36 [chromium] › additional/leave.spec.ts:55:7 › Funcionalidad: Leave – Leave Types › CP-062 La tabla de Leave Types no está vacía (4.2s)
+  ✓  37 [chromium] › additional/pim-personal-contact.spec.ts:22:7 › Funcionalidad: PIM – Personal Details › CP-027 El campo First Name es visible y editable (6.9s)
+  ✘  38 [chromium] › additional/leave.spec.ts:55:7 › Funcionalidad: Leave – Leave Types › CP-062 La tabla de Leave Types no está vacía (retry #1) (4.4s)
+  ✓  39 [chromium] › additional/pim-personal-contact.spec.ts:29:7 › Funcionalidad: PIM – Personal Details › CP-028 El campo Last Name es visible y editable (7.7s)
+  ✘  40 [chromium] › additional/pim-emergency-dependents.spec.ts:28:7 › Funcionalidad: PIM – Emergency Contacts › CP-038 El formulario de Emergency Contact tiene campo Name (25.3s)
+  ✘  41 [chromium] › additional/pim-job-immigration.spec.ts:57:7 › Funcionalidad: PIM – Immigration › CP-052 El botón Add está visible en Immigration (25.4s)
+  ✘  42 [chromium] › additional/pim-personal-contact.spec.ts:36:7 › Funcionalidad: PIM – Personal Details › CP-029 El campo Employee Id está pre-poblado (6.2s)
+  ✘  43 [chromium] › additional/pim-personal-contact.spec.ts:36:7 › Funcionalidad: PIM – Personal Details › CP-029 El campo Employee Id está pre-poblado (retry #1) (7.5s)
+  ✘  44 [chromium] › additional/leave.spec.ts:63:7 › Funcionalidad: Leave – Leave Types › CP-063 Cada tipo de licencia tiene nombre visible en la tabla (20.3s)
+  ✓  45 [chromium] › additional/pim-personal-contact.spec.ts:45:7 › Funcionalidad: PIM – Personal Details › CP-030 El botón Save está disponible en Personal Details (7.4s)
+  ✘  46 [chromium] › additional/pim-emergency-dependents.spec.ts:28:7 › Funcionalidad: PIM – Emergency Contacts › CP-038 El formulario de Emergency Contact tiene campo Name (retry #1) (25.8s)
+  ✘  47 [chromium] › additional/pim-job-immigration.spec.ts:57:7 › Funcionalidad: PIM – Immigration › CP-052 El botón Add está visible en Immigration (retry #1) (25.7s)
+  ✓  48 [chromium] › additional/pim-personal-contact.spec.ts:54:7 › Funcionalidad: PIM – Contact Details › CP-031 [SMOKE] La pestaña Contact Details carga correctamente (8.5s)
+  ✘  49 [chromium] › additional/leave.spec.ts:63:7 › Funcionalidad: Leave – Leave Types › CP-063 Cada tipo de licencia tiene nombre visible en la tabla (retry #1) (21.3s)
+  ✓  50 [chromium] › additional/pim-personal-contact.spec.ts:60:7 › Funcionalidad: PIM – Contact Details › CP-032 El campo Street 1 es visible en la sección de dirección (9.5s)
+  ✓  51 [chromium] › additional/pim-personal-contact.spec.ts:68:7 › Funcionalidad: PIM – Contact Details › CP-033 El formulario de Contact Details tiene al menos 5 campos (8.5s)
+  ✘  52 [chromium] › additional/pim-emergency-dependents.spec.ts:36:7 › Funcionalidad: PIM – Emergency Contacts › CP-039 Guardar formulario vacío de Emergency Contact muestra validación (24.3s)
+  ✘  53 [chromium] › additional/pim-job-immigration.spec.ts:62:7 › Funcionalidad: PIM – Immigration › CP-053 El formulario de Immigration tiene campo Document Type (25.6s)
+  ✓  54 [chromium] › additional/pim-personal-contact.spec.ts:77:7 › Funcionalidad: PIM – Contact Details › CP-034 El formulario Contact Details tiene botón Save (8.5s)
+  ✘  55 [chromium] › additional/leave.spec.ts:72:7 › Funcionalidad: Leave – Leave Types › CP-064 El botón Add está disponible en Leave Types (20.5s)
+  ✓  56 [chromium] › additional/pim-personal-contact.spec.ts:83:7 › Funcionalidad: PIM – Contact Details › CP-035 La pestaña Contact Details no muestra errores al cargar (8.4s)
+  ✓  57 [chromium] › sprint-n/add-employee.spec.ts:22:7 › Sprint N – Add Employee (Admin) › CP-006 [SMOKE] El formulario de alta carga correctamente (5.5s)
+  ✘  58 [chromium] › additional/pim-emergency-dependents.spec.ts:36:7 › Funcionalidad: PIM – Emergency Contacts › CP-039 Guardar formulario vacío de Emergency Contact muestra validación (retry #1) (26.4s)
+  ✘  59 [chromium] › additional/pim-job-immigration.spec.ts:62:7 › Funcionalidad: PIM – Immigration › CP-053 El formulario de Immigration tiene campo Document Type (retry #1) (26.5s)
+  ✘  60 [chromium] › additional/leave.spec.ts:72:7 › Funcionalidad: Leave – Leave Types › CP-064 El botón Add está disponible en Leave Types (retry #1) (21.5s)
+  ✓  61 [chromium] › sprint-n/add-employee.spec.ts:30:7 › Sprint N – Add Employee (Admin) › CP-007 [REGRESSION] Crear empleado con datos mínimos obligatorios (15.7s)
+  ✓  62 [chromium] › sprint-n/add-employee.spec.ts:63:7 › Sprint N – Add Employee (Admin) › CP-008 [REGRESSION] Guardar sin datos muestra errores de validación (6.2s)
+  ✘  63 [chromium] › sprint-n/add-employee.spec.ts:74:7 › Sprint N – Add Employee (Admin) › CP-009 El campo Employee ID se pre-popula automáticamente (5.7s)
+  ✘  64 [chromium] › additional/pim-emergency-dependents.spec.ts:44:7 › Funcionalidad: PIM – Emergency Contacts › CP-040 Cancelar formulario de Emergency Contact no guarda cambios (25.2s)
+  ✘  65 [chromium] › additional/leave.spec.ts:78:7 › Funcionalidad: Leave – Leave Types › CP-065 El formulario de nuevo Leave Type tiene campo Name (21.4s)
+  ✘  66 [chromium] › sprint-n/add-employee.spec.ts:74:7 › Sprint N – Add Employee (Admin) › CP-009 El campo Employee ID se pre-popula automáticamente (retry #1) (6.4s)
+  ✘  67 [chromium] › additional/pim-job-immigration.spec.ts:71:7 › Funcionalidad: PIM – Immigration › CP-054 Guardar formulario vacío de Immigration muestra validación (25.3s)
+  ✘  68 [chromium] › additional/leave.spec.ts:78:7 › Funcionalidad: Leave – Leave Types › CP-065 El formulario de nuevo Leave Type tiene campo Name (retry #1) (20.4s)
+  ✘  69 [chromium] › sprint-n/add-employee.spec.ts:82:7 › Sprint N – Add Employee (Admin) › CP-010 El botón Cancel regresa al listado sin crear empleado (23.0s)
+  ✘  70 [chromium] › additional/pim-emergency-dependents.spec.ts:44:7 › Funcionalidad: PIM – Emergency Contacts › CP-040 Cancelar formulario de Emergency Contact no guarda cambios (retry #1) (25.8s)
+  ✘  71 [chromium] › additional/pim-job-immigration.spec.ts:71:7 › Funcionalidad: PIM – Immigration › CP-054 Guardar formulario vacío de Immigration muestra validación (retry #1) (25.9s)
+  ✘  72 [chromium] › additional/pim-emergency-dependents.spec.ts:61:7 › Funcionalidad: PIM – Dependents › CP-041 [SMOKE] La pestaña Dependents carga correctamente (10.4s)
+  ✘  73 [chromium] › sprint-n/employee-list.spec.ts:22:7 › Sprint N – Employee List (Admin) › CP-001 [SMOKE][REGRESSION] La tabla de empleados carga correctamente (22.1s)
+  ✘  74 [chromium] › sprint-n/add-employee.spec.ts:82:7 › Sprint N – Add Employee (Admin) › CP-010 El botón Cancel regresa al listado sin crear empleado (retry #1) (23.0s)
+  ✘  75 [chromium] › additional/pim-emergency-dependents.spec.ts:61:7 › Funcionalidad: PIM – Dependents › CP-041 [SMOKE] La pestaña Dependents carga correctamente (retry #1) (13.6s)
+  ✘  76 [chromium] › additional/pim-job-immigration.spec.ts:79:7 › Funcionalidad: PIM – Immigration › CP-055 Cancelar formulario de Immigration no guarda cambios (27.3s)
+  ✘  77 [chromium] › sprint-n/employee-list.spec.ts:22:7 › Sprint N – Employee List (Admin) › CP-001 [SMOKE][REGRESSION] La tabla de empleados carga correctamente (retry #1) (26.8s)
+  ✘  78 [chromium] › sprint-n/my-info-qualifications.spec.ts:43:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-011 [SMOKE] La pestaña Qualifications carga y muestra sus secciones (25.1s)
+  ✘  79 [chromium] › additional/pim-emergency-dependents.spec.ts:66:7 › Funcionalidad: PIM – Dependents › CP-042 El botón Add está visible en Dependents (32.2s)
+  ✘  80 [chromium] › additional/pim-job-immigration.spec.ts:79:7 › Funcionalidad: PIM – Immigration › CP-055 Cancelar formulario de Immigration no guarda cambios (retry #1) (32.1s)
+  ✘  81 [chromium] › sprint-n/employee-list.spec.ts:32:7 › Sprint N – Employee List (Admin) › CP-002 [REGRESSION] Búsqueda por nombre filtra resultados (22.4s)
+  ✘  82 [chromium] › sprint-n/my-info-qualifications.spec.ts:43:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-011 [SMOKE] La pestaña Qualifications carga y muestra sus secciones (retry #1) (23.0s)
+  ✓  83 [chromium] › sprint-n1/edit-employee-report-to.spec.ts:45:7 › Sprint N+1 – Edit Employee Report-to (Admin) › CP-016 [SMOKE] La pestaña Report-to carga correctamente (11.1s)
+  ✘  84 [chromium] › additional/pim-emergency-dependents.spec.ts:66:7 › Funcionalidad: PIM – Dependents › CP-042 El botón Add está visible en Dependents (retry #1) (25.4s)
+  ✘  85 [chromium] › sprint-n1/edit-employee-report-to.spec.ts:52:7 › Sprint N+1 – Edit Employee Report-to (Admin) › CP-017 [REGRESSION] La sección Supervisors tiene botón Add visible (10.6s)
+  ✘  86 [chromium] › sprint-n/employee-list.spec.ts:32:7 › Sprint N – Employee List (Admin) › CP-002 [REGRESSION] Búsqueda por nombre filtra resultados (retry #1) (23.2s)
+  ✘  87 [chromium] › sprint-n/my-info-qualifications.spec.ts:50:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-012 [REGRESSION] Se puede agregar Work Experience (23.5s)
+  -  88 [chromium] › sprint-n/employee-list.spec.ts:54:7 › Sprint N – Employee List (Admin) › CP-003 [REGRESSION] Búsqueda por Employee ID muestra resultado específico
+  ✘  89 [chromium] › sprint-n1/edit-employee-report-to.spec.ts:52:7 › Sprint N+1 – Edit Employee Report-to (Admin) › CP-017 [REGRESSION] La sección Supervisors tiene botón Add visible (retry #1) (13.1s)
+  ✓  90 [chromium] › sprint-n/employee-list.spec.ts:75:7 › Sprint N – Employee List (Admin) › CP-004 El botón Reset limpia los campos de búsqueda (6.9s)
+  ✘  91 [chromium] › additional/pim-emergency-dependents.spec.ts:71:7 › Funcionalidad: PIM – Dependents › CP-043 El formulario de Dependent tiene campo Name (24.9s)
+  ✘  92 [chromium] › sprint-n1/edit-employee-report-to.spec.ts:64:7 › Sprint N+1 – Edit Employee Report-to (Admin) › CP-018 [REGRESSION] Formulario de agregar supervisor muestra campos requeridos (11.2s)
+  ✓  93 [chromium] › sprint-n/employee-list.spec.ts:86:7 › Sprint N – Employee List (Admin) › CP-005 [SMOKE] La tabla contiene las columnas esperadas (6.5s)
+  ✓  94 [chromium] › sprint-n2/admin-add-user.spec.ts:22:7 › Sprint N+2 – Admin Add User (Admin) › CP-021 [SMOKE] El listado de usuarios carga correctamente (5.9s)
+  ✘  95 [chromium] › sprint-n/my-info-qualifications.spec.ts:50:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-012 [REGRESSION] Se puede agregar Work Experience (retry #1) (23.7s)
+  ✘  96 [chromium] › sprint-n1/edit-employee-report-to.spec.ts:64:7 › Sprint N+1 – Edit Employee Report-to (Admin) › CP-018 [REGRESSION] Formulario de agregar supervisor muestra campos requeridos (retry #1) (12.8s)
+  ✓  97 [chromium] › sprint-n2/admin-add-user.spec.ts:33:7 › Sprint N+2 – Admin Add User (Admin) › CP-022 [REGRESSION] Formulario de alta contiene todos los campos requeridos (7.8s)
+  ✓  98 [chromium] › sprint-n2/admin-add-user.spec.ts:51:7 › Sprint N+2 – Admin Add User (Admin) › CP-023 [REGRESSION] Guardar formulario vacío muestra errores de validación (7.9s)
+  ✘  99 [chromium] › additional/pim-emergency-dependents.spec.ts:71:7 › Funcionalidad: PIM – Dependents › CP-043 El formulario de Dependent tiene campo Name (retry #1) (25.8s)
+  ✘  100 [chromium] › sprint-n1/edit-employee-report-to.spec.ts:82:7 › Sprint N+1 – Edit Employee Report-to (Admin) › CP-019 Cancel en formulario de supervisor no guarda cambios (10.9s)
+  ✓  101 [chromium] › sprint-n2/admin-add-user.spec.ts:67:7 › Sprint N+2 – Admin Add User (Admin) › CP-024 Contraseñas no coincidentes muestran error de confirmación (8.3s)
+  ✘  102 [chromium] › sprint-n/my-info-qualifications.spec.ts:78:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-013 [REGRESSION] Se puede agregar Education (22.4s)
+  ✘  103 [chromium] › sprint-n2/admin-add-user.spec.ts:85:7 › Sprint N+2 – Admin Add User (Admin) › CP-025 [SMOKE] Se puede filtrar el listado por User Role (5.8s)
+  ✘  104 [chromium] › sprint-n1/edit-employee-report-to.spec.ts:82:7 › Sprint N+1 – Edit Employee Report-to (Admin) › CP-019 Cancel en formulario de supervisor no guarda cambios (retry #1) (12.2s)
+  ✘  105 [chromium] › sprint-n2/admin-add-user.spec.ts:85:7 › Sprint N+2 – Admin Add User (Admin) › CP-025 [SMOKE] Se puede filtrar el listado por User Role (retry #1) (6.3s)
+  ✓  106 [chromium] › sprint-n1/edit-employee-report-to.spec.ts:100:7 › Sprint N+1 – Edit Employee Report-to (Admin) › CP-020 [SMOKE] La sección Subordinates está presente en la página (10.4s)
+  ✘  107 [chromium] › additional/pim-emergency-dependents.spec.ts:79:7 › Funcionalidad: PIM – Dependents › CP-044 Guardar formulario vacío de Dependent muestra validación (24.6s)
+  ✘  108 [chromium] › sprint-n/my-info-qualifications.spec.ts:78:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-013 [REGRESSION] Se puede agregar Education (retry #1) (23.1s)
+  ✘  109 [chromium] › additional/pim-emergency-dependents.spec.ts:79:7 › Funcionalidad: PIM – Dependents › CP-044 Guardar formulario vacío de Dependent muestra validación (retry #1) (24.9s)
+  ✘  110 [chromium] › sprint-n/my-info-qualifications.spec.ts:99:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-014 Guardar Work Experience sin datos muestra validación (23.0s)
+  ✘  111 [chromium] › additional/pim-emergency-dependents.spec.ts:87:7 › Funcionalidad: PIM – Dependents › CP-045 Cancelar formulario de Dependent no guarda cambios (24.9s)
+  ✘  112 [chromium] › sprint-n/my-info-qualifications.spec.ts:99:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-014 Guardar Work Experience sin datos muestra validación (retry #1) (22.6s)
+  ✘  113 [chromium] › sprint-n/my-info-qualifications.spec.ts:116:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-015 Las secciones Skills y Languages están presentes en la página (22.4s)
+  ✘  114 [chromium] › additional/pim-emergency-dependents.spec.ts:87:7 › Funcionalidad: PIM – Dependents › CP-045 Cancelar formulario de Dependent no guarda cambios (retry #1) (25.1s)
+  ✘  115 [chromium] › sprint-n/my-info-qualifications.spec.ts:116:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-015 Las secciones Skills y Languages están presentes en la página (retry #1) (22.4s)
 
 
-  1) [chromium] › sprint-n/add-employee.spec.ts:74:7 › Sprint N – Add Employee (Admin) › CP-009 El campo Employee ID se pre-popula automáticamente 
+  1) [chromium] › additional/admin-config.spec.ts:16:7 › Funcionalidad: Admin – Job Titles › CP-067 La tabla de Job Titles no está vacía 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m0[39m
+    Received:   [31m0[39m
+
+      19 |     const rows = page.locator('.oxd-table-row--clickable');
+      20 |     const count = await rows.count();
+    > 21 |     expect(count).toBeGreaterThan(0);
+         |                   ^
+      22 |   });
+      23 |
+      24 |   test('CP-068 El botón Add Job Title está disponible', async ({ page }) => {
+
+        at /app/tests/additional/admin-config.spec.ts:21:19
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-admin-config-Funcionalidad-Admin-–-Job-Titles-CP-067-La-tabla-de-Job-Titles-no-está-vacía-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-admin-config-Funcionalidad-Admin-–-Job-Titles-CP-067-La-tabla-de-Job-Titles-no-está-vacía-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m0[39m
+    Received:   [31m0[39m
+
+      19 |     const rows = page.locator('.oxd-table-row--clickable');
+      20 |     const count = await rows.count();
+    > 21 |     expect(count).toBeGreaterThan(0);
+         |                   ^
+      22 |   });
+      23 |
+      24 |   test('CP-068 El botón Add Job Title está disponible', async ({ page }) => {
+
+        at /app/tests/additional/admin-config.spec.ts:21:19
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-admin-config-Funcionalidad-Admin-–-Job-Titles-CP-067-La-tabla-de-Job-Titles-no-está-vacía-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-admin-config-Funcionalidad-Admin-–-Job-Titles-CP-067-La-tabla-de-Job-Titles-no-está-vacía-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/additional-admin-config-Funcionalidad-Admin-–-Job-Titles-CP-067-La-tabla-de-Job-Titles-no-está-vacía-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/additional-admin-config-Funcionalidad-Admin-–-Job-Titles-CP-067-La-tabla-de-Job-Titles-no-está-vacía-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › additional/admin-config.spec.ts:57:7 › Funcionalidad: Admin – Locations › CP-072 La tabla de Locations no está vacía 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m0[39m
+    Received:   [31m0[39m
+
+      60 |     const rows = page.locator('.oxd-table-row--clickable');
+      61 |     const count = await rows.count();
+    > 62 |     expect(count).toBeGreaterThan(0);
+         |                   ^
+      63 |   });
+      64 |
+      65 |   test('CP-073 Se puede buscar una Location por nombre', async ({ page }) => {
+
+        at /app/tests/additional/admin-config.spec.ts:62:19
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-admin-config-Funcionalidad-Admin-–-Locations-CP-072-La-tabla-de-Locations-no-está-vacía-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-admin-config-Funcionalidad-Admin-–-Locations-CP-072-La-tabla-de-Locations-no-está-vacía-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m0[39m
+    Received:   [31m0[39m
+
+      60 |     const rows = page.locator('.oxd-table-row--clickable');
+      61 |     const count = await rows.count();
+    > 62 |     expect(count).toBeGreaterThan(0);
+         |                   ^
+      63 |   });
+      64 |
+      65 |   test('CP-073 Se puede buscar una Location por nombre', async ({ page }) => {
+
+        at /app/tests/additional/admin-config.spec.ts:62:19
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-admin-config-Funcionalidad-Admin-–-Locations-CP-072-La-tabla-de-Locations-no-está-vacía-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-admin-config-Funcionalidad-Admin-–-Locations-CP-072-La-tabla-de-Locations-no-está-vacía-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/additional-admin-config-Funcionalidad-Admin-–-Locations-CP-072-La-tabla-de-Locations-no-está-vacía-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/additional-admin-config-Funcionalidad-Admin-–-Locations-CP-072-La-tabla-de-Locations-no-está-vacía-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [chromium] › additional/admin-config.spec.ts:79:7 › Funcionalidad: Admin – Locations › CP-075 El botón Reset limpia la búsqueda de Locations 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m""[39m
+    Received: [31m"XYZ"[39m
+
+      85 |     await resetBtn.click();
+      86 |     const inputValue = await page.locator('.oxd-input').first().inputValue();
+    > 87 |     expect(inputValue).toBe('');
+         |                        ^
+      88 |   });
+      89 |
+      90 | });
+
+        at /app/tests/additional/admin-config.spec.ts:87:24
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-admin-config-Funcionalidad-Admin-–--f4a72--El-botón-Reset-limpia-la-búsqueda-de-Locations-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-admin-config-Funcionalidad-Admin-–--f4a72--El-botón-Reset-limpia-la-búsqueda-de-Locations-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m""[39m
+    Received: [31m"XYZ"[39m
+
+      85 |     await resetBtn.click();
+      86 |     const inputValue = await page.locator('.oxd-input').first().inputValue();
+    > 87 |     expect(inputValue).toBe('');
+         |                        ^
+      88 |   });
+      89 |
+      90 | });
+
+        at /app/tests/additional/admin-config.spec.ts:87:24
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-admin-config-Funcionalidad-Admin-–--f4a72--El-botón-Reset-limpia-la-búsqueda-de-Locations-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-admin-config-Funcionalidad-Admin-–--f4a72--El-botón-Reset-limpia-la-búsqueda-de-Locations-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/additional-admin-config-Funcionalidad-Admin-–--f4a72--El-botón-Reset-limpia-la-búsqueda-de-Locations-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/additional-admin-config-Funcionalidad-Admin-–--f4a72--El-botón-Reset-limpia-la-búsqueda-de-Locations-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [chromium] › additional/leave.spec.ts:9:7 › Funcionalidad: Leave – Leave List › CP-056 [SMOKE] La página Leave List carga correctamente 
+
+    Error: expect.toBeVisible: Error: strict mode violation: locator('.oxd-table, .orangehrm-container') resolved to 2 elements:
+        1) <div data-v-a0f5562c="" class="orangehrm-container">…</div> aka locator('.orangehrm-container')
+        2) <div role="table" class="oxd-table" data-v-a0f5562c="…>…</div> aka getByRole('table')
+
+    Call log:
+      [2m- expect.toBeVisible with timeout 15000ms[22m
+    [2m  - waiting for locator('.oxd-table, .orangehrm-container')[22m
+
+
+      10 |     await loginAsAdmin(page);
+      11 |     await page.goto(LEAVE_LIST_URL);
+    > 12 |     await expect(page.locator('.oxd-table, .orangehrm-container')).toBeVisible();
+         |                                                                    ^
+      13 |   });
+      14 |
+      15 |   test('CP-057 La tabla de licencias tiene columnas visibles', async ({ page }) => {
+
+        at /app/tests/additional/leave.spec.ts:12:68
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-leave-Funcionalidad-Leave-–-Leave-L-a384c--SMOKE-La-página-Leave-List-carga-correctamente-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-leave-Funcionalidad-Leave-–-Leave-L-a384c--SMOKE-La-página-Leave-List-carga-correctamente-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect.toBeVisible: Error: strict mode violation: locator('.oxd-table, .orangehrm-container') resolved to 2 elements:
+        1) <div data-v-a0f5562c="" class="orangehrm-container">…</div> aka locator('.orangehrm-container')
+        2) <div role="table" class="oxd-table" data-v-a0f5562c="…>…</div> aka getByRole('table')
+
+    Call log:
+      [2m- expect.toBeVisible with timeout 15000ms[22m
+    [2m  - waiting for locator('.oxd-table, .orangehrm-container')[22m
+
+
+      10 |     await loginAsAdmin(page);
+      11 |     await page.goto(LEAVE_LIST_URL);
+    > 12 |     await expect(page.locator('.oxd-table, .orangehrm-container')).toBeVisible();
+         |                                                                    ^
+      13 |   });
+      14 |
+      15 |   test('CP-057 La tabla de licencias tiene columnas visibles', async ({ page }) => {
+
+        at /app/tests/additional/leave.spec.ts:12:68
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-leave-Funcionalidad-Leave-–-Leave-L-a384c--SMOKE-La-página-Leave-List-carga-correctamente-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-leave-Funcionalidad-Leave-–-Leave-L-a384c--SMOKE-La-página-Leave-List-carga-correctamente-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/additional-leave-Funcionalidad-Leave-–-Leave-L-a384c--SMOKE-La-página-Leave-List-carga-correctamente-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/additional-leave-Funcionalidad-Leave-–-Leave-L-a384c--SMOKE-La-página-Leave-List-carga-correctamente-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [chromium] › additional/leave.spec.ts:28:7 › Funcionalidad: Leave – Leave List › CP-059 El botón Search realiza una búsqueda sin errores 
+
+    Error: expect.toBeVisible: Error: strict mode violation: locator('.oxd-table, .orangehrm-container') resolved to 2 elements:
+        1) <div data-v-a0f5562c="" class="orangehrm-container">…</div> aka locator('.orangehrm-container')
+        2) <div role="table" class="oxd-table" data-v-a0f5562c="…>…</div> aka getByRole('table')
+
+    Call log:
+      [2m- expect.toBeVisible with timeout 15000ms[22m
+    [2m  - waiting for locator('.oxd-table, .orangehrm-container')[22m
+
+
+      31 |     await page.locator('button[type="submit"]').click();
+      32 |     // Debe permanecer en la misma página sin errores
+    > 33 |     await expect(page.locator('.oxd-table, .orangehrm-container')).toBeVisible();
+         |                                                                    ^
+      34 |   });
+      35 |
+      36 |   test('CP-060 El botón Reset limpia los filtros de Leave List', async ({ page }) => {
+
+        at /app/tests/additional/leave.spec.ts:33:68
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-leave-Funcionalidad-Leave-–-Leave-L-d808d-l-botón-Search-realiza-una-búsqueda-sin-errores-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-leave-Funcionalidad-Leave-–-Leave-L-d808d-l-botón-Search-realiza-una-búsqueda-sin-errores-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect.toBeVisible: Error: strict mode violation: locator('.oxd-table, .orangehrm-container') resolved to 2 elements:
+        1) <div data-v-a0f5562c="" class="orangehrm-container">…</div> aka locator('.orangehrm-container')
+        2) <div role="table" class="oxd-table" data-v-a0f5562c="…>…</div> aka getByRole('table')
+
+    Call log:
+      [2m- expect.toBeVisible with timeout 15000ms[22m
+    [2m  - waiting for locator('.oxd-table, .orangehrm-container')[22m
+
+
+      31 |     await page.locator('button[type="submit"]').click();
+      32 |     // Debe permanecer en la misma página sin errores
+    > 33 |     await expect(page.locator('.oxd-table, .orangehrm-container')).toBeVisible();
+         |                                                                    ^
+      34 |   });
+      35 |
+      36 |   test('CP-060 El botón Reset limpia los filtros de Leave List', async ({ page }) => {
+
+        at /app/tests/additional/leave.spec.ts:33:68
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-leave-Funcionalidad-Leave-–-Leave-L-d808d-l-botón-Search-realiza-una-búsqueda-sin-errores-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-leave-Funcionalidad-Leave-–-Leave-L-d808d-l-botón-Search-realiza-una-búsqueda-sin-errores-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/additional-leave-Funcionalidad-Leave-–-Leave-L-d808d-l-botón-Search-realiza-una-búsqueda-sin-errores-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/additional-leave-Funcionalidad-Leave-–-Leave-L-d808d-l-botón-Search-realiza-una-búsqueda-sin-errores-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) [chromium] › additional/leave.spec.ts:49:7 › Funcionalidad: Leave – Leave Types › CP-061 [SMOKE] La página Leave Types carga correctamente 
+
+    Error: [31mTimed out 15000ms waiting for [39m[2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m()[22m
+
+    Locator: locator('.oxd-table')
+    Expected: visible
+    Received: hidden
+    Call log:
+      [2m- expect.toBeVisible with timeout 15000ms[22m
+    [2m  - waiting for locator('.oxd-table')[22m
+
+
+      50 |     await loginAsAdmin(page);
+      51 |     await page.goto(LEAVE_TYPES_URL);
+    > 52 |     await expect(page.locator('.oxd-table')).toBeVisible();
+         |                                              ^
+      53 |   });
+      54 |
+      55 |   test('CP-062 La tabla de Leave Types no está vacía', async ({ page }) => {
+
+        at /app/tests/additional/leave.spec.ts:52:46
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-leave-Funcionalidad-Leave-–-Leave-T-4382d-SMOKE-La-página-Leave-Types-carga-correctamente-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-leave-Funcionalidad-Leave-–-Leave-T-4382d-SMOKE-La-página-Leave-Types-carga-correctamente-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: [31mTimed out 15000ms waiting for [39m[2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m()[22m
+
+    Locator: locator('.oxd-table')
+    Expected: visible
+    Received: hidden
+    Call log:
+      [2m- expect.toBeVisible with timeout 15000ms[22m
+    [2m  - waiting for locator('.oxd-table')[22m
+
+
+      50 |     await loginAsAdmin(page);
+      51 |     await page.goto(LEAVE_TYPES_URL);
+    > 52 |     await expect(page.locator('.oxd-table')).toBeVisible();
+         |                                              ^
+      53 |   });
+      54 |
+      55 |   test('CP-062 La tabla de Leave Types no está vacía', async ({ page }) => {
+
+        at /app/tests/additional/leave.spec.ts:52:46
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-leave-Funcionalidad-Leave-–-Leave-T-4382d-SMOKE-La-página-Leave-Types-carga-correctamente-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-leave-Funcionalidad-Leave-–-Leave-T-4382d-SMOKE-La-página-Leave-Types-carga-correctamente-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/additional-leave-Funcionalidad-Leave-–-Leave-T-4382d-SMOKE-La-página-Leave-Types-carga-correctamente-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/additional-leave-Funcionalidad-Leave-–-Leave-T-4382d-SMOKE-La-página-Leave-Types-carga-correctamente-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7) [chromium] › additional/leave.spec.ts:55:7 › Funcionalidad: Leave – Leave Types › CP-062 La tabla de Leave Types no está vacía 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m0[39m
+    Received:   [31m0[39m
+
+      58 |     const rows = page.locator('.oxd-table-row--clickable');
+      59 |     const count = await rows.count();
+    > 60 |     expect(count).toBeGreaterThan(0);
+         |                   ^
+      61 |   });
+      62 |
+      63 |   test('CP-063 Cada tipo de licencia tiene nombre visible en la tabla', async ({ page }) => {
+
+        at /app/tests/additional/leave.spec.ts:60:19
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-leave-Funcionalidad-Leave-–-Leave-Types-CP-062-La-tabla-de-Leave-Types-no-está-vacía-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-leave-Funcionalidad-Leave-–-Leave-Types-CP-062-La-tabla-de-Leave-Types-no-está-vacía-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m0[39m
+    Received:   [31m0[39m
+
+      58 |     const rows = page.locator('.oxd-table-row--clickable');
+      59 |     const count = await rows.count();
+    > 60 |     expect(count).toBeGreaterThan(0);
+         |                   ^
+      61 |   });
+      62 |
+      63 |   test('CP-063 Cada tipo de licencia tiene nombre visible en la tabla', async ({ page }) => {
+
+        at /app/tests/additional/leave.spec.ts:60:19
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-leave-Funcionalidad-Leave-–-Leave-Types-CP-062-La-tabla-de-Leave-Types-no-está-vacía-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-leave-Funcionalidad-Leave-–-Leave-Types-CP-062-La-tabla-de-Leave-Types-no-está-vacía-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/additional-leave-Funcionalidad-Leave-–-Leave-Types-CP-062-La-tabla-de-Leave-Types-no-está-vacía-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/additional-leave-Funcionalidad-Leave-–-Leave-Types-CP-062-La-tabla-de-Leave-Types-no-está-vacía-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  8) [chromium] › additional/leave.spec.ts:63:7 › Funcionalidad: Leave – Leave Types › CP-063 Cada tipo de licencia tiene nombre visible en la tabla 
+
+    Error: [31mTimed out 15000ms waiting for [39m[2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m()[22m
+
+    Locator: locator('.oxd-table-row--clickable').first()
+    Expected: visible
+    Received: hidden
+    Call log:
+      [2m- expect.toBeVisible with timeout 15000ms[22m
+    [2m  - waiting for locator('.oxd-table-row--clickable').first()[22m
+
+
+      65 |     await page.goto(LEAVE_TYPES_URL);
+      66 |     const firstRow = page.locator('.oxd-table-row--clickable').first();
+    > 67 |     await expect(firstRow).toBeVisible();
+         |                            ^
+      68 |     const text = await firstRow.textContent();
+      69 |     expect(text?.trim().length).toBeGreaterThan(0);
+      70 |   });
+
+        at /app/tests/additional/leave.spec.ts:67:28
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-leave-Funcionalidad-Leave-–-Leave-T-74bfe-po-de-licencia-tiene-nombre-visible-en-la-tabla-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-leave-Funcionalidad-Leave-–-Leave-T-74bfe-po-de-licencia-tiene-nombre-visible-en-la-tabla-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: [31mTimed out 15000ms waiting for [39m[2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m()[22m
+
+    Locator: locator('.oxd-table-row--clickable').first()
+    Expected: visible
+    Received: hidden
+    Call log:
+      [2m- expect.toBeVisible with timeout 15000ms[22m
+    [2m  - waiting for locator('.oxd-table-row--clickable').first()[22m
+
+
+      65 |     await page.goto(LEAVE_TYPES_URL);
+      66 |     const firstRow = page.locator('.oxd-table-row--clickable').first();
+    > 67 |     await expect(firstRow).toBeVisible();
+         |                            ^
+      68 |     const text = await firstRow.textContent();
+      69 |     expect(text?.trim().length).toBeGreaterThan(0);
+      70 |   });
+
+        at /app/tests/additional/leave.spec.ts:67:28
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-leave-Funcionalidad-Leave-–-Leave-T-74bfe-po-de-licencia-tiene-nombre-visible-en-la-tabla-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-leave-Funcionalidad-Leave-–-Leave-T-74bfe-po-de-licencia-tiene-nombre-visible-en-la-tabla-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/additional-leave-Funcionalidad-Leave-–-Leave-T-74bfe-po-de-licencia-tiene-nombre-visible-en-la-tabla-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/additional-leave-Funcionalidad-Leave-–-Leave-T-74bfe-po-de-licencia-tiene-nombre-visible-en-la-tabla-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  9) [chromium] › additional/leave.spec.ts:72:7 › Funcionalidad: Leave – Leave Types › CP-064 El botón Add está disponible en Leave Types 
+
+    Error: [31mTimed out 15000ms waiting for [39m[2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m()[22m
+
+    Locator: locator('button.oxd-button--secondary').filter({ hasText: 'Add' })
+    Expected: visible
+    Received: hidden
+    Call log:
+      [2m- expect.toBeVisible with timeout 15000ms[22m
+    [2m  - waiting for locator('button.oxd-button--secondary').filter({ hasText: 'Add' })[22m
+
+
+      73 |     await loginAsAdmin(page);
+      74 |     await page.goto(LEAVE_TYPES_URL);
+    > 75 |     await expect(page.locator('button.oxd-button--secondary').filter({ hasText: 'Add' })).toBeVisible();
+         |                                                                                           ^
+      76 |   });
+      77 |
+      78 |   test('CP-065 El formulario de nuevo Leave Type tiene campo Name', async ({ page }) => {
+
+        at /app/tests/additional/leave.spec.ts:75:91
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-leave-Funcionalidad-Leave-–-Leave-T-08452-064-El-botón-Add-está-disponible-en-Leave-Types-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-leave-Funcionalidad-Leave-–-Leave-T-08452-064-El-botón-Add-está-disponible-en-Leave-Types-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: [31mTimed out 15000ms waiting for [39m[2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m()[22m
+
+    Locator: locator('button.oxd-button--secondary').filter({ hasText: 'Add' })
+    Expected: visible
+    Received: hidden
+    Call log:
+      [2m- expect.toBeVisible with timeout 15000ms[22m
+    [2m  - waiting for locator('button.oxd-button--secondary').filter({ hasText: 'Add' })[22m
+
+
+      73 |     await loginAsAdmin(page);
+      74 |     await page.goto(LEAVE_TYPES_URL);
+    > 75 |     await expect(page.locator('button.oxd-button--secondary').filter({ hasText: 'Add' })).toBeVisible();
+         |                                                                                           ^
+      76 |   });
+      77 |
+      78 |   test('CP-065 El formulario de nuevo Leave Type tiene campo Name', async ({ page }) => {
+
+        at /app/tests/additional/leave.spec.ts:75:91
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-leave-Funcionalidad-Leave-–-Leave-T-08452-064-El-botón-Add-está-disponible-en-Leave-Types-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-leave-Funcionalidad-Leave-–-Leave-T-08452-064-El-botón-Add-está-disponible-en-Leave-Types-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/additional-leave-Funcionalidad-Leave-–-Leave-T-08452-064-El-botón-Add-está-disponible-en-Leave-Types-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/additional-leave-Funcionalidad-Leave-–-Leave-T-08452-064-El-botón-Add-está-disponible-en-Leave-Types-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  10) [chromium] › additional/leave.spec.ts:78:7 › Funcionalidad: Leave – Leave Types › CP-065 El formulario de nuevo Leave Type tiene campo Name 
+
+    Error: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      [2m- waiting for locator('button.oxd-button--secondary').filter({ hasText: 'Add' })[22m
+
+
+      79 |     await loginAsAdmin(page);
+      80 |     await page.goto(LEAVE_TYPES_URL);
+    > 81 |     await page.locator('button.oxd-button--secondary').filter({ hasText: 'Add' }).click();
+         |                                                                                   ^
+      82 |     await page.waitForURL('**/leave/addLeaveType', { timeout: 10_000 });
+      83 |     await expect(page.locator('.oxd-input').first()).toBeVisible();
+      84 |   });
+
+        at /app/tests/additional/leave.spec.ts:81:83
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-leave-Funcionalidad-Leave-–-Leave-T-7f0f1-formulario-de-nuevo-Leave-Type-tiene-campo-Name-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-leave-Funcionalidad-Leave-–-Leave-T-7f0f1-formulario-de-nuevo-Leave-Type-tiene-campo-Name-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      [2m- waiting for locator('button.oxd-button--secondary').filter({ hasText: 'Add' })[22m
+
+
+      79 |     await loginAsAdmin(page);
+      80 |     await page.goto(LEAVE_TYPES_URL);
+    > 81 |     await page.locator('button.oxd-button--secondary').filter({ hasText: 'Add' }).click();
+         |                                                                                   ^
+      82 |     await page.waitForURL('**/leave/addLeaveType', { timeout: 10_000 });
+      83 |     await expect(page.locator('.oxd-input').first()).toBeVisible();
+      84 |   });
+
+        at /app/tests/additional/leave.spec.ts:81:83
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-leave-Funcionalidad-Leave-–-Leave-T-7f0f1-formulario-de-nuevo-Leave-Type-tiene-campo-Name-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-leave-Funcionalidad-Leave-–-Leave-T-7f0f1-formulario-de-nuevo-Leave-Type-tiene-campo-Name-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/additional-leave-Funcionalidad-Leave-–-Leave-T-7f0f1-formulario-de-nuevo-Leave-Type-tiene-campo-Name-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/additional-leave-Funcionalidad-Leave-–-Leave-T-7f0f1-formulario-de-nuevo-Leave-Type-tiene-campo-Name-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  11) [chromium] › additional/pim-emergency-dependents.spec.ts:18:7 › Funcionalidad: PIM – Emergency Contacts › CP-036 [SMOKE] La pestaña Emergency Contacts carga correctamente 
+
+    Error: expect.toBeVisible: Error: strict mode violation: locator('.oxd-table, .orangehrm-container') resolved to 4 elements:
+        1) <div data-v-8146ff56="" class="orangehrm-container">…</div> aka locator('.orangehrm-container').first()
+        2) <div role="table" class="oxd-table" data-v-8146ff56="…>…</div> aka getByRole('table').first()
+        3) <div data-v-eeb97be0="" class="orangehrm-container">…</div> aka locator('.orangehrm-attachment > .orangehrm-container')
+        4) <div role="table" class="oxd-table" data-v-eeb97be0="…>…</div> aka getByRole('table').nth(1)
+
+    Call log:
+      [2m- expect.toBeVisible with timeout 15000ms[22m
+    [2m  - waiting for locator('.oxd-table, .orangehrm-container')[22m
+
+
+      18 |   test('CP-036 [SMOKE] La pestaña Emergency Contacts carga correctamente', async ({ page }) => {
+      19 |     await goToTab(page, 'Emergency Contacts');
+    > 20 |     await expect(page.locator('.oxd-table, .orangehrm-container')).toBeVisible();
+         |                                                                    ^
+      21 |   });
+      22 |
+      23 |   test('CP-037 El botón Add está visible en Emergency Contacts', async ({ page }) => {
+
+        at /app/tests/additional/pim-emergency-dependents.spec.ts:20:68
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-14623--pestaña-Emergency-Contacts-carga-correctamente-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-14623--pestaña-Emergency-Contacts-carga-correctamente-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect.toBeVisible: Error: strict mode violation: locator('.oxd-table, .orangehrm-container') resolved to 4 elements:
+        1) <div data-v-8146ff56="" class="orangehrm-container">…</div> aka locator('.orangehrm-container').first()
+        2) <div role="table" class="oxd-table" data-v-8146ff56="…>…</div> aka getByRole('table').first()
+        3) <div data-v-eeb97be0="" class="orangehrm-container">…</div> aka locator('.orangehrm-attachment > .orangehrm-container')
+        4) <div role="table" class="oxd-table" data-v-eeb97be0="…>…</div> aka getByRole('table').nth(1)
+
+    Call log:
+      [2m- expect.toBeVisible with timeout 15000ms[22m
+    [2m  - waiting for locator('.oxd-table, .orangehrm-container')[22m
+
+
+      18 |   test('CP-036 [SMOKE] La pestaña Emergency Contacts carga correctamente', async ({ page }) => {
+      19 |     await goToTab(page, 'Emergency Contacts');
+    > 20 |     await expect(page.locator('.oxd-table, .orangehrm-container')).toBeVisible();
+         |                                                                    ^
+      21 |   });
+      22 |
+      23 |   test('CP-037 El botón Add está visible en Emergency Contacts', async ({ page }) => {
+
+        at /app/tests/additional/pim-emergency-dependents.spec.ts:20:68
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-14623--pestaña-Emergency-Contacts-carga-correctamente-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-14623--pestaña-Emergency-Contacts-carga-correctamente-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-14623--pestaña-Emergency-Contacts-carga-correctamente-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/additional-pim-emergency-dependents-Funcionali-14623--pestaña-Emergency-Contacts-carga-correctamente-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  12) [chromium] › additional/pim-emergency-dependents.spec.ts:23:7 › Funcionalidad: PIM – Emergency Contacts › CP-037 El botón Add está visible en Emergency Contacts 
+
+    Error: [31mTimed out 15000ms waiting for [39m[2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m()[22m
+
+    Locator: locator('button.oxd-button--secondary').filter({ hasText: 'Add' })
+    Expected: visible
+    Received: hidden
+    Call log:
+      [2m- expect.toBeVisible with timeout 15000ms[22m
+    [2m  - waiting for locator('button.oxd-button--secondary').filter({ hasText: 'Add' })[22m
+
+
+      23 |   test('CP-037 El botón Add está visible en Emergency Contacts', async ({ page }) => {
+      24 |     await goToTab(page, 'Emergency Contacts');
+    > 25 |     await expect(page.locator('button.oxd-button--secondary').filter({ hasText: 'Add' })).toBeVisible();
+         |                                                                                           ^
+      26 |   });
+      27 |
+      28 |   test('CP-038 El formulario de Emergency Contact tiene campo Name', async ({ page }) => {
+
+        at /app/tests/additional/pim-emergency-dependents.spec.ts:25:91
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-273db-El-botón-Add-está-visible-en-Emergency-Contacts-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-273db-El-botón-Add-está-visible-en-Emergency-Contacts-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: [31mTimed out 15000ms waiting for [39m[2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m()[22m
+
+    Locator: locator('button.oxd-button--secondary').filter({ hasText: 'Add' })
+    Expected: visible
+    Received: hidden
+    Call log:
+      [2m- expect.toBeVisible with timeout 15000ms[22m
+    [2m  - waiting for locator('button.oxd-button--secondary').filter({ hasText: 'Add' })[22m
+
+
+      23 |   test('CP-037 El botón Add está visible en Emergency Contacts', async ({ page }) => {
+      24 |     await goToTab(page, 'Emergency Contacts');
+    > 25 |     await expect(page.locator('button.oxd-button--secondary').filter({ hasText: 'Add' })).toBeVisible();
+         |                                                                                           ^
+      26 |   });
+      27 |
+      28 |   test('CP-038 El formulario de Emergency Contact tiene campo Name', async ({ page }) => {
+
+        at /app/tests/additional/pim-emergency-dependents.spec.ts:25:91
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-273db-El-botón-Add-está-visible-en-Emergency-Contacts-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-273db-El-botón-Add-está-visible-en-Emergency-Contacts-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-273db-El-botón-Add-está-visible-en-Emergency-Contacts-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/additional-pim-emergency-dependents-Funcionali-273db-El-botón-Add-está-visible-en-Emergency-Contacts-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  13) [chromium] › additional/pim-emergency-dependents.spec.ts:28:7 › Funcionalidad: PIM – Emergency Contacts › CP-038 El formulario de Emergency Contact tiene campo Name 
+
+    Error: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      [2m- waiting for locator('button.oxd-button--secondary').filter({ hasText: 'Add' })[22m
+
+
+      28 |   test('CP-038 El formulario de Emergency Contact tiene campo Name', async ({ page }) => {
+      29 |     await goToTab(page, 'Emergency Contacts');
+    > 30 |     await page.locator('button.oxd-button--secondary').filter({ hasText: 'Add' }).click();
+         |                                                                                   ^
+      31 |     await page.waitForTimeout(500);
+      32 |     const inputs = page.locator('.oxd-input');
+      33 |     await expect(inputs.first()).toBeVisible();
+
+        at /app/tests/additional/pim-emergency-dependents.spec.ts:30:83
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-40f99-ormulario-de-Emergency-Contact-tiene-campo-Name-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-40f99-ormulario-de-Emergency-Contact-tiene-campo-Name-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      [2m- waiting for locator('button.oxd-button--secondary').filter({ hasText: 'Add' })[22m
+
+
+      28 |   test('CP-038 El formulario de Emergency Contact tiene campo Name', async ({ page }) => {
+      29 |     await goToTab(page, 'Emergency Contacts');
+    > 30 |     await page.locator('button.oxd-button--secondary').filter({ hasText: 'Add' }).click();
+         |                                                                                   ^
+      31 |     await page.waitForTimeout(500);
+      32 |     const inputs = page.locator('.oxd-input');
+      33 |     await expect(inputs.first()).toBeVisible();
+
+        at /app/tests/additional/pim-emergency-dependents.spec.ts:30:83
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-40f99-ormulario-de-Emergency-Contact-tiene-campo-Name-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-40f99-ormulario-de-Emergency-Contact-tiene-campo-Name-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-40f99-ormulario-de-Emergency-Contact-tiene-campo-Name-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/additional-pim-emergency-dependents-Funcionali-40f99-ormulario-de-Emergency-Contact-tiene-campo-Name-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  14) [chromium] › additional/pim-emergency-dependents.spec.ts:36:7 › Funcionalidad: PIM – Emergency Contacts › CP-039 Guardar formulario vacío de Emergency Contact muestra validación 
+
+    Error: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      [2m- waiting for locator('button.oxd-button--secondary').filter({ hasText: 'Add' })[22m
+
+
+      36 |   test('CP-039 Guardar formulario vacío de Emergency Contact muestra validación', async ({ page }) => {
+      37 |     await goToTab(page, 'Emergency Contacts');
+    > 38 |     await page.locator('button.oxd-button--secondary').filter({ hasText: 'Add' }).click();
+         |                                                                                   ^
+      39 |     await page.waitForTimeout(500);
+      40 |     await page.locator('button[type="submit"]').last().click();
+      41 |     await expect(page.locator('.oxd-input-field-error-message').first()).toBeVisible();
+
+        at /app/tests/additional/pim-emergency-dependents.spec.ts:38:83
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-69a6c-o-vacío-de-Emergency-Contact-muestra-validación-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-69a6c-o-vacío-de-Emergency-Contact-muestra-validación-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      [2m- waiting for locator('button.oxd-button--secondary').filter({ hasText: 'Add' })[22m
+
+
+      36 |   test('CP-039 Guardar formulario vacío de Emergency Contact muestra validación', async ({ page }) => {
+      37 |     await goToTab(page, 'Emergency Contacts');
+    > 38 |     await page.locator('button.oxd-button--secondary').filter({ hasText: 'Add' }).click();
+         |                                                                                   ^
+      39 |     await page.waitForTimeout(500);
+      40 |     await page.locator('button[type="submit"]').last().click();
+      41 |     await expect(page.locator('.oxd-input-field-error-message').first()).toBeVisible();
+
+        at /app/tests/additional/pim-emergency-dependents.spec.ts:38:83
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-69a6c-o-vacío-de-Emergency-Contact-muestra-validación-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-69a6c-o-vacío-de-Emergency-Contact-muestra-validación-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-69a6c-o-vacío-de-Emergency-Contact-muestra-validación-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/additional-pim-emergency-dependents-Funcionali-69a6c-o-vacío-de-Emergency-Contact-muestra-validación-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  15) [chromium] › additional/pim-emergency-dependents.spec.ts:44:7 › Funcionalidad: PIM – Emergency Contacts › CP-040 Cancelar formulario de Emergency Contact no guarda cambios 
+
+    Error: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      [2m- waiting for locator('button.oxd-button--secondary').filter({ hasText: 'Add' })[22m
+
+
+      44 |   test('CP-040 Cancelar formulario de Emergency Contact no guarda cambios', async ({ page }) => {
+      45 |     await goToTab(page, 'Emergency Contacts');
+    > 46 |     await page.locator('button.oxd-button--secondary').filter({ hasText: 'Add' }).click();
+         |                                                                                   ^
+      47 |     await page.waitForTimeout(500);
+      48 |     await page.locator('button.oxd-button--ghost').filter({ hasText: 'Cancel' }).last().click();
+      49 |     await page.waitForTimeout(500);
+
+        at /app/tests/additional/pim-emergency-dependents.spec.ts:46:83
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-9983a-rmulario-de-Emergency-Contact-no-guarda-cambios-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-9983a-rmulario-de-Emergency-Contact-no-guarda-cambios-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      [2m- waiting for locator('button.oxd-button--secondary').filter({ hasText: 'Add' })[22m
+
+
+      44 |   test('CP-040 Cancelar formulario de Emergency Contact no guarda cambios', async ({ page }) => {
+      45 |     await goToTab(page, 'Emergency Contacts');
+    > 46 |     await page.locator('button.oxd-button--secondary').filter({ hasText: 'Add' }).click();
+         |                                                                                   ^
+      47 |     await page.waitForTimeout(500);
+      48 |     await page.locator('button.oxd-button--ghost').filter({ hasText: 'Cancel' }).last().click();
+      49 |     await page.waitForTimeout(500);
+
+        at /app/tests/additional/pim-emergency-dependents.spec.ts:46:83
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-9983a-rmulario-de-Emergency-Contact-no-guarda-cambios-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-9983a-rmulario-de-Emergency-Contact-no-guarda-cambios-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-9983a-rmulario-de-Emergency-Contact-no-guarda-cambios-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/additional-pim-emergency-dependents-Funcionali-9983a-rmulario-de-Emergency-Contact-no-guarda-cambios-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  16) [chromium] › additional/pim-emergency-dependents.spec.ts:61:7 › Funcionalidad: PIM – Dependents › CP-041 [SMOKE] La pestaña Dependents carga correctamente 
+
+    Error: expect.toBeVisible: Error: strict mode violation: locator('.orangehrm-container, .oxd-table') resolved to 4 elements:
+        1) <div class="orangehrm-container">…</div> aka locator('.orangehrm-container').first()
+        2) <div role="table" class="oxd-table" row-decorator="ox…>…</div> aka getByRole('table').first()
+        3) <div data-v-eeb97be0="" class="orangehrm-container">…</div> aka locator('.orangehrm-attachment > .orangehrm-container')
+        4) <div role="table" class="oxd-table" data-v-eeb97be0="…>…</div> aka getByRole('table').nth(1)
+
+    Call log:
+      [2m- expect.toBeVisible with timeout 15000ms[22m
+    [2m  - waiting for locator('.orangehrm-container, .oxd-table')[22m
+
+
+      61 |   test('CP-041 [SMOKE] La pestaña Dependents carga correctamente', async ({ page }) => {
+      62 |     await goToTab(page, 'Dependents');
+    > 63 |     await expect(page.locator('.orangehrm-container, .oxd-table')).toBeVisible();
+         |                                                                    ^
+      64 |   });
+      65 |
+      66 |   test('CP-042 El botón Add está visible en Dependents', async ({ page }) => {
+
+        at /app/tests/additional/pim-emergency-dependents.spec.ts:63:68
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-10abd-SMOKE-La-pestaña-Dependents-carga-correctamente-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-10abd-SMOKE-La-pestaña-Dependents-carga-correctamente-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect.toBeVisible: Error: strict mode violation: locator('.orangehrm-container, .oxd-table') resolved to 4 elements:
+        1) <div class="orangehrm-container">…</div> aka locator('.orangehrm-container').first()
+        2) <div role="table" class="oxd-table" row-decorator="ox…>…</div> aka getByRole('table').first()
+        3) <div data-v-eeb97be0="" class="orangehrm-container">…</div> aka locator('.orangehrm-attachment > .orangehrm-container')
+        4) <div role="table" class="oxd-table" data-v-eeb97be0="…>…</div> aka getByRole('table').nth(1)
+
+    Call log:
+      [2m- expect.toBeVisible with timeout 15000ms[22m
+    [2m  - waiting for locator('.orangehrm-container, .oxd-table')[22m
+
+
+      61 |   test('CP-041 [SMOKE] La pestaña Dependents carga correctamente', async ({ page }) => {
+      62 |     await goToTab(page, 'Dependents');
+    > 63 |     await expect(page.locator('.orangehrm-container, .oxd-table')).toBeVisible();
+         |                                                                    ^
+      64 |   });
+      65 |
+      66 |   test('CP-042 El botón Add está visible en Dependents', async ({ page }) => {
+
+        at /app/tests/additional/pim-emergency-dependents.spec.ts:63:68
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-10abd-SMOKE-La-pestaña-Dependents-carga-correctamente-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-10abd-SMOKE-La-pestaña-Dependents-carga-correctamente-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-10abd-SMOKE-La-pestaña-Dependents-carga-correctamente-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/additional-pim-emergency-dependents-Funcionali-10abd-SMOKE-La-pestaña-Dependents-carga-correctamente-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  17) [chromium] › additional/pim-emergency-dependents.spec.ts:66:7 › Funcionalidad: PIM – Dependents › CP-042 El botón Add está visible en Dependents 
+
+    Error: [31mTimed out 15000ms waiting for [39m[2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m()[22m
+
+    Locator: locator('button.oxd-button--secondary').filter({ hasText: 'Add' })
+    Expected: visible
+    Received: hidden
+    Call log:
+      [2m- expect.toBeVisible with timeout 15000ms[22m
+    [2m  - waiting for locator('button.oxd-button--secondary').filter({ hasText: 'Add' })[22m
+
+
+      66 |   test('CP-042 El botón Add está visible en Dependents', async ({ page }) => {
+      67 |     await goToTab(page, 'Dependents');
+    > 68 |     await expect(page.locator('button.oxd-button--secondary').filter({ hasText: 'Add' })).toBeVisible();
+         |                                                                                           ^
+      69 |   });
+      70 |
+      71 |   test('CP-043 El formulario de Dependent tiene campo Name', async ({ page }) => {
+
+        at /app/tests/additional/pim-emergency-dependents.spec.ts:68:91
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-accf8--CP-042-El-botón-Add-está-visible-en-Dependents-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-accf8--CP-042-El-botón-Add-está-visible-en-Dependents-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: [31mTimed out 15000ms waiting for [39m[2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m()[22m
+
+    Locator: locator('button.oxd-button--secondary').filter({ hasText: 'Add' })
+    Expected: visible
+    Received: hidden
+    Call log:
+      [2m- expect.toBeVisible with timeout 15000ms[22m
+    [2m  - waiting for locator('button.oxd-button--secondary').filter({ hasText: 'Add' })[22m
+
+
+      66 |   test('CP-042 El botón Add está visible en Dependents', async ({ page }) => {
+      67 |     await goToTab(page, 'Dependents');
+    > 68 |     await expect(page.locator('button.oxd-button--secondary').filter({ hasText: 'Add' })).toBeVisible();
+         |                                                                                           ^
+      69 |   });
+      70 |
+      71 |   test('CP-043 El formulario de Dependent tiene campo Name', async ({ page }) => {
+
+        at /app/tests/additional/pim-emergency-dependents.spec.ts:68:91
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-accf8--CP-042-El-botón-Add-está-visible-en-Dependents-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-accf8--CP-042-El-botón-Add-está-visible-en-Dependents-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-accf8--CP-042-El-botón-Add-está-visible-en-Dependents-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/additional-pim-emergency-dependents-Funcionali-accf8--CP-042-El-botón-Add-está-visible-en-Dependents-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  18) [chromium] › additional/pim-emergency-dependents.spec.ts:71:7 › Funcionalidad: PIM – Dependents › CP-043 El formulario de Dependent tiene campo Name 
+
+    Error: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      [2m- waiting for locator('button.oxd-button--secondary').filter({ hasText: 'Add' })[22m
+
+
+      71 |   test('CP-043 El formulario de Dependent tiene campo Name', async ({ page }) => {
+      72 |     await goToTab(page, 'Dependents');
+    > 73 |     await page.locator('button.oxd-button--secondary').filter({ hasText: 'Add' }).click();
+         |                                                                                   ^
+      74 |     await page.waitForTimeout(500);
+      75 |     const inputs = page.locator('.oxd-input');
+      76 |     await expect(inputs.first()).toBeVisible();
+
+        at /app/tests/additional/pim-emergency-dependents.spec.ts:73:83
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-e95da-043-El-formulario-de-Dependent-tiene-campo-Name-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-e95da-043-El-formulario-de-Dependent-tiene-campo-Name-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      [2m- waiting for locator('button.oxd-button--secondary').filter({ hasText: 'Add' })[22m
+
+
+      71 |   test('CP-043 El formulario de Dependent tiene campo Name', async ({ page }) => {
+      72 |     await goToTab(page, 'Dependents');
+    > 73 |     await page.locator('button.oxd-button--secondary').filter({ hasText: 'Add' }).click();
+         |                                                                                   ^
+      74 |     await page.waitForTimeout(500);
+      75 |     const inputs = page.locator('.oxd-input');
+      76 |     await expect(inputs.first()).toBeVisible();
+
+        at /app/tests/additional/pim-emergency-dependents.spec.ts:73:83
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-e95da-043-El-formulario-de-Dependent-tiene-campo-Name-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-e95da-043-El-formulario-de-Dependent-tiene-campo-Name-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-e95da-043-El-formulario-de-Dependent-tiene-campo-Name-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/additional-pim-emergency-dependents-Funcionali-e95da-043-El-formulario-de-Dependent-tiene-campo-Name-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  19) [chromium] › additional/pim-emergency-dependents.spec.ts:79:7 › Funcionalidad: PIM – Dependents › CP-044 Guardar formulario vacío de Dependent muestra validación 
+
+    Error: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      [2m- waiting for locator('button.oxd-button--secondary').filter({ hasText: 'Add' })[22m
+
+
+      79 |   test('CP-044 Guardar formulario vacío de Dependent muestra validación', async ({ page }) => {
+      80 |     await goToTab(page, 'Dependents');
+    > 81 |     await page.locator('button.oxd-button--secondary').filter({ hasText: 'Add' }).click();
+         |                                                                                   ^
+      82 |     await page.waitForTimeout(500);
+      83 |     await page.locator('button[type="submit"]').last().click();
+      84 |     await expect(page.locator('.oxd-input-field-error-message').first()).toBeVisible();
+
+        at /app/tests/additional/pim-emergency-dependents.spec.ts:81:83
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-2710b-ormulario-vacío-de-Dependent-muestra-validación-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-2710b-ormulario-vacío-de-Dependent-muestra-validación-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      [2m- waiting for locator('button.oxd-button--secondary').filter({ hasText: 'Add' })[22m
+
+
+      79 |   test('CP-044 Guardar formulario vacío de Dependent muestra validación', async ({ page }) => {
+      80 |     await goToTab(page, 'Dependents');
+    > 81 |     await page.locator('button.oxd-button--secondary').filter({ hasText: 'Add' }).click();
+         |                                                                                   ^
+      82 |     await page.waitForTimeout(500);
+      83 |     await page.locator('button[type="submit"]').last().click();
+      84 |     await expect(page.locator('.oxd-input-field-error-message').first()).toBeVisible();
+
+        at /app/tests/additional/pim-emergency-dependents.spec.ts:81:83
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-2710b-ormulario-vacío-de-Dependent-muestra-validación-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-2710b-ormulario-vacío-de-Dependent-muestra-validación-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-2710b-ormulario-vacío-de-Dependent-muestra-validación-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/additional-pim-emergency-dependents-Funcionali-2710b-ormulario-vacío-de-Dependent-muestra-validación-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  20) [chromium] › additional/pim-emergency-dependents.spec.ts:87:7 › Funcionalidad: PIM – Dependents › CP-045 Cancelar formulario de Dependent no guarda cambios 
+
+    Error: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      [2m- waiting for locator('button.oxd-button--secondary').filter({ hasText: 'Add' })[22m
+
+
+      87 |   test('CP-045 Cancelar formulario de Dependent no guarda cambios', async ({ page }) => {
+      88 |     await goToTab(page, 'Dependents');
+    > 89 |     await page.locator('button.oxd-button--secondary').filter({ hasText: 'Add' }).click();
+         |                                                                                   ^
+      90 |     await page.waitForTimeout(500);
+      91 |     await page.locator('button.oxd-button--ghost').filter({ hasText: 'Cancel' }).last().click();
+      92 |     await page.waitForTimeout(500);
+
+        at /app/tests/additional/pim-emergency-dependents.spec.ts:89:83
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-22396-celar-formulario-de-Dependent-no-guarda-cambios-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-22396-celar-formulario-de-Dependent-no-guarda-cambios-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      [2m- waiting for locator('button.oxd-button--secondary').filter({ hasText: 'Add' })[22m
+
+
+      87 |   test('CP-045 Cancelar formulario de Dependent no guarda cambios', async ({ page }) => {
+      88 |     await goToTab(page, 'Dependents');
+    > 89 |     await page.locator('button.oxd-button--secondary').filter({ hasText: 'Add' }).click();
+         |                                                                                   ^
+      90 |     await page.waitForTimeout(500);
+      91 |     await page.locator('button.oxd-button--ghost').filter({ hasText: 'Cancel' }).last().click();
+      92 |     await page.waitForTimeout(500);
+
+        at /app/tests/additional/pim-emergency-dependents.spec.ts:89:83
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-22396-celar-formulario-de-Dependent-no-guarda-cambios-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-22396-celar-formulario-de-Dependent-no-guarda-cambios-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/additional-pim-emergency-dependents-Funcionali-22396-celar-formulario-de-Dependent-no-guarda-cambios-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/additional-pim-emergency-dependents-Funcionali-22396-celar-formulario-de-Dependent-no-guarda-cambios-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  21) [chromium] › additional/pim-job-immigration.spec.ts:52:7 › Funcionalidad: PIM – Immigration › CP-051 [SMOKE] La pestaña Immigration carga correctamente 
+
+    Error: expect.toBeVisible: Error: strict mode violation: locator('.orangehrm-container, .oxd-table') resolved to 4 elements:
+        1) <div data-v-2747b3a5="" class="orangehrm-container">…</div> aka locator('.orangehrm-container').first()
+        2) <div role="table" class="oxd-table" data-v-2747b3a5="…>…</div> aka getByRole('table').first()
+        3) <div data-v-eeb97be0="" class="orangehrm-container">…</div> aka locator('.orangehrm-attachment > .orangehrm-container')
+        4) <div role="table" class="oxd-table" data-v-eeb97be0="…>…</div> aka getByRole('table').nth(1)
+
+    Call log:
+      [2m- expect.toBeVisible with timeout 15000ms[22m
+    [2m  - waiting for locator('.orangehrm-container, .oxd-table')[22m
+
+
+      52 |   test('CP-051 [SMOKE] La pestaña Immigration carga correctamente', async ({ page }) => {
+      53 |     await goToTab(page, 'Immigration');
+    > 54 |     await expect(page.locator('.orangehrm-container, .oxd-table')).toBeVisible();
+         |                                                                    ^
+      55 |   });
+      56 |
+      57 |   test('CP-052 El botón Add está visible en Immigration', async ({ page }) => {
+
+        at /app/tests/additional/pim-job-immigration.spec.ts:54:68
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-pim-job-immigration-Funcionalidad-P-3adb5-MOKE-La-pestaña-Immigration-carga-correctamente-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-pim-job-immigration-Funcionalidad-P-3adb5-MOKE-La-pestaña-Immigration-carga-correctamente-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect.toBeVisible: Error: strict mode violation: locator('.orangehrm-container, .oxd-table') resolved to 4 elements:
+        1) <div data-v-2747b3a5="" class="orangehrm-container">…</div> aka locator('.orangehrm-container').first()
+        2) <div role="table" class="oxd-table" data-v-2747b3a5="…>…</div> aka getByRole('table').first()
+        3) <div data-v-eeb97be0="" class="orangehrm-container">…</div> aka locator('.orangehrm-attachment > .orangehrm-container')
+        4) <div role="table" class="oxd-table" data-v-eeb97be0="…>…</div> aka getByRole('table').nth(1)
+
+    Call log:
+      [2m- expect.toBeVisible with timeout 15000ms[22m
+    [2m  - waiting for locator('.orangehrm-container, .oxd-table')[22m
+
+
+      52 |   test('CP-051 [SMOKE] La pestaña Immigration carga correctamente', async ({ page }) => {
+      53 |     await goToTab(page, 'Immigration');
+    > 54 |     await expect(page.locator('.orangehrm-container, .oxd-table')).toBeVisible();
+         |                                                                    ^
+      55 |   });
+      56 |
+      57 |   test('CP-052 El botón Add está visible en Immigration', async ({ page }) => {
+
+        at /app/tests/additional/pim-job-immigration.spec.ts:54:68
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-pim-job-immigration-Funcionalidad-P-3adb5-MOKE-La-pestaña-Immigration-carga-correctamente-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-pim-job-immigration-Funcionalidad-P-3adb5-MOKE-La-pestaña-Immigration-carga-correctamente-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/additional-pim-job-immigration-Funcionalidad-P-3adb5-MOKE-La-pestaña-Immigration-carga-correctamente-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/additional-pim-job-immigration-Funcionalidad-P-3adb5-MOKE-La-pestaña-Immigration-carga-correctamente-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  22) [chromium] › additional/pim-job-immigration.spec.ts:57:7 › Funcionalidad: PIM – Immigration › CP-052 El botón Add está visible en Immigration 
+
+    Error: [31mTimed out 15000ms waiting for [39m[2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m()[22m
+
+    Locator: locator('button.oxd-button--secondary').filter({ hasText: 'Add' })
+    Expected: visible
+    Received: hidden
+    Call log:
+      [2m- expect.toBeVisible with timeout 15000ms[22m
+    [2m  - waiting for locator('button.oxd-button--secondary').filter({ hasText: 'Add' })[22m
+
+
+      57 |   test('CP-052 El botón Add está visible en Immigration', async ({ page }) => {
+      58 |     await goToTab(page, 'Immigration');
+    > 59 |     await expect(page.locator('button.oxd-button--secondary').filter({ hasText: 'Add' })).toBeVisible();
+         |                                                                                           ^
+      60 |   });
+      61 |
+      62 |   test('CP-053 El formulario de Immigration tiene campo Document Type', async ({ page }) => {
+
+        at /app/tests/additional/pim-job-immigration.spec.ts:59:91
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-pim-job-immigration-Funcionalidad-P-bb7a1-CP-052-El-botón-Add-está-visible-en-Immigration-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-pim-job-immigration-Funcionalidad-P-bb7a1-CP-052-El-botón-Add-está-visible-en-Immigration-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: [31mTimed out 15000ms waiting for [39m[2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m()[22m
+
+    Locator: locator('button.oxd-button--secondary').filter({ hasText: 'Add' })
+    Expected: visible
+    Received: hidden
+    Call log:
+      [2m- expect.toBeVisible with timeout 15000ms[22m
+    [2m  - waiting for locator('button.oxd-button--secondary').filter({ hasText: 'Add' })[22m
+
+
+      57 |   test('CP-052 El botón Add está visible en Immigration', async ({ page }) => {
+      58 |     await goToTab(page, 'Immigration');
+    > 59 |     await expect(page.locator('button.oxd-button--secondary').filter({ hasText: 'Add' })).toBeVisible();
+         |                                                                                           ^
+      60 |   });
+      61 |
+      62 |   test('CP-053 El formulario de Immigration tiene campo Document Type', async ({ page }) => {
+
+        at /app/tests/additional/pim-job-immigration.spec.ts:59:91
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-pim-job-immigration-Funcionalidad-P-bb7a1-CP-052-El-botón-Add-está-visible-en-Immigration-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-pim-job-immigration-Funcionalidad-P-bb7a1-CP-052-El-botón-Add-está-visible-en-Immigration-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/additional-pim-job-immigration-Funcionalidad-P-bb7a1-CP-052-El-botón-Add-está-visible-en-Immigration-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/additional-pim-job-immigration-Funcionalidad-P-bb7a1-CP-052-El-botón-Add-está-visible-en-Immigration-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  23) [chromium] › additional/pim-job-immigration.spec.ts:62:7 › Funcionalidad: PIM – Immigration › CP-053 El formulario de Immigration tiene campo Document Type 
+
+    Error: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      [2m- waiting for locator('button.oxd-button--secondary').filter({ hasText: 'Add' })[22m
+
+
+      62 |   test('CP-053 El formulario de Immigration tiene campo Document Type', async ({ page }) => {
+      63 |     await goToTab(page, 'Immigration');
+    > 64 |     await page.locator('button.oxd-button--secondary').filter({ hasText: 'Add' }).click();
+         |                                                                                   ^
+      65 |     await page.waitForTimeout(500);
+      66 |     // Al abrir el formulario aparece un select o input
+      67 |     const selects = page.locator('.oxd-select-text, .oxd-input');
+
+        at /app/tests/additional/pim-job-immigration.spec.ts:64:83
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-pim-job-immigration-Funcionalidad-P-7388a-ulario-de-Immigration-tiene-campo-Document-Type-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-pim-job-immigration-Funcionalidad-P-7388a-ulario-de-Immigration-tiene-campo-Document-Type-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      [2m- waiting for locator('button.oxd-button--secondary').filter({ hasText: 'Add' })[22m
+
+
+      62 |   test('CP-053 El formulario de Immigration tiene campo Document Type', async ({ page }) => {
+      63 |     await goToTab(page, 'Immigration');
+    > 64 |     await page.locator('button.oxd-button--secondary').filter({ hasText: 'Add' }).click();
+         |                                                                                   ^
+      65 |     await page.waitForTimeout(500);
+      66 |     // Al abrir el formulario aparece un select o input
+      67 |     const selects = page.locator('.oxd-select-text, .oxd-input');
+
+        at /app/tests/additional/pim-job-immigration.spec.ts:64:83
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-pim-job-immigration-Funcionalidad-P-7388a-ulario-de-Immigration-tiene-campo-Document-Type-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-pim-job-immigration-Funcionalidad-P-7388a-ulario-de-Immigration-tiene-campo-Document-Type-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/additional-pim-job-immigration-Funcionalidad-P-7388a-ulario-de-Immigration-tiene-campo-Document-Type-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/additional-pim-job-immigration-Funcionalidad-P-7388a-ulario-de-Immigration-tiene-campo-Document-Type-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  24) [chromium] › additional/pim-job-immigration.spec.ts:71:7 › Funcionalidad: PIM – Immigration › CP-054 Guardar formulario vacío de Immigration muestra validación 
+
+    Error: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      [2m- waiting for locator('button.oxd-button--secondary').filter({ hasText: 'Add' })[22m
+
+
+      71 |   test('CP-054 Guardar formulario vacío de Immigration muestra validación', async ({ page }) => {
+      72 |     await goToTab(page, 'Immigration');
+    > 73 |     await page.locator('button.oxd-button--secondary').filter({ hasText: 'Add' }).click();
+         |                                                                                   ^
+      74 |     await page.waitForTimeout(500);
+      75 |     await page.locator('button[type="submit"]').last().click();
+      76 |     await expect(page.locator('.oxd-input-field-error-message').first()).toBeVisible();
+
+        at /app/tests/additional/pim-job-immigration.spec.ts:73:83
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-pim-job-immigration-Funcionalidad-P-b9d9d-mulario-vacío-de-Immigration-muestra-validación-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-pim-job-immigration-Funcionalidad-P-b9d9d-mulario-vacío-de-Immigration-muestra-validación-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      [2m- waiting for locator('button.oxd-button--secondary').filter({ hasText: 'Add' })[22m
+
+
+      71 |   test('CP-054 Guardar formulario vacío de Immigration muestra validación', async ({ page }) => {
+      72 |     await goToTab(page, 'Immigration');
+    > 73 |     await page.locator('button.oxd-button--secondary').filter({ hasText: 'Add' }).click();
+         |                                                                                   ^
+      74 |     await page.waitForTimeout(500);
+      75 |     await page.locator('button[type="submit"]').last().click();
+      76 |     await expect(page.locator('.oxd-input-field-error-message').first()).toBeVisible();
+
+        at /app/tests/additional/pim-job-immigration.spec.ts:73:83
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-pim-job-immigration-Funcionalidad-P-b9d9d-mulario-vacío-de-Immigration-muestra-validación-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-pim-job-immigration-Funcionalidad-P-b9d9d-mulario-vacío-de-Immigration-muestra-validación-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/additional-pim-job-immigration-Funcionalidad-P-b9d9d-mulario-vacío-de-Immigration-muestra-validación-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/additional-pim-job-immigration-Funcionalidad-P-b9d9d-mulario-vacío-de-Immigration-muestra-validación-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  25) [chromium] › additional/pim-job-immigration.spec.ts:79:7 › Funcionalidad: PIM – Immigration › CP-055 Cancelar formulario de Immigration no guarda cambios 
+
+    Error: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      [2m- waiting for locator('button.oxd-button--secondary').filter({ hasText: 'Add' })[22m
+
+
+      79 |   test('CP-055 Cancelar formulario de Immigration no guarda cambios', async ({ page }) => {
+      80 |     await goToTab(page, 'Immigration');
+    > 81 |     await page.locator('button.oxd-button--secondary').filter({ hasText: 'Add' }).click();
+         |                                                                                   ^
+      82 |     await page.waitForTimeout(500);
+      83 |     await page.locator('button.oxd-button--ghost').filter({ hasText: 'Cancel' }).last().click();
+      84 |     await page.waitForTimeout(500);
+
+        at /app/tests/additional/pim-job-immigration.spec.ts:81:83
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-pim-job-immigration-Funcionalidad-P-c7f2f-lar-formulario-de-Immigration-no-guarda-cambios-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-pim-job-immigration-Funcionalidad-P-c7f2f-lar-formulario-de-Immigration-no-guarda-cambios-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      [2m- waiting for locator('button.oxd-button--secondary').filter({ hasText: 'Add' })[22m
+
+
+      79 |   test('CP-055 Cancelar formulario de Immigration no guarda cambios', async ({ page }) => {
+      80 |     await goToTab(page, 'Immigration');
+    > 81 |     await page.locator('button.oxd-button--secondary').filter({ hasText: 'Add' }).click();
+         |                                                                                   ^
+      82 |     await page.waitForTimeout(500);
+      83 |     await page.locator('button.oxd-button--ghost').filter({ hasText: 'Cancel' }).last().click();
+      84 |     await page.waitForTimeout(500);
+
+        at /app/tests/additional/pim-job-immigration.spec.ts:81:83
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-pim-job-immigration-Funcionalidad-P-c7f2f-lar-formulario-de-Immigration-no-guarda-cambios-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-pim-job-immigration-Funcionalidad-P-c7f2f-lar-formulario-de-Immigration-no-guarda-cambios-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/additional-pim-job-immigration-Funcionalidad-P-c7f2f-lar-formulario-de-Immigration-no-guarda-cambios-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/additional-pim-job-immigration-Funcionalidad-P-c7f2f-lar-formulario-de-Immigration-no-guarda-cambios-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  26) [chromium] › additional/pim-personal-contact.spec.ts:36:7 › Funcionalidad: PIM – Personal Details › CP-029 El campo Employee Id está pre-poblado 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m0[39m
+    Received:   [31m0[39m
+
+      40 |     const inputs = page.locator('.oxd-form input');
+      41 |     const count = await inputs.count();
+    > 42 |     expect(count).toBeGreaterThan(0);
+         |                   ^
+      43 |   });
+      44 |
+      45 |   test('CP-030 El botón Save está disponible en Personal Details', async ({ page }) => {
+
+        at /app/tests/additional/pim-personal-contact.spec.ts:42:19
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-pim-personal-contact-Funcionalidad--3786a-ls-CP-029-El-campo-Employee-Id-está-pre-poblado-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-pim-personal-contact-Funcionalidad--3786a-ls-CP-029-El-campo-Employee-Id-está-pre-poblado-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m0[39m
+    Received:   [31m0[39m
+
+      40 |     const inputs = page.locator('.oxd-form input');
+      41 |     const count = await inputs.count();
+    > 42 |     expect(count).toBeGreaterThan(0);
+         |                   ^
+      43 |   });
+      44 |
+      45 |   test('CP-030 El botón Save está disponible en Personal Details', async ({ page }) => {
+
+        at /app/tests/additional/pim-personal-contact.spec.ts:42:19
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-pim-personal-contact-Funcionalidad--3786a-ls-CP-029-El-campo-Employee-Id-está-pre-poblado-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-pim-personal-contact-Funcionalidad--3786a-ls-CP-029-El-campo-Employee-Id-está-pre-poblado-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/additional-pim-personal-contact-Funcionalidad--3786a-ls-CP-029-El-campo-Employee-Id-está-pre-poblado-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/additional-pim-personal-contact-Funcionalidad--3786a-ls-CP-029-El-campo-Employee-Id-está-pre-poblado-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  27) [chromium] › sprint-n/add-employee.spec.ts:74:7 › Sprint N – Add Employee (Admin) › CP-009 El campo Employee ID se pre-popula automáticamente 
 
     Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
 
@@ -102,7 +1799,7 @@ Running 25 tests using 4 workers
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-  2) [chromium] › sprint-n/add-employee.spec.ts:82:7 › Sprint N – Add Employee (Admin) › CP-010 El botón Cancel regresa al listado sin crear empleado 
+  28) [chromium] › sprint-n/add-employee.spec.ts:82:7 › Sprint N – Add Employee (Admin) › CP-010 El botón Cancel regresa al listado sin crear empleado 
 
     Error: [31mTimed out 15000ms waiting for [39m[2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m()[22m
 
@@ -170,7 +1867,7 @@ Running 25 tests using 4 workers
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-  3) [chromium] › sprint-n/employee-list.spec.ts:22:7 › Sprint N – Employee List (Admin) › CP-001 [SMOKE][REGRESSION] La tabla de empleados carga correctamente 
+  29) [chromium] › sprint-n/employee-list.spec.ts:22:7 › Sprint N – Employee List (Admin) › CP-001 [SMOKE][REGRESSION] La tabla de empleados carga correctamente 
 
     Error: [31mTimed out 15000ms waiting for [39m[2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m()[22m
 
@@ -238,7 +1935,7 @@ Running 25 tests using 4 workers
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-  4) [chromium] › sprint-n/employee-list.spec.ts:32:7 › Sprint N – Employee List (Admin) › CP-002 [REGRESSION] Búsqueda por nombre filtra resultados 
+  30) [chromium] › sprint-n/employee-list.spec.ts:32:7 › Sprint N – Employee List (Admin) › CP-002 [REGRESSION] Búsqueda por nombre filtra resultados 
 
     Error: locator.click: Timeout 15000ms exceeded.
     Call log:
@@ -296,7 +1993,7 @@ Running 25 tests using 4 workers
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-  5) [chromium] › sprint-n/my-info-qualifications.spec.ts:43:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-011 [SMOKE] La pestaña Qualifications carga y muestra sus secciones 
+  31) [chromium] › sprint-n/my-info-qualifications.spec.ts:43:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-011 [SMOKE] La pestaña Qualifications carga y muestra sus secciones 
 
     Error: locator.click: Timeout 15000ms exceeded.
     Call log:
@@ -356,7 +2053,7 @@ Running 25 tests using 4 workers
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-  6) [chromium] › sprint-n/my-info-qualifications.spec.ts:50:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-012 [REGRESSION] Se puede agregar Work Experience 
+  32) [chromium] › sprint-n/my-info-qualifications.spec.ts:50:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-012 [REGRESSION] Se puede agregar Work Experience 
 
     Error: locator.click: Timeout 15000ms exceeded.
     Call log:
@@ -416,7 +2113,7 @@ Running 25 tests using 4 workers
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-  7) [chromium] › sprint-n/my-info-qualifications.spec.ts:78:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-013 [REGRESSION] Se puede agregar Education 
+  33) [chromium] › sprint-n/my-info-qualifications.spec.ts:78:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-013 [REGRESSION] Se puede agregar Education 
 
     Error: locator.click: Timeout 15000ms exceeded.
     Call log:
@@ -476,7 +2173,7 @@ Running 25 tests using 4 workers
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-  8) [chromium] › sprint-n/my-info-qualifications.spec.ts:99:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-014 Guardar Work Experience sin datos muestra validación 
+  34) [chromium] › sprint-n/my-info-qualifications.spec.ts:99:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-014 Guardar Work Experience sin datos muestra validación 
 
     Error: locator.click: Timeout 15000ms exceeded.
     Call log:
@@ -536,7 +2233,7 @@ Running 25 tests using 4 workers
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-  9) [chromium] › sprint-n/my-info-qualifications.spec.ts:116:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-015 Las secciones Skills y Languages están presentes en la página 
+  35) [chromium] › sprint-n/my-info-qualifications.spec.ts:116:7 › Sprint N – My Info Qualifications (ESS / Admin) › CP-015 Las secciones Skills y Languages están presentes en la página 
 
     Error: locator.click: Timeout 15000ms exceeded.
     Call log:
@@ -596,7 +2293,7 @@ Running 25 tests using 4 workers
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-  10) [chromium] › sprint-n1/edit-employee-report-to.spec.ts:52:7 › Sprint N+1 – Edit Employee Report-to (Admin) › CP-017 [REGRESSION] La sección Supervisors tiene botón Add visible 
+  36) [chromium] › sprint-n1/edit-employee-report-to.spec.ts:52:7 › Sprint N+1 – Edit Employee Report-to (Admin) › CP-017 [REGRESSION] La sección Supervisors tiene botón Add visible 
 
     Error: expect.toBeVisible: Error: strict mode violation: locator('.orangehrm-card-container').filter({ hasText: /supervisors/i }).first().getByRole('button', { name: 'Add' }) resolved to 3 elements:
         1) <button type="button" data-v-10d463b7="" data-v-3dab643a…>…</button> aka locator('div').filter({ hasText: /^Assigned Supervisors Add No Records FoundNameReporting MethodActions$/ }).getByRole('button')
@@ -664,7 +2361,7 @@ Running 25 tests using 4 workers
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-  11) [chromium] › sprint-n1/edit-employee-report-to.spec.ts:64:7 › Sprint N+1 – Edit Employee Report-to (Admin) › CP-018 [REGRESSION] Formulario de agregar supervisor muestra campos requeridos 
+  37) [chromium] › sprint-n1/edit-employee-report-to.spec.ts:64:7 › Sprint N+1 – Edit Employee Report-to (Admin) › CP-018 [REGRESSION] Formulario de agregar supervisor muestra campos requeridos 
 
     Error: locator.click: Error: strict mode violation: locator('.orangehrm-card-container').filter({ hasText: /supervisors/i }).first().getByRole('button', { name: 'Add' }) resolved to 3 elements:
         1) <button type="button" data-v-10d463b7="" data-v-3dab643a…>…</button> aka locator('div').filter({ hasText: /^Assigned Supervisors Add No Records FoundNameReporting MethodActions$/ }).getByRole('button')
@@ -730,7 +2427,7 @@ Running 25 tests using 4 workers
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-  12) [chromium] › sprint-n1/edit-employee-report-to.spec.ts:82:7 › Sprint N+1 – Edit Employee Report-to (Admin) › CP-019 Cancel en formulario de supervisor no guarda cambios 
+  38) [chromium] › sprint-n1/edit-employee-report-to.spec.ts:82:7 › Sprint N+1 – Edit Employee Report-to (Admin) › CP-019 Cancel en formulario de supervisor no guarda cambios 
 
     Error: locator.click: Error: strict mode violation: locator('.orangehrm-card-container').filter({ hasText: /supervisors/i }).first().getByRole('button', { name: 'Add' }) resolved to 3 elements:
         1) <button type="button" data-v-10d463b7="" data-v-3dab643a…>…</button> aka locator('div').filter({ hasText: /^Assigned Supervisors Add No Records FoundNameReporting MethodActions$/ }).getByRole('button')
@@ -796,7 +2493,7 @@ Running 25 tests using 4 workers
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-  13) [chromium] › sprint-n2/admin-add-user.spec.ts:85:7 › Sprint N+2 – Admin Add User (Admin) › CP-025 [SMOKE] Se puede filtrar el listado por User Role 
+  39) [chromium] › sprint-n2/admin-add-user.spec.ts:85:7 › Sprint N+2 – Admin Add User (Admin) › CP-025 [SMOKE] Se puede filtrar el listado por User Role 
 
     Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
 
@@ -854,13 +2551,64 @@ Running 25 tests using 4 workers
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
+  40) [chromium] › additional/pim-job-immigration.spec.ts:36:7 › Funcionalidad: PIM – Job › CP-049 La pestaña Job tiene al menos 4 campos de formulario 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThanOrEqual[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: >= [32m2[39m
+    Received:    [31m0[39m
+
+      38 |     const inputs = page.locator('.oxd-input, .oxd-select-text');
+      39 |     const count = await inputs.count();
+    > 40 |     expect(count).toBeGreaterThanOrEqual(2);
+         |                   ^
+      41 |   });
+      42 |
+      43 |   test('CP-050 El botón Save está disponible en la pestaña Job', async ({ page }) => {
+
+        at /app/tests/additional/pim-job-immigration.spec.ts:40:19
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/additional-pim-job-immigration-Funcionalidad-P-c44c1-staña-Job-tiene-al-menos-4-campos-de-formulario-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/additional-pim-job-immigration-Funcionalidad-P-c44c1-staña-Job-tiene-al-menos-4-campos-de-formulario-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  Slow test file: [chromium] › additional/pim-emergency-dependents.spec.ts (7.6m)
+  Slow test file: [chromium] › additional/pim-job-immigration.spec.ts (4.8m)
   Slow test file: [chromium] › sprint-n/my-info-qualifications.spec.ts (3.9m)
+  Slow test file: [chromium] › additional/leave.spec.ts (3.7m)
   Slow test file: [chromium] › sprint-n/employee-list.spec.ts (1.9m)
-  Slow test file: [chromium] › sprint-n1/edit-employee-report-to.spec.ts (1.6m)
-  Slow test file: [chromium] › sprint-n/add-employee.spec.ts (1.5m)
-  Slow test file: [chromium] › sprint-n2/admin-add-user.spec.ts (43.4s)
   Consider splitting slow test files to speed up parallel execution
-  13 failed
+  39 failed
+    [chromium] › additional/admin-config.spec.ts:16:7 › Funcionalidad: Admin – Job Titles › CP-067 La tabla de Job Titles no está vacía 
+    [chromium] › additional/admin-config.spec.ts:57:7 › Funcionalidad: Admin – Locations › CP-072 La tabla de Locations no está vacía 
+    [chromium] › additional/admin-config.spec.ts:79:7 › Funcionalidad: Admin – Locations › CP-075 El botón Reset limpia la búsqueda de Locations 
+    [chromium] › additional/leave.spec.ts:9:7 › Funcionalidad: Leave – Leave List › CP-056 [SMOKE] La página Leave List carga correctamente 
+    [chromium] › additional/leave.spec.ts:28:7 › Funcionalidad: Leave – Leave List › CP-059 El botón Search realiza una búsqueda sin errores 
+    [chromium] › additional/leave.spec.ts:49:7 › Funcionalidad: Leave – Leave Types › CP-061 [SMOKE] La página Leave Types carga correctamente 
+    [chromium] › additional/leave.spec.ts:55:7 › Funcionalidad: Leave – Leave Types › CP-062 La tabla de Leave Types no está vacía 
+    [chromium] › additional/leave.spec.ts:63:7 › Funcionalidad: Leave – Leave Types › CP-063 Cada tipo de licencia tiene nombre visible en la tabla 
+    [chromium] › additional/leave.spec.ts:72:7 › Funcionalidad: Leave – Leave Types › CP-064 El botón Add está disponible en Leave Types 
+    [chromium] › additional/leave.spec.ts:78:7 › Funcionalidad: Leave – Leave Types › CP-065 El formulario de nuevo Leave Type tiene campo Name 
+    [chromium] › additional/pim-emergency-dependents.spec.ts:18:7 › Funcionalidad: PIM – Emergency Contacts › CP-036 [SMOKE] La pestaña Emergency Contacts carga correctamente 
+    [chromium] › additional/pim-emergency-dependents.spec.ts:23:7 › Funcionalidad: PIM – Emergency Contacts › CP-037 El botón Add está visible en Emergency Contacts 
+    [chromium] › additional/pim-emergency-dependents.spec.ts:28:7 › Funcionalidad: PIM – Emergency Contacts › CP-038 El formulario de Emergency Contact tiene campo Name 
+    [chromium] › additional/pim-emergency-dependents.spec.ts:36:7 › Funcionalidad: PIM – Emergency Contacts › CP-039 Guardar formulario vacío de Emergency Contact muestra validación 
+    [chromium] › additional/pim-emergency-dependents.spec.ts:44:7 › Funcionalidad: PIM – Emergency Contacts › CP-040 Cancelar formulario de Emergency Contact no guarda cambios 
+    [chromium] › additional/pim-emergency-dependents.spec.ts:61:7 › Funcionalidad: PIM – Dependents › CP-041 [SMOKE] La pestaña Dependents carga correctamente 
+    [chromium] › additional/pim-emergency-dependents.spec.ts:66:7 › Funcionalidad: PIM – Dependents › CP-042 El botón Add está visible en Dependents 
+    [chromium] › additional/pim-emergency-dependents.spec.ts:71:7 › Funcionalidad: PIM – Dependents › CP-043 El formulario de Dependent tiene campo Name 
+    [chromium] › additional/pim-emergency-dependents.spec.ts:79:7 › Funcionalidad: PIM – Dependents › CP-044 Guardar formulario vacío de Dependent muestra validación 
+    [chromium] › additional/pim-emergency-dependents.spec.ts:87:7 › Funcionalidad: PIM – Dependents › CP-045 Cancelar formulario de Dependent no guarda cambios 
+    [chromium] › additional/pim-job-immigration.spec.ts:52:7 › Funcionalidad: PIM – Immigration › CP-051 [SMOKE] La pestaña Immigration carga correctamente 
+    [chromium] › additional/pim-job-immigration.spec.ts:57:7 › Funcionalidad: PIM – Immigration › CP-052 El botón Add está visible en Immigration 
+    [chromium] › additional/pim-job-immigration.spec.ts:62:7 › Funcionalidad: PIM – Immigration › CP-053 El formulario de Immigration tiene campo Document Type 
+    [chromium] › additional/pim-job-immigration.spec.ts:71:7 › Funcionalidad: PIM – Immigration › CP-054 Guardar formulario vacío de Immigration muestra validación 
+    [chromium] › additional/pim-job-immigration.spec.ts:79:7 › Funcionalidad: PIM – Immigration › CP-055 Cancelar formulario de Immigration no guarda cambios 
+    [chromium] › additional/pim-personal-contact.spec.ts:36:7 › Funcionalidad: PIM – Personal Details › CP-029 El campo Employee Id está pre-poblado 
     [chromium] › sprint-n/add-employee.spec.ts:74:7 › Sprint N – Add Employee (Admin) › CP-009 El campo Employee ID se pre-popula automáticamente 
     [chromium] › sprint-n/add-employee.spec.ts:82:7 › Sprint N – Add Employee (Admin) › CP-010 El botón Cancel regresa al listado sin crear empleado 
     [chromium] › sprint-n/employee-list.spec.ts:22:7 › Sprint N – Employee List (Admin) › CP-001 [SMOKE][REGRESSION] La tabla de empleados carga correctamente 
@@ -874,8 +2622,10 @@ Running 25 tests using 4 workers
     [chromium] › sprint-n1/edit-employee-report-to.spec.ts:64:7 › Sprint N+1 – Edit Employee Report-to (Admin) › CP-018 [REGRESSION] Formulario de agregar supervisor muestra campos requeridos 
     [chromium] › sprint-n1/edit-employee-report-to.spec.ts:82:7 › Sprint N+1 – Edit Employee Report-to (Admin) › CP-019 Cancel en formulario de supervisor no guarda cambios 
     [chromium] › sprint-n2/admin-add-user.spec.ts:85:7 › Sprint N+2 – Admin Add User (Admin) › CP-025 [SMOKE] Se puede filtrar el listado por User Role 
+  1 flaky
+    [chromium] › additional/pim-job-immigration.spec.ts:36:7 › Funcionalidad: PIM – Job › CP-049 La pestaña Job tiene al menos 4 campos de formulario 
   1 skipped
-  11 passed (4.1m)
+  34 passed (8.3m)
 
 To open last HTML report run:
 

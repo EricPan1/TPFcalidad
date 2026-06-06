@@ -93,11 +93,6 @@ cmd_api() {
 }
 
 cmd_excel() {
-  if [ ! -f "playwright-report/results.json" ]; then
-    echo -e "${YELLOW}⚠  No existe playwright-report/results.json${RESET}"
-    echo -e "   Primero corré: ${CYAN}bash start.sh test${RESET}\n"
-    exit 1
-  fi
   echo -e "${BOLD}Generando Casos_de_Prueba_OrangeHRM.xlsx...${RESET}"
   docker compose run --rm excel-generator
   echo -e "\n${GREEN}✔ Listo: $(pwd)/Casos_de_Prueba_OrangeHRM.xlsx${RESET}\n"
