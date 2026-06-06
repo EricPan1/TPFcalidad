@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
 
   # ── Ejecutores de pruebas (correr con: docker compose run --rm e2e-tests / api-tests) ──
@@ -30,14 +28,26 @@ services:
     networks:
       - qa-network
 
-  # Genera Plan_de_Pruebas_General.pdf (reutiliza la imagen de e2e-tests con Chromium)
+  # Genera Plan_de_Pruebas_General.pdf
   pdf-generator:
     build:
       context: ./playwright-tests
     container_name: qa_pdf_generator
     volumes:
       - .:/work
-    command: node /app/generate-pdf.js
+    command: node /app/generate-pdf.js /work/plan-pruebas.html /work/Plan_de_Pruebas_General.pdf
+    restart: "no"
+    networks:
+      - qa-network
+
+  # Genera Casos_de_Prueba_Frontend.pdf
+  casos-pdf-generator:
+    build:
+      context: ./playwright-tests
+    container_name: qa_casos_pdf_generator
+    volumes:
+      - .:/work
+    command: node /app/generate-pdf.js /work/casos-de-prueba.html /work/Casos_de_Prueba_Frontend.pdf
     restart: "no"
     networks:
       - qa-network

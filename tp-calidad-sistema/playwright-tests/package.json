@@ -12,7 +12,7 @@
     "report": "playwright show-report playwright-report"
   },
   "dependencies": {
-    "@playwright/test": "^1.40.0",
-    "allure-playwright": "^2.9.2"
+    "@playwright/test": "1.40.0",
+    "allure-playwright": "2.9.2"
   }
 }

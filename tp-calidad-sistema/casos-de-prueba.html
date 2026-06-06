@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<title>Diseño de Casos de Prueba – Sprint N, N+1, N+2</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,Helvetica,sans-serif;font-size:9.5pt;color:#1f2937;background:#fff}
+
+/* Portada */
+.cover{min-height:297mm;display:flex;flex-direction:column;page-break-after:always}
+.cover-top{background:#1e3a8a;color:#fff;padding:40mm 30mm 20mm;flex:1;
+  display:flex;flex-direction:column;justify-content:center}
+.cover-top .label{font-size:8.5pt;letter-spacing:.14em;text-transform:uppercase;opacity:.75;margin-bottom:8px}
+.cover-top h1{font-size:24pt;font-weight:900;line-height:1.2;margin-bottom:8px}
+.cover-top h2{font-size:13pt;font-weight:400;opacity:.88}
+.stripe{height:7px;background:linear-gradient(90deg,#1d4ed8,#60a5fa)}
+.cover-bottom{background:#fff;padding:18mm 30mm;display:flex;flex-direction:column;gap:12px}
+.meta td{padding:4px 0;font-size:9.5pt}
+.meta td:first-child{font-weight:700;color:#1e3a8a;width:150px}
+.cover-foot{margin-top:auto;padding-top:12px;border-top:1px solid #e5e7eb;
+  font-size:8.5pt;color:#6b7280}
+
+/* Contenido */
+.content{padding:16mm 20mm 14mm}
+.page-break{page-break-before:always}
+
+h1{font-size:14pt;color:#1e3a8a;border-bottom:2px solid #1e3a8a;
+  padding-bottom:5px;margin:0 0 12px;page-break-after:avoid}
+h2{font-size:11pt;color:#374151;margin:14px 0 8px;page-break-after:avoid;
+  background:#f1f5f9;padding:5px 8px;border-left:4px solid #1e3a8a}
+h3{font-size:9.5pt;color:#1e40af;margin:10px 0 5px;font-style:italic;page-break-after:avoid}
+
+/* Tabla resumen */
+.summary{width:100%;border-collapse:collapse;font-size:8.5pt;margin:10px 0}
+.summary thead th{background:#1e3a8a;color:#fff;padding:6px 8px;text-align:left;font-size:8pt}
+.summary tbody td{padding:5px 8px;border-bottom:1px solid #e5e7eb;vertical-align:top}
+.summary tbody tr:nth-child(even){background:#f0f9ff}
+
+/* Tarjeta de caso de prueba */
+.caso{width:100%;border-collapse:collapse;margin:10px 0 18px;
+  border:1px solid #d1d5db;page-break-inside:avoid;font-size:9pt}
+.caso .fila td{padding:6px 9px;border-bottom:1px solid #e5e7eb;vertical-align:top}
+.caso .fila td:first-child{
+  background:#f8fafc;font-weight:700;color:#374151;
+  width:140px;border-right:1px solid #e5e7eb;font-size:8.5pt}
+.caso .header-caso td{
+  background:#1e3a8a;color:#fff;font-weight:700;padding:7px 9px;
+  font-size:9.5pt;border:none}
+.caso .pasos-list{padding-left:16px;margin:0}
+.caso .pasos-list li{margin-bottom:2px}
+
+/* Badges */
+.badge{display:inline-block;padding:1px 7px;border-radius:9px;font-size:7.5pt;font-weight:700}
+.b-smoke{background:#fef3c7;color:#92400e}
+.b-reg  {background:#dbeafe;color:#1e40af}
+.b-func {background:#f3e8ff;color:#6b21a8}
+.b-paso {background:#d1fae5;color:#065f46}
+.b-fallo{background:#fee2e2;color:#b91c1c}
+.b-pend {background:#f3f4f6;color:#374151}
+
+.nota-ejecucion{background:#fffbeb;border-left:4px solid #d97706;
+  padding:8px 12px;margin:12px 0;font-size:8.5pt}
+
+.doc-foot{margin-top:20px;padding-top:7px;border-top:1px solid #e5e7eb;
+  font-size:7.5pt;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════ PORTADA ═══════════════════════════ -->
+<div class="cover">
+  <div class="cover-top">
+    <div class="label">Taller de Control de Calidad de Software &nbsp;·&nbsp; Trabajo Final Integrador</div>
+    <h1>Diseño de Casos<br/>de Prueba – Frontend</h1>
+    <h2>Sprint N · Sprint N+1 · Sprint N+2<br/>Actividad 2 – OrangeHRM Demo</h2>
+  </div>
+  <div class="stripe"></div>
+  <div class="cover-bottom">
+    <table class="meta">
+      <tr><td>Proyecto</td><td>Aplicación de Gestión de Personas (OrangeHRM)</td></tr>
+      <tr><td>Sistema bajo prueba</td><td>https://opensource-demo.orangehrmlive.com</td></tr>
+      <tr><td>Versión</td><td>1.0</td></tr>
+      <tr><td>Fecha</td><td>Junio 2026</td></tr>
+      <tr><td>Total de casos</td><td>25 casos (CP-001 a CP-025)</td></tr>
+      <tr><td>Herramienta</td><td>Playwright 1.40 + Chromium (headless)</td></tr>
+      <tr><td>Equipo QA</td><td>Tester Líder · Tester Funcional · Tester de Performance</td></tr>
+    </table>
+    <div class="cover-foot">
+      Licenciatura en Tecnologías Digitales / Licenciatura en Ciencias de Datos<br/>
+      Universidad de la Ciudad de Buenos Aires
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ RESUMEN ═══════════════════════════════ -->
+<div class="content">
+<h1>Resumen de casos de prueba</h1>
+
+<div class="nota-ejecucion">
+  <strong>Resultado de ejecución:</strong> los estados de la columna "Estado" reflejan la ejecución
+  automatizada con Playwright contra el demo de OrangeHRM (<em>https://opensource-demo.orangehrmlive.com</em>).
+  El reporte interactivo completo (con capturas, trazas y duración por caso) está disponible en
+  <strong>Allure → http://localhost:5050</strong> luego de correr <code>docker compose run --rm e2e-tests</code>.
+</div>
+
+<table class="summary">
+  <thead>
+    <tr>
+      <th>ID</th><th>Título</th><th>Sprint / Módulo</th><th>Tipo</th><th>Estado</th><th>Bug</th>
+    </tr>
+  </thead>
+  <tbody id="summary-body"></tbody>
+</table>
+
+<!-- ═══════════════════ SPRINT N ══════════════════════════════════ -->
+<div class="page-break"></div>
+<h1>Sprint N</h1>
+<h2>Módulo: PIM – Employee List</h2>
+<div id="casos-sprint-n-employeelist"></div>
+
+<h2>Módulo: PIM – Add Employee</h2>
+<div id="casos-sprint-n-addemployee"></div>
+
+<h2>Módulo: PIM – My Info – Qualifications</h2>
+<div id="casos-sprint-n-qualifications"></div>
+
+<!-- ═══════════════════ SPRINT N+1 ════════════════════════════════ -->
+<div class="page-break"></div>
+<h1>Sprint N+1</h1>
+<h2>Módulo: PIM – Edit Employee – Report to</h2>
+<div id="casos-sprint-n1"></div>
+
+<!-- ═══════════════════ SPRINT N+2 ════════════════════════════════ -->
+<div class="page-break"></div>
+<h1>Sprint N+2</h1>
+<h2>Módulo: Admin – User Management – Add User</h2>
+<div id="casos-sprint-n2"></div>
+
+<div class="doc-foot">
+  Diseño de Casos de Prueba v1.0 &nbsp;·&nbsp;
+  Taller de Control de Calidad de Software &nbsp;·&nbsp; Trabajo Final Integrador &nbsp;·&nbsp; Junio 2026
+</div>
+</div>
+
+<script>
+const TODOS = [
+  // ─── Sprint N – Employee List ───────────────────────────────────
+  {
+    id:'CP-001', sprint:'Sprint N', modulo:'PIM – Employee List',
+    titulo:'La tabla de empleados carga correctamente',
+    tipo:['SMOKE','REGRESSION'],
+    objetivo:'Verificar que al navegar a Employee List la tabla sea visible y contenga al menos un registro.',
+    precondiciones:'Usuario con rol Admin logueado en el sistema.',
+    datos:'N/A',
+    pasos:['Loguearse con credenciales Admin / admin123.',
+           'Navegar a PIM > Employee List.',
+           'Observar el título de la página y el contenido de la tabla.'],
+    esperado:'El título "Employee List" es visible. La tabla muestra al menos una fila con datos de empleados.',
+    obtenido:'La tabla carga correctamente con múltiples registros de empleados.',
+    estado:'PASÓ', bug:''
+  },
+  {
+    id:'CP-002', sprint:'Sprint N', modulo:'PIM – Employee List',
+    titulo:'Búsqueda por nombre filtra los resultados',
+    tipo:['REGRESSION'],
+    objetivo:'Verificar que al ingresar un nombre en el campo de búsqueda se filtran los empleados mostrados.',
+    precondiciones:'Usuario Admin logueado. Pantalla Employee List abierta.',
+    datos:'Texto de búsqueda: "Admin"',
+    pasos:['Ingresar "Admin" en el campo Employee Name (autocomplete).',
+           'Esperar sugerencias y presionar Escape o seleccionar.',
+           'Hacer clic en el botón Search.',
+           'Observar los resultados en la tabla.'],
+    esperado:'La tabla muestra únicamente empleados cuyo nombre coincide con la búsqueda, o el mensaje "No Records Found" si no hay coincidencias.',
+    obtenido:'Los resultados se filtran correctamente mostrando los empleados que coinciden.',
+    estado:'PASÓ', bug:''
+  },
+  {
+    id:'CP-003', sprint:'Sprint N', modulo:'PIM – Employee List',
+    titulo:'Búsqueda por Employee ID muestra exactamente un resultado',
+    tipo:['REGRESSION'],
+    objetivo:'Verificar que buscar por ID único devuelve exactamente el empleado correspondiente.',
+    precondiciones:'Usuario Admin logueado. Al menos un empleado en la tabla.',
+    datos:'Employee ID: tomado dinámicamente del primer registro visible.',
+    pasos:['Anotar el Employee ID del primer registro de la tabla.',
+           'Ingresar ese ID en el campo Employee Id del formulario de búsqueda.',
+           'Hacer clic en Search.',
+           'Contar las filas en la tabla resultado.'],
+    esperado:'La tabla muestra exactamente 1 fila con el Employee ID buscado.',
+    obtenido:'Se muestra una única fila con el ID correspondiente.',
+    estado:'PASÓ', bug:''
+  },
+  {
+    id:'CP-004', sprint:'Sprint N', modulo:'PIM – Employee List',
+    titulo:'El botón Reset limpia el campo Employee Id',
+    tipo:[],
+    objetivo:'Verificar que al hacer clic en Reset el campo de búsqueda por ID queda vacío.',
+    precondiciones:'Usuario Admin logueado. Employee List abierta.',
+    datos:'Valor de búsqueda: "99999"',
+    pasos:['Ingresar "99999" en el campo Employee Id.',
+           'Verificar que el campo tiene el valor ingresado.',
+           'Hacer clic en el botón Reset.',
+           'Verificar el estado del campo Employee Id.'],
+    esperado:'El campo Employee Id queda vacío luego de hacer clic en Reset.',
+    obtenido:'El campo Employee Id se limpia. (Nota: el campo Employee Name y otros dropdowns no siempre se limpian — ver BUG-001.)',
+    estado:'PASÓ', bug:'BUG-001 (parcial – exploratoria)'
+  },
+  {
+    id:'CP-005', sprint:'Sprint N', modulo:'PIM – Employee List',
+    titulo:'La tabla contiene las columnas esperadas',
+    tipo:['SMOKE'],
+    objetivo:'Verificar que el encabezado de la tabla incluye las columnas de negocio requeridas.',
+    precondiciones:'Usuario Admin logueado. Employee List cargada.',
+    datos:'N/A',
+    pasos:['Navegar a PIM > Employee List.',
+           'Leer el texto de los encabezados de columna de la tabla.',
+           'Verificar presencia de columnas de nombre e ID.'],
+    esperado:'Los encabezados incluyen al menos "First Name", "Last Name" y "Id" (o equivalentes en el idioma de la interfaz).',
+    obtenido:'Las columnas First Name, Last Name e Id están presentes.',
+    estado:'PASÓ', bug:''
+  },
+
+  // ─── Sprint N – Add Employee ────────────────────────────────────
+  {
+    id:'CP-006', sprint:'Sprint N', modulo:'PIM – Add Employee',
+    titulo:'El formulario de alta de empleado carga con todos sus campos',
+    tipo:['SMOKE'],
+    objetivo:'Verificar que la pantalla Add Employee presenta los campos obligatorios y los botones de acción.',
+    precondiciones:'Usuario Admin logueado.',
+    datos:'N/A',
+    pasos:['Navegar a PIM > Add Employee.',
+           'Observar la presencia de los campos del formulario.'],
+    esperado:'Los campos First Name, Last Name, Employee Id y los botones Save y Cancel son visibles.',
+    obtenido:'El formulario carga correctamente con todos los campos y botones requeridos.',
+    estado:'PASÓ', bug:''
+  },
+  {
+    id:'CP-007', sprint:'Sprint N', modulo:'PIM – Add Employee',
+    titulo:'Crear un empleado con datos mínimos obligatorios',
+    tipo:['REGRESSION'],
+    objetivo:'Verificar que al completar First Name y Last Name y hacer clic en Save se crea el empleado.',
+    precondiciones:'Usuario Admin logueado. Formulario Add Employee abierto.',
+    datos:'First Name: AutoTest_[timestamp] · Last Name: QA_[timestamp]',
+    pasos:['Ingresar First Name con prefijo "AutoTest_" + timestamp actual.',
+           'Ingresar Last Name con prefijo "QA_" + timestamp actual.',
+           'Hacer clic en Save.',
+           'Observar la redirección y la sección mostrada.',
+           '(Cleanup: ir a Employee List, buscar el empleado y eliminarlo.)'],
+    esperado:'El sistema redirige al perfil del empleado recién creado mostrando la sección "Personal Details".',
+    obtenido:'El empleado es creado exitosamente y se muestra su perfil. El cleanup elimina el registro de prueba.',
+    estado:'PASÓ', bug:''
+  },
+  {
+    id:'CP-008', sprint:'Sprint N', modulo:'PIM – Add Employee',
+    titulo:'Guardar el formulario vacío muestra mensajes de validación',
+    tipo:['REGRESSION'],
+    objetivo:'Verificar que el sistema no permite guardar sin completar los campos obligatorios.',
+    precondiciones:'Usuario Admin logueado. Formulario Add Employee abierto y vacío.',
+    datos:'N/A (formulario sin completar)',
+    pasos:['Navegar a PIM > Add Employee sin completar ningún campo.',
+           'Hacer clic en el botón Save directamente.',
+           'Observar los mensajes de validación.'],
+    esperado:'Al menos un mensaje de error de validación es visible. El formulario no navega fuera de la pantalla.',
+    obtenido:'Se muestran mensajes de validación en los campos obligatorios.',
+    estado:'PASÓ', bug:''
+  },
+  {
+    id:'CP-009', sprint:'Sprint N', modulo:'PIM – Add Employee',
+    titulo:'El campo Employee ID se pre-popula automáticamente',
+    tipo:[],
+    objetivo:'Verificar que el sistema asigna un ID numérico positivo al cargar el formulario de alta.',
+    precondiciones:'Usuario Admin logueado.',
+    datos:'N/A',
+    pasos:['Navegar a PIM > Add Employee.',
+           'Sin completar ningún campo, leer el valor del campo Employee Id.'],
+    esperado:'El campo Employee Id contiene un valor numérico positivo generado por el sistema.',
+    obtenido:'El campo Employee Id tiene un valor numérico auto-generado al cargar el formulario.',
+    estado:'PASÓ', bug:''
+  },
+  {
+    id:'CP-010', sprint:'Sprint N', modulo:'PIM – Add Employee',
+    titulo:'El botón Cancel regresa al listado sin crear el empleado',
+    tipo:[],
+    objetivo:'Verificar que al hacer clic en Cancel no se crea ningún registro y se regresa a Employee List.',
+    precondiciones:'Usuario Admin logueado. Formulario Add Employee con datos ingresados (no guardados).',
+    datos:'First Name: TemporalTest · Last Name: ShouldNotSave',
+    pasos:['Navegar a PIM > Add Employee.',
+           'Completar First Name con "TemporalTest" y Last Name con "ShouldNotSave".',
+           'Hacer clic en Cancel.',
+           'Observar la URL y el contenido de la página.'],
+    esperado:'El sistema regresa a la pantalla Employee List. No se crea ningún empleado con los datos ingresados.',
+    obtenido:'La navegación regresa a Employee List sin crear el empleado.',
+    estado:'PASÓ', bug:''
+  },
+
+  // ─── Sprint N – My Info Qualifications ─────────────────────────
+  {
+    id:'CP-011', sprint:'Sprint N', modulo:'PIM – My Info – Qualifications',
+    titulo:'La pestaña Qualifications carga y muestra sus secciones principales',
+    tipo:['SMOKE'],
+    objetivo:'Verificar que la pestaña Qualifications de un empleado es accesible y muestra las secciones esperadas.',
+    precondiciones:'Usuario Admin logueado. Al menos un empleado en el sistema.',
+    datos:'Empleado: primer registro del listado',
+    pasos:['Navegar a PIM > Employee List.',
+           'Abrir el perfil del primer empleado disponible.',
+           'Hacer clic en la pestaña "Qualifications".',
+           'Observar las secciones de la página.'],
+    esperado:'Las secciones "Work Experience" y "Education" son visibles en la pantalla.',
+    obtenido:'La pestaña Qualifications carga correctamente con las secciones Work Experience y Education.',
+    estado:'PASÓ', bug:''
+  },
+  {
+    id:'CP-012', sprint:'Sprint N', modulo:'PIM – My Info – Qualifications',
+    titulo:'Se puede agregar una entrada de Work Experience',
+    tipo:['REGRESSION'],
+    objetivo:'Verificar que el formulario de Work Experience permite agregar una nueva entrada y guardarla.',
+    precondiciones:'Usuario Admin logueado. Pestaña Qualifications de un empleado abierta.',
+    datos:'Company: "Empresa QA Test" · Job Title: "QA Engineer"',
+    pasos:['Hacer clic en Add en la sección Work Experience.',
+           'Completar el campo Company con "Empresa QA Test".',
+           'Completar el campo Job Title con "QA Engineer".',
+           'Hacer clic en Save.',
+           'Observar si aparece toast de éxito o la entrada en la tabla.'],
+    esperado:'La entrada de Work Experience se guarda. Aparece un toast de éxito o la entrada es visible en la tabla.',
+    obtenido:'La entrada se agrega exitosamente. El sistema confirma con notificación de éxito.',
+    estado:'PASÓ', bug:''
+  },
+  {
+    id:'CP-013', sprint:'Sprint N', modulo:'PIM – My Info – Qualifications',
+    titulo:'Se puede agregar una entrada de Education',
+    tipo:['REGRESSION'],
+    objetivo:'Verificar que el formulario de Education permite seleccionar un nivel educativo y guardarlo.',
+    precondiciones:'Usuario Admin logueado. Pestaña Qualifications abierta.',
+    datos:'Nivel educativo: primera opción del dropdown',
+    pasos:['Hacer clic en Add en la sección Education.',
+           'Seleccionar el primer nivel educativo disponible en el dropdown.',
+           'Hacer clic en Save.',
+           'Verificar que no hay error fatal ni redirección inesperada.'],
+    esperado:'El sistema acepta la entrada sin errores. Se guarda o muestra mensaje de validación para campos opcionales faltantes.',
+    obtenido:'La entrada se guarda o el sistema indica campos faltantes sin error de sistema.',
+    estado:'PASÓ', bug:''
+  },
+  {
+    id:'CP-014', sprint:'Sprint N', modulo:'PIM – My Info – Qualifications',
+    titulo:'Guardar Work Experience sin datos muestra validación',
+    tipo:[],
+    objetivo:'Verificar que el sistema no permite guardar una entrada de Work Experience sin completar campos obligatorios.',
+    precondiciones:'Usuario Admin logueado. Formulario de Work Experience abierto (clic en Add).',
+    datos:'N/A (formulario vacío)',
+    pasos:['Hacer clic en Add en la sección Work Experience.',
+           'Sin completar ningún campo, hacer clic en Save.',
+           'Observar mensajes de validación.'],
+    esperado:'El sistema muestra al menos un mensaje de validación y no navega fuera del formulario.',
+    obtenido:'Los mensajes de validación aparecen. No se guarda ningún registro vacío. (Nota: la validación de fechas — fecha fin < fecha inicio — no es verificada por el sistema → ver BUG-003.)',
+    estado:'PASÓ', bug:'BUG-003 (hallado en exploratoria)'
+  },
+  {
+    id:'CP-015', sprint:'Sprint N', modulo:'PIM – My Info – Qualifications',
+    titulo:'Las secciones Skills y Languages están presentes en la página',
+    tipo:[],
+    objetivo:'Verificar que la pestaña Qualifications incluye las secciones de Habilidades e Idiomas.',
+    precondiciones:'Usuario Admin logueado. Pestaña Qualifications abierta.',
+    datos:'N/A',
+    pasos:['Navegar a la pestaña Qualifications de cualquier empleado.',
+           'Verificar la presencia de texto "Skills" o "Habilidades" y "Languages" o "Idiomas" en la página.'],
+    esperado:'El texto correspondiente a Skills y Languages es visible en la página.',
+    obtenido:'Las secciones Skills y Languages están presentes en la pestaña Qualifications.',
+    estado:'PASÓ', bug:''
+  },
+
+  // ─── Sprint N+1 – Edit Employee Report-to ──────────────────────
+  {
+    id:'CP-016', sprint:'Sprint N+1', modulo:'PIM – Edit Employee – Report to',
+    titulo:'La pestaña Report-to carga correctamente',
+    tipo:['SMOKE'],
+    objetivo:'Verificar que la pestaña Report-to es accesible desde el perfil de un empleado.',
+    precondiciones:'Usuario Admin logueado. Perfil de un empleado abierto.',
+    datos:'Empleado: primer registro del listado',
+    pasos:['Navegar a PIM > Employee List.',
+           'Abrir el perfil del primer empleado.',
+           'Hacer clic en la pestaña "Report-to".',
+           'Observar que la página carga sin errores.'],
+    esperado:'La pestaña Report-to carga y muestra al menos el texto "Supervisors" o "Report-to".',
+    obtenido:'La pestaña se carga correctamente con la sección de supervisores visible.',
+    estado:'PASÓ', bug:''
+  },
+  {
+    id:'CP-017', sprint:'Sprint N+1', modulo:'PIM – Edit Employee – Report to',
+    titulo:'La sección Supervisors tiene el botón Add visible y habilitado',
+    tipo:['REGRESSION'],
+    objetivo:'Verificar que la sección Supervisors permite iniciar el proceso de asignación de supervisor.',
+    precondiciones:'Usuario Admin logueado. Pestaña Report-to abierta.',
+    datos:'N/A',
+    pasos:['Navegar a la pestaña Report-to de un empleado.',
+           'Localizar la sección "Supervisors".',
+           'Verificar la presencia y estado del botón Add.'],
+    esperado:'La sección Supervisors es visible y el botón Add está habilitado.',
+    obtenido:'La sección Supervisors carga correctamente con el botón Add disponible.',
+    estado:'PASÓ', bug:''
+  },
+  {
+    id:'CP-018', sprint:'Sprint N+1', modulo:'PIM – Edit Employee – Report to',
+    titulo:'El formulario de agregar supervisor muestra los campos necesarios',
+    tipo:['REGRESSION'],
+    objetivo:'Verificar que al abrir el formulario de supervisor se muestran los controles requeridos.',
+    precondiciones:'Usuario Admin logueado. Pestaña Report-to abierta. Clic en Add realizado.',
+    datos:'N/A',
+    pasos:['Hacer clic en Add en la sección Supervisors.',
+           'Observar los controles disponibles en el formulario.'],
+    esperado:'Un campo de búsqueda de empleado (autocomplete) y un dropdown de método de reporte son visibles.',
+    obtenido:'El formulario muestra correctamente el campo autocomplete para buscar empleado y el dropdown de método de reporte. (Nota: en bases con +200 empleados el autocomplete puede demorar — ver BUG-004.)',
+    estado:'PASÓ', bug:'BUG-004 (performance – exploratoria)'
+  },
+  {
+    id:'CP-019', sprint:'Sprint N+1', modulo:'PIM – Edit Employee – Report to',
+    titulo:'Cancel en el formulario de supervisor no guarda cambios',
+    tipo:[],
+    objetivo:'Verificar que al cancelar el formulario de supervisor la cantidad de supervisores no aumenta.',
+    precondiciones:'Usuario Admin logueado. Formulario de agregar supervisor abierto.',
+    datos:'N/A',
+    pasos:['Registrar la cantidad de filas actuales en la tabla de supervisores.',
+           'Hacer clic en Add para abrir el formulario.',
+           'Hacer clic en Cancel sin completar ningún campo.',
+           'Contar nuevamente las filas en la tabla de supervisores.'],
+    esperado:'La cantidad de supervisores es igual antes y después de la operación de Cancel.',
+    obtenido:'El Cancel funciona correctamente. La cantidad de supervisores no cambia.',
+    estado:'PASÓ', bug:''
+  },
+  {
+    id:'CP-020', sprint:'Sprint N+1', modulo:'PIM – Edit Employee – Report to',
+    titulo:'La sección Subordinates está presente en la página',
+    tipo:['SMOKE'],
+    objetivo:'Verificar que la pestaña Report-to incluye la sección de subordinados.',
+    precondiciones:'Usuario Admin logueado. Pestaña Report-to abierta.',
+    datos:'N/A',
+    pasos:['Navegar a la pestaña Report-to de cualquier empleado.',
+           'Verificar la presencia de texto "Subordinates" en la página.'],
+    esperado:'El texto "Subordinates" es visible en la pestaña Report-to.',
+    obtenido:'La sección Subordinates está presente en la pestaña.',
+    estado:'PASÓ', bug:''
+  },
+
+  // ─── Sprint N+2 – Admin Add User ───────────────────────────────
+  {
+    id:'CP-021', sprint:'Sprint N+2', modulo:'Admin – User Management – Add',
+    titulo:'El listado de usuarios del sistema carga correctamente',
+    tipo:['SMOKE'],
+    objetivo:'Verificar que la pantalla System Users es accesible y muestra la lista de usuarios.',
+    precondiciones:'Usuario Admin logueado.',
+    datos:'N/A',
+    pasos:['Navegar a Admin > User Management > Users.',
+           'Observar el título de la página y el contenido de la tabla.'],
+    esperado:'El título "System Users" es visible. La tabla contiene al menos un usuario (el Admin).',
+    obtenido:'La pantalla carga correctamente mostrando la lista de usuarios del sistema.',
+    estado:'PASÓ', bug:''
+  },
+  {
+    id:'CP-022', sprint:'Sprint N+2', modulo:'Admin – User Management – Add',
+    titulo:'El formulario de alta de usuario contiene todos los campos requeridos',
+    tipo:['REGRESSION'],
+    objetivo:'Verificar que el formulario Add User presenta todos los controles necesarios para crear un usuario.',
+    precondiciones:'Usuario Admin logueado. Pantalla System Users abierta.',
+    datos:'N/A',
+    pasos:['Hacer clic en el botón Add.',
+           'Esperar que cargue el formulario "Add User".',
+           'Leer las etiquetas (labels) de todos los campos del formulario.'],
+    esperado:'Los labels "User Role", "Employee Name", "Status", "Username", "Password" y "Confirm Password" son visibles.',
+    obtenido:'Todos los campos requeridos están presentes en el formulario.',
+    estado:'PASÓ', bug:''
+  },
+  {
+    id:'CP-023', sprint:'Sprint N+2', modulo:'Admin – User Management – Add',
+    titulo:'Guardar el formulario vacío muestra errores "Required"',
+    tipo:['REGRESSION'],
+    objetivo:'Verificar que todos los campos obligatorios del formulario de usuario muestran validación.',
+    precondiciones:'Usuario Admin logueado. Formulario Add User abierto y sin completar.',
+    datos:'N/A (formulario sin completar)',
+    pasos:['Navegar a Admin > Users > Add.',
+           'Sin completar ningún campo, hacer clic en Save.',
+           'Leer los mensajes de error mostrados.'],
+    esperado:'Al menos un mensaje de validación visible. Al menos uno de los mensajes dice "Required".',
+    obtenido:'Los mensajes de validación "Required" se muestran en los campos obligatorios.',
+    estado:'PASÓ', bug:''
+  },
+  {
+    id:'CP-024', sprint:'Sprint N+2', modulo:'Admin – User Management – Add',
+    titulo:'Contraseñas no coincidentes muestran error de confirmación',
+    tipo:[],
+    objetivo:'Verificar que el sistema detecta cuando la contraseña y su confirmación no coinciden.',
+    precondiciones:'Usuario Admin logueado. Formulario Add User abierto.',
+    datos:'Password: "Admin@12345" · Confirm Password: "DiferentePass!99"',
+    pasos:['Ingresar "Admin@12345" en el campo Password.',
+           'Ingresar "DiferentePass!99" en el campo Confirm Password.',
+           'Hacer clic en Save.',
+           'Observar los mensajes de validación.'],
+    esperado:'El sistema muestra un mensaje de error indicando que las contraseñas no coinciden.',
+    obtenido:'El sistema detecta la discrepancia y muestra el error de confirmación. (Nota: contraseñas sin caracteres especiales también son aceptadas — ver BUG-005.)',
+    estado:'PASÓ', bug:'BUG-005 (hallado en exploratoria)'
+  },
+  {
+    id:'CP-025', sprint:'Sprint N+2', modulo:'Admin – User Management – Add',
+    titulo:'Se puede filtrar el listado de usuarios por User Role',
+    tipo:['SMOKE'],
+    objetivo:'Verificar que el filtro por User Role funciona y devuelve los resultados esperados.',
+    precondiciones:'Usuario Admin logueado. Pantalla System Users abierta.',
+    datos:'Filtro: User Role = "Admin"',
+    pasos:['En el formulario de búsqueda de la pantalla System Users, seleccionar "Admin" en el dropdown User Role.',
+           'Hacer clic en Search.',
+           'Contar las filas en la tabla resultado.'],
+    esperado:'Se muestra al menos un usuario con rol Admin.',
+    obtenido:'El filtro funciona correctamente devolviendo los usuarios con rol Admin.',
+    estado:'PASÓ', bug:''
+  }
+];
+
+// ─── Render resumen ────────────────────────────────────────────────
+function badgesTipo(tipos) {
+  const map = { SMOKE:'b-smoke', REGRESSION:'b-reg', FUNCIONAL:'b-func' };
+  if (!tipos || !tipos.length) return '<span class="badge b-func">FUNCIONAL</span>';
+  return tipos.map(t => `<span class="badge ${map[t]||'b-func'}">${t}</span>`).join(' ');
+}
+
+function badgeEstado(e) {
+  const m = { 'PASÓ':'b-paso', 'FALLÓ':'b-fallo', 'PENDIENTE':'b-pend' };
+  return `<span class="badge ${m[e]||'b-pend'}">${e}</span>`;
+}
+
+const summaryBody = document.getElementById('summary-body');
+TODOS.forEach(c => {
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td><strong>${c.id}</strong></td>
+    <td>${c.titulo}</td>
+    <td>${c.sprint}<br/><span style="color:#6b7280;font-size:8pt">${c.modulo}</span></td>
+    <td>${badgesTipo(c.tipo)}</td>
+    <td>${badgeEstado(c.estado)}</td>
+    <td style="font-size:8pt;color:#b91c1c">${c.bug||'–'}</td>`;
+  summaryBody.appendChild(tr);
+});
+
+// ─── Render detalle por grupo ──────────────────────────────────────
+const grupos = {
+  'casos-sprint-n-employeelist':  TODOS.filter(c => c.modulo === 'PIM – Employee List'),
+  'casos-sprint-n-addemployee':   TODOS.filter(c => c.modulo === 'PIM – Add Employee'),
+  'casos-sprint-n-qualifications':TODOS.filter(c => c.modulo === 'PIM – My Info – Qualifications'),
+  'casos-sprint-n1':              TODOS.filter(c => c.sprint === 'Sprint N+1'),
+  'casos-sprint-n2':              TODOS.filter(c => c.sprint === 'Sprint N+2'),
+};
+
+Object.entries(grupos).forEach(([id, casos]) => {
+  const container = document.getElementById(id);
+  casos.forEach(c => {
+    const tabla = document.createElement('table');
+    tabla.className = 'caso';
+    const pasosHtml = c.pasos.map((p,i) => `<li>${p}</li>`).join('');
+    tabla.innerHTML = `
+      <tr class="header-caso"><td colspan="2">
+        <strong>${c.id}</strong> &nbsp;·&nbsp; ${c.titulo}
+        &nbsp; ${badgesTipo(c.tipo)} &nbsp; ${badgeEstado(c.estado)}
+      </td></tr>
+      <tr class="fila"><td>Objetivo</td><td>${c.objetivo}</td></tr>
+      <tr class="fila"><td>Sprint / Módulo</td><td>${c.sprint} &nbsp;·&nbsp; ${c.modulo}</td></tr>
+      <tr class="fila"><td>Precondiciones</td><td>${c.precondiciones}</td></tr>
+      <tr class="fila"><td>Datos de entrada</td><td>${c.datos}</td></tr>
+      <tr class="fila"><td>Paso a paso</td><td><ol class="pasos-list">${pasosHtml}</ol></td></tr>
+      <tr class="fila"><td>Resultado esperado</td><td>${c.esperado}</td></tr>
+      <tr class="fila"><td>Resultado obtenido</td><td>${c.obtenido}</td></tr>
+      <tr class="fila"><td>Bug asociado</td><td style="color:#b91c1c">${c.bug||'Ninguno'}</td></tr>`;
+    container.appendChild(tabla);
+  });
+});
+</script>
+</body>
+</html>

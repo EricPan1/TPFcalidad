@@ -22,6 +22,7 @@ usage() {
   echo -e "  ${GREEN}test${RESET}    Ejecuta pruebas E2E y de API  (requiere servicios levantados)"
   echo -e "  ${GREEN}all${RESET}     Equivale a 'up' + 'test' en un solo paso"
   echo -e "  ${GREEN}pdf${RESET}     Genera Plan_de_Pruebas_General.pdf en este directorio"
+  echo -e "  ${GREEN}casos${RESET}   Genera Casos_de_Prueba_Frontend.pdf en este directorio"
   echo -e "  ${GREEN}down${RESET}    Detiene y elimina todos los contenedores y volúmenes"
   echo -e "  ${GREEN}logs${RESET}    Muestra logs de todos los servicios en tiempo real\n"
   echo -e "Antes de correr por primera vez:"
@@ -74,7 +75,13 @@ COMANDO="${1:-}"
 cmd_pdf() {
   echo -e "${BOLD}Generando Plan_de_Pruebas_General.pdf...${RESET}"
   docker compose run --rm pdf-generator
-  echo -e "\n${GREEN}✔ PDF disponible en: $(pwd)/Plan_de_Pruebas_General.pdf${RESET}\n"
+  echo -e "\n${GREEN}✔ Listo: $(pwd)/Plan_de_Pruebas_General.pdf${RESET}\n"
+}
+
+cmd_casos() {
+  echo -e "${BOLD}Generando Casos_de_Prueba_Frontend.pdf...${RESET}"
+  docker compose run --rm casos-pdf-generator
+  echo -e "\n${GREEN}✔ Listo: $(pwd)/Casos_de_Prueba_Frontend.pdf${RESET}\n"
 }
 
 case "$COMANDO" in
@@ -82,6 +89,7 @@ case "$COMANDO" in
   test)  header; cmd_test ;;
   all)   header; cmd_up; cmd_test ;;
   pdf)   header; cmd_pdf ;;
+  casos) header; cmd_casos ;;
   down)  header; cmd_down ;;
   logs)  docker compose logs -f ;;
   *)     usage ;;
