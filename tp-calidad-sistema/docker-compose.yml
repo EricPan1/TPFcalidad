@@ -30,6 +30,18 @@ services:
     networks:
       - qa-network
 
+  # Genera Plan_de_Pruebas_General.pdf (reutiliza la imagen de e2e-tests con Chromium)
+  pdf-generator:
+    build:
+      context: ./playwright-tests
+    container_name: qa_pdf_generator
+    volumes:
+      - .:/work
+    command: node /app/generate-pdf.js
+    restart: "no"
+    networks:
+      - qa-network
+
   # ── Servicios permanentes (correr con: docker compose up -d) ──
 
   allure:

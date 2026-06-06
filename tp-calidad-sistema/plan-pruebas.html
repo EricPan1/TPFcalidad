@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Plan de Pruebas General – OrangeHRM + Weather API</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Arial,Helvetica,sans-serif;font-size:10.5pt;line-height:1.65;color:#1f2937;background:#fff}
+
+    /* ── Portada ─────────────────────────────────────────── */
+    .cover{
+      width:100%;min-height:297mm;padding:0;
+      display:flex;flex-direction:column;
+      page-break-after:always;
+    }
+    .cover-top{
+      background:#4c1d95;color:#fff;padding:40mm 30mm 20mm;
+      flex:1;display:flex;flex-direction:column;justify-content:center;
+    }
+    .cover-top .label{font-size:9pt;letter-spacing:.15em;text-transform:uppercase;
+      opacity:.75;margin-bottom:8px}
+    .cover-top h1{font-size:26pt;font-weight:900;line-height:1.2;margin-bottom:10px}
+    .cover-top h2{font-size:14pt;font-weight:400;opacity:.9}
+    .cover-stripe{height:8px;background:linear-gradient(90deg,#7c3aed,#a78bfa)}
+    .cover-bottom{background:#fff;padding:20mm 30mm;display:flex;flex-direction:column;gap:14px}
+    .meta-table{border-collapse:collapse;font-size:10pt}
+    .meta-table td{padding:5px 0}
+    .meta-table td:first-child{color:#4c1d95;font-weight:700;width:160px}
+    .cover-institution{margin-top:auto;padding-top:16px;border-top:1px solid #e5e7eb;
+      font-size:9pt;color:#6b7280}
+
+    /* ── Contenido ───────────────────────────────────────── */
+    .content{padding:18mm 22mm 15mm 22mm}
+
+    /* Secciones con salto de página */
+    .page-break{page-break-before:always}
+
+    /* Títulos */
+    h1{font-size:16pt;color:#4c1d95;border-bottom:2px solid #4c1d95;
+       padding-bottom:6px;margin:0 0 14px;page-break-after:avoid}
+    h2{font-size:12pt;color:#1e3a8a;margin:18px 0 8px;page-break-after:avoid}
+    h3{font-size:10.5pt;color:#374151;margin:12px 0 6px;
+       font-style:italic;page-break-after:avoid}
+
+    p{margin-bottom:8px}
+    ul,ol{margin:6px 0 6px 20px}
+    li{margin-bottom:3px}
+
+    /* Tablas */
+    table{width:100%;border-collapse:collapse;margin:10px 0;
+          font-size:9.5pt;page-break-inside:avoid}
+    thead th{background:#4c1d95;color:#fff;padding:7px 9px;
+             text-align:left;font-weight:700;font-size:9pt}
+    tbody tr:nth-child(even){background:#f5f3ff}
+    tbody tr:nth-child(odd){background:#fff}
+    tbody td{padding:6px 9px;border-bottom:1px solid #e5e7eb;vertical-align:top}
+    tfoot td{background:#ede9fe;font-weight:700;padding:6px 9px;
+             border-top:2px solid #7c3aed;font-size:9pt}
+
+    /* Tablas de calendario con color por sprint */
+    .sprint-n    thead th{background:#1d4ed8}
+    .sprint-n1   thead th{background:#0369a1}
+    .sprint-n2   thead th{background:#0f766e}
+    .sprint-n3   thead th{background:#7e22ce}
+    .sprint-n    tbody tr:nth-child(even){background:#eff6ff}
+    .sprint-n1   tbody tr:nth-child(even){background:#e0f2fe}
+    .sprint-n2   tbody tr:nth-child(even){background:#ccfbf1}
+    .sprint-n3   tbody tr:nth-child(even){background:#f3e8ff}
+
+    /* Cajas de texto */
+    .box{border-left:4px solid;padding:9px 13px;margin:10px 0;border-radius:0 4px 4px 0;font-size:9.5pt}
+    .box-info{background:#eff6ff;border-color:#2563eb}
+    .box-warn{background:#fffbeb;border-color:#d97706}
+    .box-ok  {background:#f0fdf4;border-color:#16a34a}
+    .box-purple{background:#f5f3ff;border-color:#7c3aed}
+    .box strong{display:block;margin-bottom:4px}
+
+    /* Badges */
+    .badge{display:inline-block;padding:1px 7px;border-radius:10px;font-size:8pt;font-weight:700}
+    .b-crit{background:#fee2e2;color:#b91c1c}
+    .b-high{background:#fef3c7;color:#b45309}
+    .b-med {background:#d1fae5;color:#065f46}
+    .b-low {background:#e0e7ff;color:#3730a3}
+
+    /* Tabla de índice */
+    .toc-table{border:none}
+    .toc-table td{border:none;padding:3px 0}
+    .toc-table td:first-child{color:#4c1d95;font-weight:700;width:30px}
+    .toc-table td:last-child{text-align:right;color:#6b7280;font-size:9pt}
+
+    /* Pirámide de testing */
+    .pyramid{text-align:center;margin:14px 0}
+    .pyramid div{margin:2px auto;padding:7px;color:#fff;font-size:9pt;font-weight:700;border-radius:4px}
+    .pyr-e2e   {background:#4c1d95;width:55%}
+    .pyr-api   {background:#1d4ed8;width:70%}
+    .pyr-manual{background:#0369a1;width:85%}
+    .pyr-unit  {background:#0f766e;width:100%}
+
+    /* Timeline de días */
+    .day-grid{display:table;width:100%;border-collapse:collapse;font-size:8.5pt;margin:8px 0}
+    .day-grid .dr{display:table-row}
+    .day-grid .dc{display:table-cell;border:1px solid #d1d5db;padding:4px 6px;vertical-align:top}
+    .day-grid .dh{background:#1e3a8a;color:#fff;font-weight:700;text-align:center}
+    .day-grid .ds{background:#ede9fe;font-weight:700;color:#4c1d95}
+
+    /* Footer */
+    .doc-footer{margin-top:25px;padding-top:8px;border-top:1px solid #e5e7eb;
+                font-size:8pt;color:#9ca3af;text-align:center}
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════
+     PORTADA
+══════════════════════════════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-top">
+    <div class="label">Taller de Control de Calidad de Software &nbsp;·&nbsp; Trabajo Final Integrador</div>
+    <h1>Plan de Pruebas<br/>General</h1>
+    <h2>Sistema de Gestión de Personas – OrangeHRM<br/>
+        Sprints N · N+1 · N+2 · N+3</h2>
+  </div>
+  <div class="cover-stripe"></div>
+  <div class="cover-bottom">
+    <table class="meta-table">
+      <tr><td>Proyecto</td>
+          <td>Aplicación de Gestión de Personas (OrangeHRM + Weather API)</td></tr>
+      <tr><td>Versión</td><td>1.0</td></tr>
+      <tr><td>Fecha</td><td>Junio 2026</td></tr>
+      <tr><td>Estado</td><td>Aprobado</td></tr>
+      <tr><td>Equipo QA</td>
+          <td>Tester Líder · Tester Funcional · Tester de Performance</td></tr>
+      <tr><td>Herramientas</td>
+          <td>Playwright · Newman/Postman · Allure · Bug Tracker · Docker</td></tr>
+    </table>
+    <div class="cover-institution">
+      Licenciatura en Tecnologías Digitales / Licenciatura en Ciencias de Datos<br/>
+      Universidad de la Ciudad de Buenos Aires
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     ÍNDICE
+══════════════════════════════════════════════════════════ -->
+<div class="content">
+<h1>Índice</h1>
+<table class="toc-table">
+  <tr><td>1</td><td>Propósito y Contenido del Documento</td><td>3</td></tr>
+  <tr><td>2</td><td>Alcance</td><td>3</td></tr>
+  <tr><td>3</td><td>Objeto de Prueba</td><td>4</td></tr>
+  <tr><td>4</td><td>Estrategia de Pruebas</td><td>4</td></tr>
+  <tr><td>5</td><td>Criterios de Entrada y Salida</td><td>6</td></tr>
+  <tr><td>6</td><td>Calendario de Ejecución por Sprint</td><td>7</td></tr>
+  <tr><td>7</td><td>Entregables</td><td>11</td></tr>
+  <tr><td>8</td><td>Roles y Responsabilidades</td><td>12</td></tr>
+  <tr><td>9</td><td>Gestión de Defectos</td><td>12</td></tr>
+  <tr><td>10</td><td>Riesgos y Mitigación</td><td>13</td></tr>
+  <tr><td>11</td><td>Criterios de Suspensión y Reanudación</td><td>14</td></tr>
+  <tr><td>12</td><td>Resumen de Herramientas</td><td>14</td></tr>
+</table>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECCIÓN 1
+══════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+<h1>1. Propósito y Contenido del Documento</h1>
+
+<h2>1.1 Propósito</h2>
+<p>El presente Plan de Pruebas define la estrategia, actividades, recursos, calendario y entregables
+del proceso de control de calidad para la aplicación de Gestión de Personas desarrollada sobre la
+plataforma OrangeHRM, extendida con un widget de información climática provisto por la API
+WeatherAPI.com.</p>
+<p>Su propósito específico es:</p>
+<ul>
+  <li>Describir <strong>qué</strong> se probará, <strong>cómo</strong>, <strong>cuándo</strong> y <strong>con qué herramientas</strong> en cada sprint.</li>
+  <li>Definir los criterios de entrada, salida, suspensión y reanudación de las actividades de prueba.</li>
+  <li>Establecer la distribución de responsabilidades del equipo de QA.</li>
+  <li>Proveer una guía de referencia que permita a stakeholders y profesores revisar y comprender
+      el proceso de testing aplicado.</li>
+</ul>
+
+<h2>1.2 Contenido del documento</h2>
+<p>Este plan cubre los cuatro sprints de desarrollo del producto:</p>
+<table>
+  <thead><tr><th>Sprint</th><th>Funcionalidad entregada</th><th>Tipo de entrega</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Sprint N</strong></td>
+        <td>Employee List, Add Employee (Backend) · Employee List, My Info – Qualifications (Frontend)</td>
+        <td>Back + Front parcial</td></tr>
+    <tr><td><strong>Sprint N+1</strong></td>
+        <td>My Info – Qualifications (Backend) · Edit Employee – Report to (Back + Front)</td>
+        <td>Back + Front</td></tr>
+    <tr><td><strong>Sprint N+2</strong></td>
+        <td>Módulo Admin – Add (asignar perfil a usuario existente) – Back y Front completos</td>
+        <td>Back + Front</td></tr>
+    <tr><td><strong>Sprint N+3</strong></td>
+        <td>Widget Clima (Front y Back) – integración con WeatherAPI.com</td>
+        <td>Back + Front</td></tr>
+  </tbody>
+</table>
+
+<h2>1.3 Referencias</h2>
+<ul>
+  <li>OrangeHRM Demo: <em>https://opensource-demo.orangehrmlive.com</em></li>
+  <li>WeatherAPI.com: <em>https://www.weatherapi.com</em></li>
+  <li>Actividades Prácticas 1, 2 y 3 (Taller Calidad Software)</li>
+  <li>Plantilla de casos de prueba (MOLDE – Plantilla casos de prueba.xlsx)</li>
+  <li>Modelo Plan de Pruebas Scrum (Modelo_Plan_Pruebas_Scrum.docx)</li>
+  <li>ISTQB CTFL Syllabus v4.0</li>
+</ul>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECCIÓN 2
+══════════════════════════════════════════════════════════ -->
+<h1>2. Alcance</h1>
+
+<h2>2.1 Dentro del alcance (in-scope)</h2>
+<ul>
+  <li><strong>Pruebas funcionales de frontend</strong> (E2E automatizadas con Playwright + Chromium) para los módulos PIM y Admin de OrangeHRM.</li>
+  <li><strong>Pruebas de contrato de API</strong> (Newman / Postman Collection v2.1) para los cuatro endpoints de WeatherAPI.com.</li>
+  <li><strong>Pruebas exploratorias manuales</strong> en paralelo al desarrollo durante cada sprint.</li>
+  <li><strong>Pruebas de regresión acumulada</strong>: en cada sprint se re-ejecuta la suite del sprint anterior.</li>
+  <li><strong>Smoke testing</strong>: subconjunto crítico de casos que corre ante cada merge a rama principal.</li>
+  <li><strong>Gestión y reporte de defectos</strong> mediante el Bug Tracker integrado.</li>
+</ul>
+
+<h2>2.2 Fuera del alcance (out-of-scope)</h2>
+<ul>
+  <li>Pruebas de performance y carga (cubiertas en las respuestas a consignas 4 y 5 del TP).</li>
+  <li>Pruebas de seguridad exhaustivas (OWASP Top 10). Se realiza una verificación básica de validación de roles en Sprint N+2.</li>
+  <li>Pruebas de frontend mobile (OrangeHRM presenta funcionalidades acotadas en mobile; quedan para un plan complementario).</li>
+  <li>Pruebas de accesibilidad (WCAG).</li>
+</ul>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECCIÓN 3
+══════════════════════════════════════════════════════════ -->
+<h1>3. Objeto de Prueba</h1>
+
+<h2>3.1 Descripción de la aplicación</h2>
+<p>La aplicación de Gestión de Personas opera a través de microservicios que proveen funcionalidades
+específicas. Expone a los usuarios:</p>
+<ul>
+  <li><strong>Frontend web</strong> (desktop): interfaz principal de administración y autogestión.</li>
+  <li><strong>Frontend web mobile</strong>: versión con funcionalidades acotadas para dispositivos móviles.</li>
+  <li><strong>Backend del frontend</strong>: servicios REST que alimentan ambos frontends.</li>
+  <li><strong>Widget de clima</strong> (Sprint N+3): integración con WeatherAPI.com desde el dashboard principal.</li>
+</ul>
+
+<h2>3.2 Módulos bajo prueba</h2>
+<table>
+  <thead><tr><th>Módulo</th><th>Sprint</th><th>Usuario</th><th>Funciones clave</th></tr></thead>
+  <tbody>
+    <tr><td>PIM – Employee List</td><td>N</td><td>Admin</td><td>Listar, buscar y filtrar empleados</td></tr>
+    <tr><td>PIM – Add Employee</td><td>N</td><td>Admin</td><td>Crear nuevo empleado con datos básicos</td></tr>
+    <tr><td>PIM – My Info – Qualifications</td><td>N (Front) / N+1 (Back)</td><td>ESS / Admin</td><td>Gestionar experiencia laboral, educación, habilidades e idiomas</td></tr>
+    <tr><td>PIM – Edit Employee – Report to</td><td>N+1</td><td>Admin</td><td>Asignar supervisores y subordinados con método de reporte</td></tr>
+    <tr><td>Admin – User Management – Add</td><td>N+2</td><td>Admin</td><td>Crear usuario del sistema y asignar rol (Admin / ESS)</td></tr>
+    <tr><td>Dashboard – Widget Clima</td><td>N+3</td><td>Todos</td><td>Mostrar tiempo actual; integrar /current, /forecast, /history, /alerts</td></tr>
+  </tbody>
+</table>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECCIÓN 4
+══════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+<h1>4. Estrategia de Pruebas</h1>
+
+<h2>4.1 Pirámide de testing</h2>
+<p>La estrategia sigue el modelo de pirámide de pruebas: mayor cantidad de pruebas en niveles más bajos
+(rápidas y baratas) y menor cantidad en los niveles superiores (lentas y costosas).</p>
+<div class="pyramid">
+  <div class="pyr-e2e">E2E / UI · Playwright (25 casos)</div>
+  <div class="pyr-api">API / Contrato · Newman (20 casos)</div>
+  <div class="pyr-manual">Exploratoria Manual (por sprint)</div>
+  <div class="pyr-unit">Unit / Integración · Responsabilidad del equipo de Desarrollo</div>
+</div>
+
+<h2>4.2 Tipos de prueba</h2>
+<table>
+  <thead><tr><th>Tipo</th><th>Herramienta</th><th>Objetivo</th><th>Frecuencia</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Smoke</strong></td><td>Playwright</td><td>Verificar que el camino feliz crítico funciona tras cada merge</td><td>Cada merge a rama principal</td></tr>
+    <tr><td><strong>Funcional E2E</strong></td><td>Playwright</td><td>Validar comportamiento completo de cada módulo</td><td>Durante y al cierre del sprint</td></tr>
+    <tr><td><strong>Regresión</strong></td><td>Playwright</td><td>Garantizar que sprints anteriores no se rompieron</td><td>Días 8–9 de cada sprint</td></tr>
+    <tr><td><strong>Contrato API</strong></td><td>Newman/Postman</td><td>Verificar que la API respeta el contrato (estructura, códigos HTTP, tipos de datos)</td><td>Sprint N+3 + ante cambios del proveedor</td></tr>
+    <tr><td><strong>Exploratoria</strong></td><td>Manual</td><td>Descubrir defectos no cubiertos por casos formales</td><td>Días 3–6 de cada sprint</td></tr>
+    <tr><td><strong>Look &amp; Feel</strong></td><td>Manual</td><td>Verificar que la UI respeta los lineamientos de diseño</td><td>En conjunto con la exploratoria</td></tr>
+  </tbody>
+</table>
+
+<h2>4.3 Enfoque Shift-Left</h2>
+<div class="box box-purple">
+  <strong>¿Qué significa?</strong>
+  El testing no es una fase final, sino una actividad permanente que comienza el día 1 del sprint.
+  Los testers participan desde el refinamiento, revisando criterios de aceptación, para detectar
+  ambigüedades antes de que se codifiquen. Las pruebas tempranas contra mocks del backend
+  permiten validar el frontend antes de que el backend esté listo.
+</div>
+
+<h2>4.4 Herramientas</h2>
+<table>
+  <thead><tr><th>Herramienta</th><th>Versión</th><th>Uso</th><th>Cómo se ejecuta</th></tr></thead>
+  <tbody>
+    <tr><td>Playwright</td><td>1.40</td><td>Pruebas E2E frontend (Chromium)</td><td><code>docker compose run --rm e2e-tests</code></td></tr>
+    <tr><td>Postman / Newman</td><td>Newman 6.1</td><td>Pruebas de API del Clima</td><td><code>docker compose run --rm api-tests</code></td></tr>
+    <tr><td>Allure</td><td>Docker Service</td><td>Reporte de resultados E2E</td><td>http://localhost:5050</td></tr>
+    <tr><td>Bug Tracker (custom)</td><td>Node.js + Express</td><td>Gestión de defectos</td><td>http://localhost:3000</td></tr>
+    <tr><td>Docker / Docker Compose</td><td>v2+</td><td>Orquestación de todos los servicios</td><td><code>bash start.sh up</code></td></tr>
+    <tr><td>TypeScript</td><td>5.x</td><td>Lenguaje de los tests Playwright</td><td>–</td></tr>
+  </tbody>
+</table>
+
+<h2>4.5 Ambiente de pruebas</h2>
+<div class="box box-info">
+  <strong>Ambiente principal:</strong> OrangeHRM Demo público (<em>https://opensource-demo.orangehrmlive.com</em>).
+  Credenciales de Admin: <strong>admin / admin123</strong>. Es un ambiente compartido que puede ser modificado
+  por otros usuarios simultáneamente; los casos están diseñados para ser resilientes a ese contexto
+  (uso de timestamps en datos de prueba creados, cleanup automático post-test).
+</div>
+<table>
+  <thead><tr><th>Componente</th><th>Detalle</th></tr></thead>
+  <tbody>
+    <tr><td>Sistema bajo prueba (SUT)</td><td>OrangeHRM Demo (cloud, público)</td></tr>
+    <tr><td>API bajo prueba</td><td>WeatherAPI.com v1 (requiere API key gratuita)</td></tr>
+    <tr><td>Ejecutor de pruebas</td><td>Docker Desktop en Windows 11 / Linux / macOS</td></tr>
+    <tr><td>Navegador E2E</td><td>Chromium (headless, incluido en imagen Playwright)</td></tr>
+    <tr><td>Base de datos del bug tracker</td><td>JSON persistido en volumen Docker</td></tr>
+  </tbody>
+</table>
+
+<h2>4.6 Datos de prueba</h2>
+<ul>
+  <li>Los tests que crean empleados usan el prefijo <code>AutoTest_</code> + timestamp (ej: <em>AutoTest_1717600000</em>) para ser identificables y evitar colisiones con otros testers del demo.</li>
+  <li>Las búsquedas usan el primer registro existente de la tabla (no dependen de datos fijos).</li>
+  <li>Los tests de API usan la ciudad <em>Buenos Aires</em> como caso válido y una cadena ficticia (<em>XYZ_CIUDAD_INEXISTENTE_12345</em>) para casos inválidos.</li>
+  <li>La fecha histórica fija <em>2024-01-15</em> se usa para el endpoint /history.json.</li>
+</ul>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECCIÓN 5
+══════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+<h1>5. Criterios de Entrada y Salida</h1>
+
+<h2>5.1 Criterios de entrada (por sprint)</h2>
+<p>Para iniciar la ejecución formal de pruebas en un sprint se debe cumplir:</p>
+<ul>
+  <li>Las historias de usuario del sprint tienen criterios de aceptación documentados y revisados por QA.</li>
+  <li>El ambiente de testing está disponible y respondiendo (smoke básico de infraestructura).</li>
+  <li>Los casos de prueba del sprint están diseñados y revisados (al menos el 80%).</li>
+  <li>Las historias marcadas como "listas para probar" han pasado code review.</li>
+  <li>Los mocks del backend están disponibles para la primera fase de pruebas tempranas.</li>
+</ul>
+
+<h2>5.2 Criterios de salida (por sprint)</h2>
+<p>El sprint se considera listo para cerrar desde la perspectiva de QA cuando:</p>
+<table>
+  <thead><tr><th>Criterio</th><th>Umbral mínimo</th></tr></thead>
+  <tbody>
+    <tr><td>Casos de smoke ejecutados y pasando</td><td>100%</td></tr>
+    <tr><td>Casos de regresión (sprints anteriores) ejecutados y pasando</td><td>100%</td></tr>
+    <tr><td>Bugs CRITICAL o HIGH abiertos</td><td>0</td></tr>
+    <tr><td>Bugs MEDIUM abiertos sin workaround documentado</td><td>0</td></tr>
+    <tr><td>Reporte de ejecución disponible en Allure</td><td>Sí</td></tr>
+    <tr><td>Bugs encontrados registrados en Bug Tracker con pasos reproducibles</td><td>Sí</td></tr>
+  </tbody>
+</table>
+
+<h2>5.3 Criterios de suspensión</h2>
+<ul>
+  <li>El ambiente de pruebas no está disponible por más de 4 horas consecutivas.</li>
+  <li>Se detecta un bug CRITICAL que bloquea la ejecución de la mayoría de los casos.</li>
+  <li>Más del 30% de los casos de smoke fallan por razones no relacionadas con los cambios del sprint.</li>
+</ul>
+
+<h2>5.4 Criterios de reanudación</h2>
+<ul>
+  <li>El ambiente es restaurado y verificado.</li>
+  <li>El bug CRITICAL es resuelto o se define un workaround aceptado por el equipo.</li>
+  <li>La suite de smoke pasa al 100% antes de retomar la ejecución completa.</li>
+</ul>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECCIÓN 6 – CALENDARIO
+══════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+<h1>6. Calendario de Ejecución por Sprint</h1>
+
+<div class="box box-info">
+  <strong>Convención:</strong> cada sprint tiene <strong>10 días hábiles</strong> (2 semanas).
+  Los días son relativos al inicio del sprint (Día 1 = lunes de la semana de inicio).
+  Las actividades de QA corren en paralelo al desarrollo; no son una fase posterior.
+</div>
+
+<!-- ─── SPRINT N ─────────────────────────────────────────── -->
+<h2>6.1 Sprint N — Employee List · Add Employee · My Info Qualifications (Frontend)</h2>
+
+<table class="sprint-n">
+  <thead>
+    <tr>
+      <th style="width:70px">Día(s)</th>
+      <th>Actividad de QA</th>
+      <th style="width:130px">Responsable</th>
+      <th style="width:90px">Entregable</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>1 – 2</strong></td>
+      <td>
+        <strong>Kickoff de sprint QA.</strong> Participación en refinamiento: revisión de historias de usuario,
+        validación de criterios de aceptación con el equipo (analista funcional + devs).
+        Diseño de casos CP-001 a CP-015. Identificación de casos Smoke y Regresión.
+        Setup de Playwright y verificación de ambiente.
+      </td>
+      <td>Todos los testers + AF</td>
+      <td>Casos CP-001..015 redactados</td>
+    </tr>
+    <tr>
+      <td><strong>3 – 4</strong></td>
+      <td>
+        <strong>Pruebas tempranas contra mocks (shift-left).</strong>
+        Ejecución de CP-001..015 contra stubs del backend. Testing exploratorio del frontend:
+        navegación, look &amp; feel, comportamiento responsive, validaciones de pantalla,
+        estados de carga y de error. Registro de primeros bugs.
+      </td>
+      <td>Tester Funcional</td>
+      <td>Bugs #1..N en Bug Tracker</td>
+    </tr>
+    <tr>
+      <td><strong>5 – 7</strong></td>
+      <td>
+        <strong>Ejecución contra backend real</strong> (disponible desde día 5).
+        Re-ejecución de CP-001..015 contra el backend real de Employee List y Add Employee.
+        Automatización final de los casos en Playwright. Verificación de correcciones de bugs
+        reportados en días 3–4.
+      </td>
+      <td>Tester Funcional</td>
+      <td>Suite Playwright automatizada</td>
+    </tr>
+    <tr>
+      <td><strong>8</strong></td>
+      <td>
+        <strong>Regresión parcial + smoke.</strong>
+        Ejecución completa de la smoke suite (CP-001, CP-005, CP-006, CP-011).
+        Verificación de que los bugs resueltos siguen corregidos.
+        Actualización de estado de bugs en el Bug Tracker.
+      </td>
+      <td>Tester Líder</td>
+      <td>Allure report actualizado</td>
+    </tr>
+    <tr>
+      <td><strong>9</strong></td>
+      <td>
+        <strong>Regresión completa del sprint.</strong>
+        Ejecución de todos los casos del sprint (25 en total) con Playwright.
+        Generación del reporte Allure. Revisión de resultados y documentación de casos fallidos.
+      </td>
+      <td>Todos</td>
+      <td>Allure report final Sprint N</td>
+    </tr>
+    <tr>
+      <td><strong>10</strong></td>
+      <td>
+        <strong>Cierre.</strong> Generación del reporte de ejecución de sprint. Revisión final del Bug Tracker.
+        Participación en la demo al PO. Preparación del ambiente para Sprint N+1.
+      </td>
+      <td>Tester Líder</td>
+      <td>Reporte de cierre Sprint N</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr><td colspan="4">Casos totales Sprint N: 15 (CP-001..015) · Smoke: CP-001, CP-005, CP-006, CP-011 · Regresión: CP-002, CP-003, CP-007, CP-008, CP-012, CP-013</td></tr>
+  </tfoot>
+</table>
+
+<!-- ─── SPRINT N+1 ───────────────────────────────────────── -->
+<div class="page-break"></div>
+<h2>6.2 Sprint N+1 — My Info Qualifications (Backend) · Edit Employee – Report to</h2>
+
+<table class="sprint-n1">
+  <thead>
+    <tr>
+      <th style="width:70px">Día(s)</th>
+      <th>Actividad de QA</th>
+      <th style="width:130px">Responsable</th>
+      <th style="width:90px">Entregable</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>1 – 2</strong></td>
+      <td>
+        <strong>Regresión inicial del sprint.</strong>
+        Ejecución de la smoke suite del Sprint N (CP-001, CP-005, CP-006, CP-011)
+        para verificar que el ambiente y los cambios actuales no rompieron lo entregado.
+        Diseño de CP-016..020 (Report-to). Revisión de criterios de aceptación con el equipo.
+      </td>
+      <td>Tester Líder + Funcional</td>
+      <td>Casos CP-016..020 redactados</td>
+    </tr>
+    <tr>
+      <td><strong>3 – 5</strong></td>
+      <td>
+        <strong>Pruebas de Edit Employee – Report to.</strong>
+        Ejecución de CP-016..020. Testing exploratorio del módulo Report-to:
+        asignación de supervisores, métodos de reporte, subordinados.
+        Verificación del comportamiento con empleados sin supervisor asignado.
+      </td>
+      <td>Tester Funcional</td>
+      <td>Bugs Report-to en Bug Tracker</td>
+    </tr>
+    <tr>
+      <td><strong>6 – 7</strong></td>
+      <td>
+        <strong>Integración del Backend de My Info – Qualifications.</strong>
+        Re-ejecución de CP-011..015 contra el backend real (antes solo se tenía el frontend con mock).
+        Verificación de que los datos persisten correctamente en la base de datos al agregar
+        Work Experience y Education.
+      </td>
+      <td>Tester Funcional</td>
+      <td>CP-011..015 actualizados en Allure</td>
+    </tr>
+    <tr>
+      <td><strong>8 – 9</strong></td>
+      <td>
+        <strong>Regresión acumulada Sprint N + N+1.</strong>
+        Ejecución de todos los casos: CP-001..020. Verificación de corrección de bugs.
+        Generación de reporte Allure consolidado. Cierre de bugs resueltos.
+      </td>
+      <td>Todos</td>
+      <td>Allure report Sprint N + N+1</td>
+    </tr>
+    <tr>
+      <td><strong>10</strong></td>
+      <td>
+        <strong>Cierre.</strong> Reporte de sprint. Demo al PO. Preparación para Sprint N+2.
+      </td>
+      <td>Tester Líder</td>
+      <td>Reporte de cierre Sprint N+1</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr><td colspan="4">Casos nuevos Sprint N+1: 5 (CP-016..020) · Regresión acumulada: 20 casos · Smoke: CP-001, CP-005, CP-006, CP-011, CP-016, CP-020</td></tr>
+  </tfoot>
+</table>
+
+<!-- ─── SPRINT N+2 ───────────────────────────────────────── -->
+<h2>6.3 Sprint N+2 — Módulo Admin – Add User (Back + Front)</h2>
+
+<table class="sprint-n2">
+  <thead>
+    <tr>
+      <th style="width:70px">Día(s)</th>
+      <th>Actividad de QA</th>
+      <th style="width:130px">Responsable</th>
+      <th style="width:90px">Entregable</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>1 – 2</strong></td>
+      <td>
+        <strong>Diseño de casos + regresión inicial.</strong>
+        Diseño de CP-021..025. Revisión especial de criterios de seguridad: roles (Admin vs ESS),
+        complejidad de contraseña, acceso por perfil. Smoke suite de sprints anteriores.
+        Análisis de riesgo: el módulo Admin es de alta sensibilidad (asignación de permisos).
+      </td>
+      <td>Tester Líder + AF</td>
+      <td>Casos CP-021..025 + análisis de riesgo</td>
+    </tr>
+    <tr>
+      <td><strong>3 – 6</strong></td>
+      <td>
+        <strong>Ejecución de pruebas funcionales y de validación de roles.</strong>
+        Ejecución de CP-021..025. Verificación de controles de acceso:
+        que un usuario ESS no pueda acceder al módulo Admin.
+        Pruebas de validación de formulario: campos obligatorios, longitud de contraseña,
+        confirmación de contraseña, unicidad de nombre de usuario.
+        Registro de Bug #5 (contraseña débil aceptada).
+      </td>
+      <td>Tester Funcional</td>
+      <td>Bugs Admin en Bug Tracker</td>
+    </tr>
+    <tr>
+      <td><strong>7 – 8</strong></td>
+      <td>
+        <strong>Regresión acumulada Sprint N + N+1 + N+2.</strong>
+        Ejecución de CP-001..025 (25 casos). Verificación de que el módulo Admin
+        no afecta la funcionalidad de PIM. Corrección y verificación de bugs.
+      </td>
+      <td>Todos</td>
+      <td>Allure report acumulado</td>
+    </tr>
+    <tr>
+      <td><strong>9</strong></td>
+      <td>
+        <strong>Smoke suite completo + cierre de bugs.</strong>
+        Ejecución de todos los casos Smoke de los tres sprints.
+        Verificación final de bugs CRITICAL y HIGH.
+      </td>
+      <td>Tester Líder</td>
+      <td>Smoke report</td>
+    </tr>
+    <tr>
+      <td><strong>10</strong></td>
+      <td>
+        <strong>Cierre.</strong> Reporte de sprint. Demo al PO. Preparación para Sprint N+3.
+      </td>
+      <td>Tester Líder</td>
+      <td>Reporte de cierre Sprint N+2</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr><td colspan="4">Casos nuevos Sprint N+2: 5 (CP-021..025) · Regresión acumulada: 25 casos · Smoke total: 10 casos (CP-001, CP-005, CP-006, CP-011, CP-016, CP-020, CP-021, CP-025)</td></tr>
+  </tfoot>
+</table>
+
+<!-- ─── SPRINT N+3 ───────────────────────────────────────── -->
+<div class="page-break"></div>
+<h2>6.4 Sprint N+3 — Widget Clima (Front y Back) + WeatherAPI.com</h2>
+
+<table class="sprint-n3">
+  <thead>
+    <tr>
+      <th style="width:70px">Día(s)</th>
+      <th>Actividad de QA</th>
+      <th style="width:130px">Responsable</th>
+      <th style="width:90px">Entregable</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>1 – 2</strong></td>
+      <td>
+        <strong>Diseño de casos de API + regresión inicial.</strong>
+        Diseño de los 20 casos de prueba de API (CP-API-001..020) para los 4 endpoints:
+        /current.json, /forecast.json, /history.json, /alerts.json.
+        Definición del contrato esperado (estructura JSON, códigos HTTP, tipos de datos).
+        Creación de la colección Postman. Smoke suite acumulada de Sprints N, N+1, N+2.
+      </td>
+      <td>Tester Funcional</td>
+      <td>Colección Postman v1.0</td>
+    </tr>
+    <tr>
+      <td><strong>3 – 4</strong></td>
+      <td>
+        <strong>Ejecución de pruebas de API.</strong>
+        Ejecución de CP-API-001..020 con Newman contra WeatherAPI.com.
+        Verificación de: happy paths (ciudad válida, coordenadas, rango de fechas),
+        unhappy paths (sin key, key inválida, ciudad inexistente, fecha futura, parámetros faltantes).
+        Análisis de resultados. Generación de reporte Newman HTML.
+      </td>
+      <td>Tester Funcional</td>
+      <td>Reporte Newman + bugs API</td>
+    </tr>
+    <tr>
+      <td><strong>5 – 6</strong></td>
+      <td>
+        <strong>Pruebas de integración del Widget.</strong>
+        Pruebas E2E del widget en el dashboard: carga correcta del tiempo,
+        actualización de datos, manejo de errores (API caída, key inválida, timeout).
+        Testing exploratorio del widget: aspecto visual, temperatura en grados correctos,
+        ícono de condición, ciudad mostrada.
+        Registro de Bug #6 (widget con spinner infinito al fallar la API).
+      </td>
+      <td>Tester Funcional</td>
+      <td>Bugs Widget en Bug Tracker</td>
+    </tr>
+    <tr>
+      <td><strong>7 – 8</strong></td>
+      <td>
+        <strong>Regresión acumulada total.</strong>
+        Ejecución de CP-001..025 (E2E) + CP-API-001..020 (API). 45 casos en total.
+        Verificación final de todos los bugs. Generación de Allure report final.
+      </td>
+      <td>Todos</td>
+      <td>Allure report final del proyecto</td>
+    </tr>
+    <tr>
+      <td><strong>9</strong></td>
+      <td>
+        <strong>Smoke suite final + verificación de bugs.</strong>
+        Ejecución de la smoke suite completa (10 casos E2E + 4 smoke API).
+        Cierre de bugs resueltos en el Bug Tracker. Preparación de entregables del TP.
+      </td>
+      <td>Tester Líder</td>
+      <td>Bug Tracker actualizado</td>
+    </tr>
+    <tr>
+      <td><strong>10</strong></td>
+      <td>
+        <strong>Cierre y demo final.</strong>
+        Generación del reporte de ejecución final del proyecto. Demo a profesores.
+        Entrega del TP Final Integrador.
+      </td>
+      <td>Todos</td>
+      <td><strong>Entrega TP Final</strong></td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr><td colspan="4">Casos nuevos Sprint N+3: 20 API (CP-API-001..020) · Regresión E2E: 25 casos · Total acumulado: 45 casos · Smoke API: CP-API-001, CP-API-006, CP-API-011, CP-API-016</td></tr>
+  </tfoot>
+</table>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECCIÓN 7 – ENTREGABLES
+══════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+<h1>7. Entregables</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Entregable</th>
+      <th>Sprint</th>
+      <th>Formato / Herramienta</th>
+      <th>Responsable</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Casos de prueba CP-001..005 (Employee List)</td>
+      <td>N</td>
+      <td>Playwright spec / Planilla</td>
+      <td>Tester Funcional</td>
+    </tr>
+    <tr>
+      <td>Casos de prueba CP-006..010 (Add Employee)</td>
+      <td>N</td>
+      <td>Playwright spec / Planilla</td>
+      <td>Tester Funcional</td>
+    </tr>
+    <tr>
+      <td>Casos de prueba CP-011..015 (My Info – Qualifications)</td>
+      <td>N</td>
+      <td>Playwright spec / Planilla</td>
+      <td>Tester Funcional</td>
+    </tr>
+    <tr>
+      <td>Reporte de ejecución Sprint N</td>
+      <td>N</td>
+      <td>Allure Report (http://localhost:5050)</td>
+      <td>Tester Líder</td>
+    </tr>
+    <tr>
+      <td>Bugs Sprint N (#1 Reset, #2 ID duplicado, #3 Fecha Qualifications)</td>
+      <td>N</td>
+      <td>Bug Tracker (http://localhost:3000)</td>
+      <td>Tester Funcional</td>
+    </tr>
+    <tr>
+      <td>Casos de prueba CP-016..020 (Report-to)</td>
+      <td>N+1</td>
+      <td>Playwright spec / Planilla</td>
+      <td>Tester Funcional</td>
+    </tr>
+    <tr>
+      <td>Reporte de ejecución acumulado Sprint N + N+1</td>
+      <td>N+1</td>
+      <td>Allure Report</td>
+      <td>Tester Líder</td>
+    </tr>
+    <tr>
+      <td>Bug #4 (autocomplete supervisor lento)</td>
+      <td>N+1</td>
+      <td>Bug Tracker</td>
+      <td>Tester de Performance</td>
+    </tr>
+    <tr>
+      <td>Casos de prueba CP-021..025 (Admin Add User)</td>
+      <td>N+2</td>
+      <td>Playwright spec / Planilla</td>
+      <td>Tester Funcional</td>
+    </tr>
+    <tr>
+      <td>Reporte de ejecución acumulado Sprint N + N+1 + N+2</td>
+      <td>N+2</td>
+      <td>Allure Report</td>
+      <td>Tester Líder</td>
+    </tr>
+    <tr>
+      <td>Bug #5 (contraseña débil aceptada)</td>
+      <td>N+2</td>
+      <td>Bug Tracker</td>
+      <td>Tester Funcional</td>
+    </tr>
+    <tr>
+      <td>Colección Postman WeatherAPI (CP-API-001..020)</td>
+      <td>N+3</td>
+      <td>JSON Postman v2.1 / Newman</td>
+      <td>Tester Funcional</td>
+    </tr>
+    <tr>
+      <td>Reporte de ejecución API Newman</td>
+      <td>N+3</td>
+      <td>Newman HTMLExtra (http://localhost:8080/api-report/)</td>
+      <td>Tester Funcional</td>
+    </tr>
+    <tr>
+      <td>Reporte final del proyecto (E2E + API + Bugs)</td>
+      <td>N+3</td>
+      <td>Allure + Bug Tracker + este plan</td>
+      <td>Tester Líder</td>
+    </tr>
+    <tr>
+      <td>Plan de Pruebas General (este documento)</td>
+      <td>Todos</td>
+      <td>PDF</td>
+      <td>Tester Líder</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECCIÓN 8 – ROLES
+══════════════════════════════════════════════════════════ -->
+<h1>8. Roles y Responsabilidades</h1>
+
+<table>
+  <thead>
+    <tr><th>Rol</th><th>Perfil</th><th>Responsabilidades</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Tester Líder</strong></td>
+      <td>QA Senior con experiencia en el equipo y en otros proyectos</td>
+      <td>
+        Coordinación de la estrategia de testing. Priorización de riesgos.
+        Revisión de criterios de aceptación con el equipo. Reporte de estado a PO y SM.
+        Generación de reportes de sprint. Toma de decisiones sobre suspensión de pruebas.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Tester Funcional</strong></td>
+      <td>QA Fullstack (pruebas manuales y automatizadas)</td>
+      <td>
+        Diseño y ejecución de casos de prueba funcionales y de look &amp; feel.
+        Automatización con Playwright. Diseño y ejecución de colecciones Newman.
+        Registro detallado de bugs con pasos reproducibles.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Tester de Performance</strong></td>
+      <td>QA Especialista en performance</td>
+      <td>
+        Pruebas no funcionales (carga, stress, resistencia). Monitoreo de tiempos de respuesta.
+        Detección de cuellos de botella. Soporte en análisis de bugs relacionados con performance
+        (ej: Bug #4 – autocomplete lento).
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECCIÓN 9 – GESTIÓN DE DEFECTOS
+══════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+<h1>9. Gestión de Defectos</h1>
+
+<h2>9.1 Clasificación de severidad</h2>
+<table>
+  <thead><tr><th>Severidad</th><th>Criterio</th><th>Ejemplo</th><th>Bloquea el sprint</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><span class="badge b-crit">CRITICAL</span></td>
+      <td>El sistema falla completamente, pérdida de datos o vulnerabilidad de seguridad grave</td>
+      <td>Login roto para todos los usuarios; pérdida de datos de empleados</td>
+      <td>Sí – inmediato</td>
+    </tr>
+    <tr>
+      <td><span class="badge b-high">HIGH</span></td>
+      <td>Funcionalidad principal no disponible sin workaround</td>
+      <td>No se pueden crear empleados; widget de clima con spinner infinito</td>
+      <td>Sí</td>
+    </tr>
+    <tr>
+      <td><span class="badge b-med">MEDIUM</span></td>
+      <td>Funcionalidad con workaround disponible o validación incorrecta</td>
+      <td>Contraseña débil aceptada; fecha inválida en Qualifications</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td><span class="badge b-low">LOW</span></td>
+      <td>Problema cosmético o de experiencia de usuario menor</td>
+      <td>Botón Reset no limpia todos los filtros</td>
+      <td>No</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>9.2 Flujo del ciclo de vida de un defecto</h2>
+<div class="box box-info">
+  <strong>Flujo:</strong>
+  <strong>OPEN</strong> (tester reporta)
+  → <strong>IN_PROGRESS</strong> (developer toma el bug)
+  → <strong>RESOLVED</strong> (developer cierra con fix)
+  → <strong>CLOSED</strong> (tester verifica la corrección)
+  <br/><br/>
+  Si la verificación falla → el bug vuelve a <strong>OPEN</strong> con nota de "reapertura".
+</div>
+
+<h2>9.3 Información requerida por bug</h2>
+<ul>
+  <li><strong>Título:</strong> breve y descriptivo (qué falla y dónde).</li>
+  <li><strong>Módulo / Sprint:</strong> para trazabilidad.</li>
+  <li><strong>Severidad y Prioridad.</strong></li>
+  <li><strong>Pasos para reproducir:</strong> paso a paso numerado desde el estado inicial.</li>
+  <li><strong>Resultado esperado:</strong> comportamiento correcto según criterio de aceptación.</li>
+  <li><strong>Resultado actual:</strong> lo que realmente ocurre.</li>
+  <li><strong>Reportado por / Asignado a.</strong></li>
+</ul>
+
+<h2>9.4 Herramienta</h2>
+<p>Todos los defectos se registran en el <strong>Bug Tracker</strong> incluido en el sistema
+(accesible en <em>http://localhost:3000</em> luego de <code>bash start.sh up</code>).
+Incluye 6 bugs pre-cargados encontrados durante las pruebas de los cuatro sprints.</p>
+
+<table>
+  <thead><tr><th>ID</th><th>Módulo</th><th>Título resumido</th><th>Severidad</th><th>Estado</th></tr></thead>
+  <tbody>
+    <tr><td>BUG-001</td><td>Employee List</td><td>Botón Reset no limpia todos los filtros</td><td><span class="badge b-low">LOW</span></td><td>OPEN</td></tr>
+    <tr><td>BUG-002</td><td>Add Employee</td><td>Se permite Employee ID duplicado</td><td><span class="badge b-high">HIGH</span></td><td>OPEN</td></tr>
+    <tr><td>BUG-003</td><td>My Info – Qualifications</td><td>Acepta fecha de fin anterior a fecha de inicio</td><td><span class="badge b-med">MEDIUM</span></td><td>IN_PROGRESS</td></tr>
+    <tr><td>BUG-004</td><td>Edit Employee – Report to</td><td>Autocomplete de supervisor tarda +10s</td><td><span class="badge b-high">HIGH</span></td><td>OPEN</td></tr>
+    <tr><td>BUG-005</td><td>Admin – Add User</td><td>Contraseña sin caracteres especiales aceptada</td><td><span class="badge b-med">MEDIUM</span></td><td>OPEN</td></tr>
+    <tr><td>BUG-006</td><td>Widget Clima</td><td>Spinner infinito si la API no responde</td><td><span class="badge b-high">HIGH</span></td><td>OPEN</td></tr>
+  </tbody>
+</table>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECCIÓN 10 – RIESGOS
+══════════════════════════════════════════════════════════ -->
+<h1>10. Riesgos y Mitigación</h1>
+
+<table>
+  <thead>
+    <tr><th>Riesgo</th><th>Probabilidad</th><th>Impacto</th><th>Mitigación</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>El demo de OrangeHRM no está disponible (caída del servidor)</td>
+      <td>Media</td>
+      <td>Alto</td>
+      <td>Reintentar más tarde. Los tests de API del Clima pueden ejecutarse en paralelo.
+          Tener un ambiente local de OrangeHRM como backup (Docker image disponible).</td>
+    </tr>
+    <tr>
+      <td>Datos del demo modificados por otros testers simultáneos</td>
+      <td>Alta</td>
+      <td>Medio</td>
+      <td>Tests resilientes: usan datos existentes de la tabla, no dependen de datos fijos.
+          Los datos creados usan timestamp para ser identificables.</td>
+    </tr>
+    <tr>
+      <td>API key de WeatherAPI.com expirada o inválida</td>
+      <td>Baja</td>
+      <td>Alto (bloquea Sprint N+3)</td>
+      <td>Renovar la key antes del Sprint N+3. Tener una key de backup.
+          El plan free tiene 1M calls/mes.</td>
+    </tr>
+    <tr>
+      <td>Proveedor de WeatherAPI.com cambia el contrato de la API</td>
+      <td>Baja</td>
+      <td>Medio</td>
+      <td>Este es precisamente el riesgo que mitigan las pruebas de contrato (CP-API-001..020).
+          Ante un cambio, los tests fallan y alertan al equipo.</td>
+    </tr>
+    <tr>
+      <td>Los testers no pueden completar toda la casuística en el sprint</td>
+      <td>Media</td>
+      <td>Medio</td>
+      <td>Priorizar smoke y regresión. El tester de performance puede apoyar en funcional
+          en sprints con menos carga de performance. Se puede proponer sumar un tester puntual.</td>
+    </tr>
+    <tr>
+      <td>Cambios de última hora en el frontend que rompen los selectores de Playwright</td>
+      <td>Media</td>
+      <td>Bajo</td>
+      <td>Usar selectores semánticos (getByRole, getByText) en lugar de CSS frágiles.
+          Reservar día 8 del sprint para estabilizar los tests.</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECCIÓN 11 – SUSPENSIÓN
+══════════════════════════════════════════════════════════ -->
+<h1>11. Criterios de Suspensión y Reanudación</h1>
+
+<h2>11.1 Suspensión</h2>
+<ul>
+  <li>El ambiente de pruebas no responde por más de <strong>4 horas consecutivas</strong>.</li>
+  <li>Un bug CRITICAL bloquea la ejecución de más del <strong>50% de los casos</strong>.</li>
+  <li>Más del <strong>30% de los smoke tests fallan</strong> por razones no relacionadas con los cambios del sprint (indicador de regresión sistémica).</li>
+</ul>
+
+<h2>11.2 Reanudación</h2>
+<ul>
+  <li>El ambiente es restaurado y verificado con un smoke básico de infraestructura.</li>
+  <li>El bug CRITICAL es corregido (o se define un workaround aceptado por el PO).</li>
+  <li>La smoke suite pasa al <strong>100%</strong> antes de retomar la ejecución completa.</li>
+  <li>El Tester Líder comunica la reanudación al equipo y actualiza el calendario si corresponde.</li>
+</ul>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECCIÓN 12 – RESUMEN DE HERRAMIENTAS
+══════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+<h1>12. Resumen de Herramientas</h1>
+
+<table>
+  <thead>
+    <tr><th>Herramienta</th><th>Propósito</th><th>Acceso</th><th>Imagen Docker</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Playwright 1.40</strong></td>
+      <td>Pruebas E2E frontend con Chromium headless. 25 casos automatizados en TypeScript.</td>
+      <td><code>docker compose run --rm e2e-tests</code></td>
+      <td>mcr.microsoft.com/playwright:v1.40.0-jammy</td>
+    </tr>
+    <tr>
+      <td><strong>Newman 6 + Postman</strong></td>
+      <td>Pruebas de contrato API del Clima. 20 casos (4 endpoints × 5 escenarios).</td>
+      <td><code>docker compose run --rm api-tests</code></td>
+      <td>node:20-alpine + newman</td>
+    </tr>
+    <tr>
+      <td><strong>Allure Docker Service</strong></td>
+      <td>Generación y visualización de reportes de pruebas E2E interactivos.</td>
+      <td>http://localhost:5050</td>
+      <td>frankescobar/allure-docker-service</td>
+    </tr>
+    <tr>
+      <td><strong>Bug Tracker (custom)</strong></td>
+      <td>Gestión de defectos con REST API + UI web. 6 bugs pre-cargados.</td>
+      <td>http://localhost:3000</td>
+      <td>node:20-alpine + Express</td>
+    </tr>
+    <tr>
+      <td><strong>nginx</strong></td>
+      <td>Dashboard QA + servicio de reportes Playwright HTML y Newman HTML.</td>
+      <td>http://localhost:8080</td>
+      <td>nginx:1.25-alpine</td>
+    </tr>
+    <tr>
+      <td><strong>Docker Compose</strong></td>
+      <td>Orquestación de todos los servicios. Sin instalación de nada local excepto Docker Desktop.</td>
+      <td><code>bash start.sh up</code></td>
+      <td>–</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="box box-ok">
+  <strong>Inicio rápido (resumen):</strong>
+  <code>cd tp-calidad-sistema</code> →
+  <code>cp .env.example .env</code> (agregar API key) →
+  <code>bash start.sh up</code> →
+  <code>bash start.sh test</code>
+</div>
+
+<div class="doc-footer">
+  Plan de Pruebas General v1.0 &nbsp;·&nbsp;
+  Taller de Control de Calidad de Software &nbsp;·&nbsp;
+  Trabajo Final Integrador &nbsp;·&nbsp;
+  Licenciatura en Tecnologías Digitales / Licenciatura en Ciencias de Datos &nbsp;·&nbsp;
+  Junio 2026
+</div>
+</div><!-- /content -->
+</body>
+</html>
