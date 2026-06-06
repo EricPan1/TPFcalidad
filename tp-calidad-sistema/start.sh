@@ -23,6 +23,7 @@ usage() {
   echo -e "  ${GREEN}all${RESET}     Equivale a 'up' + 'test' en un solo paso"
   echo -e "  ${GREEN}pdf${RESET}     Genera Plan_de_Pruebas_General.pdf en este directorio"
   echo -e "  ${GREEN}casos${RESET}   Genera Casos_de_Prueba_Frontend.pdf en este directorio"
+  echo -e "  ${GREEN}api${RESET}     Genera Casos_de_Prueba_API_Clima.pdf en este directorio"
   echo -e "  ${GREEN}down${RESET}    Detiene y elimina todos los contenedores y volúmenes"
   echo -e "  ${GREEN}logs${RESET}    Muestra logs de todos los servicios en tiempo real\n"
   echo -e "Antes de correr por primera vez:"
@@ -84,12 +85,19 @@ cmd_casos() {
   echo -e "\n${GREEN}✔ Listo: $(pwd)/Casos_de_Prueba_Frontend.pdf${RESET}\n"
 }
 
+cmd_api() {
+  echo -e "${BOLD}Generando Casos_de_Prueba_API_Clima.pdf...${RESET}"
+  docker compose run --rm api-casos-pdf-generator
+  echo -e "\n${GREEN}✔ Listo: $(pwd)/Casos_de_Prueba_API_Clima.pdf${RESET}\n"
+}
+
 case "$COMANDO" in
   up)    header; cmd_up ;;
   test)  header; cmd_test ;;
   all)   header; cmd_up; cmd_test ;;
   pdf)   header; cmd_pdf ;;
   casos) header; cmd_casos ;;
+  api)   header; cmd_api ;;
   down)  header; cmd_down ;;
   logs)  docker compose logs -f ;;
   *)     usage ;;

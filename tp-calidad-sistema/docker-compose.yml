@@ -12,6 +12,15 @@ services:
     volumes:
       - allure-results:/allure-results
       - playwright-report:/app/playwright-report
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 4G
+        reservations:
+          cpus: '2'
+          memory: 1G
+    shm_size: '1gb'
     restart: "no"
     networks:
       - qa-network
@@ -48,6 +57,18 @@ services:
     volumes:
       - .:/work
     command: node /app/generate-pdf.js /work/casos-de-prueba.html /work/Casos_de_Prueba_Frontend.pdf
+    restart: "no"
+    networks:
+      - qa-network
+
+  # Genera Casos_de_Prueba_API_Clima.pdf
+  api-casos-pdf-generator:
+    build:
+      context: ./playwright-tests
+    container_name: qa_api_casos_pdf_generator
+    volumes:
+      - .:/work
+    command: node /app/generate-pdf.js /work/api-casos-de-prueba.html /work/Casos_de_Prueba_API_Clima.pdf
     restart: "no"
     networks:
       - qa-network
