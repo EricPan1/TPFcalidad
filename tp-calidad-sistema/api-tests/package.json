@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Pruebas de contrato para Weather API - Sprint N+3",
   "scripts": {
-    "test": "newman run collections/WeatherAPI.postman_collection.json --environment collections/WeatherAPI.postman_environment.json --insecure --reporters cli,htmlextra --reporter-htmlextra-export api-report/index.html --reporter-htmlextra-title 'Weather API - Reporte de Pruebas' --reporter-htmlextra-logs --reporter-htmlextra-displayProgressBar"
+    "test": "newman run collections/WeatherAPI.postman_collection.json --environment collections/WeatherAPI.postman_environment.json --env-var \"api_key=$WEATHER_API_KEY\" --insecure --reporters cli,htmlextra --reporter-htmlextra-export api-report/index.html --reporter-htmlextra-title 'Weather API - Reporte de Pruebas' --reporter-htmlextra-logs --reporter-htmlextra-displayProgressBar"
   },
   "dependencies": {
     "newman": "^6.1.2",

@@ -96,6 +96,29 @@ services:
     networks:
       - qa-network
 
+  # Genera TP_Final_Integrador.docx (respuestas teóricas preguntas 1-8 + entrega práctica pregunta 7)
+  tp-final-generator:
+    build:
+      context: ./tp-final-generator
+    container_name: qa_tp_final_generator
+    volumes:
+      - .:/work
+    restart: "no"
+    networks:
+      - qa-network
+
+  # Fusiona plan-pruebas.html + casos-de-prueba.html + api-casos-de-prueba.html
+  # en un solo Documentacion_HTML_Consolidada.docx y borra los HTML originales
+  html-merge-generator:
+    build:
+      context: ./html-merge-generator
+    container_name: qa_html_merge_generator
+    volumes:
+      - .:/work
+    restart: "no"
+    networks:
+      - qa-network
+
   # ── Servicios permanentes (correr con: docker compose up -d) ──
 
   allure:

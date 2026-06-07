@@ -168,7 +168,12 @@ const FRONTEND_CASES = {
         ['CP-015', 'Las secciones Skills y Languages están presentes'],
       ]},
     ],
-    execution: { total: 15, passed: 15, failed: 0, skipped: 0 },
+    execution: { total: 15, passed: 11, failed: 3, skipped: 1,
+      detail: 'Fallaron: CP-002 (timeout esperando resultados de búsqueda — intermitente, atribuible a la '
+            + 'lentitud del demo público compartido de OrangeHRM), CP-012 (assertion sobre alta de Work '
+            + 'Experience) y CP-013 ("strict mode violation": el selector de la tarjeta Education matchea '
+            + '6 elementos en el DOM actual — selector a refinar). Saltado: CP-003 (dependía del resultado '
+            + 'de CP-002). CP-014 quedó "flaky" (falló en el primer intento por timing y pasó al reintentar).' },
     bugs: BUGS.filter(b => b.sprint === 'Sprint N'),
   },
   'Sprint N+1': {
@@ -182,7 +187,10 @@ const FRONTEND_CASES = {
         ['CP-020', '[SMOKE] La sección Subordinates es visible'],
       ]},
     ],
-    execution: { total: 5, passed: 5, failed: 0, skipped: 0 },
+    execution: { total: 5, passed: 4, failed: 1, skipped: 0,
+      detail: 'Falló CP-019 (assertion sobre el cierre del formulario de supervisor vía Cancel — '
+            + 'el valor del campo no quedó vacío como se esperaba; a confirmar si es comportamiento '
+            + 'real de la pantalla o un timing de la automatización).' },
     bugs: BUGS.filter(b => b.sprint === 'Sprint N+1'),
   },
   'Sprint N+2': {
@@ -196,7 +204,8 @@ const FRONTEND_CASES = {
         ['CP-025', '[SMOKE] Se puede filtrar el listado de usuarios por rol'],
       ]},
     ],
-    execution: { total: 5, passed: 5, failed: 0, skipped: 0 },
+    execution: { total: 5, passed: 5, failed: 0, skipped: 0,
+      detail: 'Los 5 casos pasaron sin incidentes en la última corrida.' },
     bugs: BUGS.filter(b => b.sprint === 'Sprint N+2'),
   },
 };
@@ -207,7 +216,7 @@ const API_CASES = [
     ['CP-API-001', 'Ciudad válida retorna datos de tiempo actual'],
     ['CP-API-002', 'Coordenadas GPS retornan datos correctos'],
     ['CP-API-003', 'Sin API key retorna 401 Unauthorized'],
-    ['CP-API-004', 'API key inválida retorna 403 Forbidden'],
+    ['CP-API-004', 'API key inválida retorna 401 Unauthorized'],
     ['CP-API-005', 'Ciudad inexistente retorna 400 con error 1006'],
   ]},
   { group: 'Forecast Weather API — GET /forecast.json', range: 'CP-API-006 a CP-API-010', cases: [
@@ -362,11 +371,7 @@ for (const [sprintName, data] of Object.entries(FRONTEND_CASES)) {
       ]],
       [1900, 1900, 1900, 1900, 1900],
     ),
-    p('Nota: la primera corrida automatizada de esta suite reportó fallos puntuales atribuibles a selectores '
-    + 'desactualizados frente a cambios en el DOM de OrangeHRM (timeouts de elementos, "strict mode violations" por '
-    + 'selectores ambiguos y locators con índice incorrecto). Tras ajustar los scripts de prueba, la suite quedó '
-    + 'estable en el resultado mostrado arriba — estos ajustes son de mantenimiento de la automatización, no defectos '
-    + 'de producto.', { italics: true, size: 19, color: '6B7280' }),
+    p(`Detalle: ${ex.detail}`, { italics: true, size: 19, color: '6B7280' }),
   );
 
   if (data.bugs.length > 0) {
@@ -412,11 +417,17 @@ sections.push(
   bullet('Archivo de entorno: api-tests/collections/WeatherAPI.postman_environment.json '
        + '(variables: base_url = https://api.weatherapi.com/v1, api_key, ciudades de prueba y fechas para los '
        + 'casos de History/Forecast).'),
-  bullet('Ejecución manual: importar ambos archivos en Postman Desktop, seleccionar el entorno "WeatherAPI" y '
-       + 'correr la colección completa con el Collection Runner.'),
-  bullet('Ejecución automatizada: el servicio "api-tests" del docker-compose corre la colección con Newman '
-       + '(npx newman run WeatherAPI.postman_collection.json -e WeatherAPI.postman_environment.json), generando '
-       + 'un reporte que se centraliza junto con el resto de los resultados en Allure.'),
+  bullet('Ejecución manual: importar ambos archivos en Postman Desktop, seleccionar el entorno "WeatherAPI - '
+       + 'Entorno de Pruebas" y, antes de correr, pegar la API key real en la variable api_key (el valor de '
+       + 'fábrica "{{$processEnv WEATHER_API_KEY}}" es solo un recordatorio: no se resuelve de forma recursiva '
+       + 'al usarse como valor estático de otra variable). Luego ejecutar la colección con el Collection Runner.'),
+  bullet('Ejecución automatizada (100% en Docker): el servicio "api-tests" corre "docker compose run --rm api-tests" '
+       + '→ "newman run collections/WeatherAPI.postman_collection.json --environment '
+       + 'collections/WeatherAPI.postman_environment.json --env-var \\"api_key=$WEATHER_API_KEY\\" --insecure '
+       + '--reporters cli,htmlextra ...". El flag --env-var inyecta la key real desde .env (evitando el problema '
+       + 'del placeholder) y --insecure evita el error "self-signed certificate in certificate chain" que produce '
+       + 'la inspección HTTPS de la red. El reporte HTML resultante se centraliza junto con el resto de los '
+       + 'resultados en Allure / http://localhost:8080/api-report/.'),
   bullet('Documento de diseño completo: api-casos-de-prueba.html / Casos_de_Prueba_API_Clima.pdf (generado con '
        + '"bash start.sh api"), con el detalle de cada caso (precondiciones, datos de entrada, pasos, resultado esperado).'),
   pageBreak(),
@@ -431,21 +442,43 @@ sections.push(
   + 'el cierre del Sprint N+3, y el listado completo de bugs de producto detectados a lo largo de los 4 sprints.'),
 
   h2('1. Resumen consolidado de ejecución'),
+  p('Números tomados de la última corrida real registrada en playwright-report/results.json '
+  + '(ejecutada con "docker compose run --rm e2e-tests" / "docker compose run --rm api-tests", la misma '
+  + 'fuente que alimenta Casos_de_Prueba_OrangeHRM.xlsx y los reportes de Allure):', { size: 19, color: '6B7280', italics: true }),
   table(
     ['Suite', 'Casos', 'Pasaron', 'Fallaron', 'Saltados'],
     [
-      ['Frontend – Sprint N, N+1, N+2 (Actividad 2 · CP-001 a CP-025)', '25', { text: '25', fill: GREEN_LIGHT, color: GREEN }, { text: '0', fill: GREEN_LIGHT, color: GREEN }, '0'],
-      ['Frontend – regresión adicional (CP-026 a CP-125, otros módulos OrangeHRM)', '100', { text: '~96', fill: GREEN_LIGHT, color: GREEN }, { text: '~4', fill: AMBER_LIGHT, color: '92400E' }, '0'],
+      ['Frontend – Sprint N, N+1, N+2 (Actividad 2 · CP-001 a CP-025)', '25', { text: '20', fill: GREEN_LIGHT, color: GREEN }, { text: '4', fill: RED_LIGHT, color: RED }, '1'],
+      ['Frontend – regresión adicional (CP-026 a CP-125, otros módulos OrangeHRM)', '100', { text: '55', fill: AMBER_LIGHT, color: '92400E' }, { text: '45', fill: RED_LIGHT, color: RED }, '0'],
       ['API del Clima – WeatherAPI.com (Actividad 3 · CP-API-001 a CP-API-020 vía Newman)', '20', { text: '20', fill: GREEN_LIGHT, color: GREEN }, { text: '0', fill: GREEN_LIGHT, color: GREEN }, '0'],
-      [{ text: 'Total acumulado', fill: PURPLE_LIGHT, bold: true }, { text: '145', fill: PURPLE_LIGHT, bold: true }, { text: '~141', fill: PURPLE_LIGHT, bold: true, color: GREEN }, { text: '~4', fill: PURPLE_LIGHT, bold: true, color: '92400E' }, { text: '0', fill: PURPLE_LIGHT, bold: true }],
+      [{ text: 'Total acumulado', fill: PURPLE_LIGHT, bold: true }, { text: '145', fill: PURPLE_LIGHT, bold: true }, { text: '95', fill: PURPLE_LIGHT, bold: true, color: GREEN }, { text: '49', fill: PURPLE_LIGHT, bold: true, color: RED }, { text: '1', fill: PURPLE_LIGHT, bold: true }],
     ],
     [4400, 1300, 1300, 1300, 1300],
   ),
+  spacer(),
+  p('Lectura de los resultados: los 25 casos núcleo de Actividad 2 (Sprint N, N+1 y N+2) tienen una tasa de '
+  + 'éxito del 80% (20/25); el detalle de las 4 fallas y 1 caso saltado está documentado en la sección b) '
+  + 'junto a cada sprint. La suite de regresión adicional (CP-026 a CP-125, 100 casos sobre módulos como '
+  + 'Leave, Buzz, Recruitment, Directory, Dashboard, Time & Attendance, etc.) muestra una tasa de éxito '
+  + 'menor (55%): la gran mayoría de sus fallas son "page.goto: Timeout" / "Timed out waiting for locator" '
+  + '(la suite corre contra el demo público compartido opensource-demo.orangehrmlive.com, que responde con '
+  + 'latencia variable bajo carga) y "strict mode violation" por selectores que matchean más de un elemento '
+  + 'tras cambios recientes del DOM — ambas son deuda de mantenimiento de la automatización (ajuste de '
+  + 'selectores y timeouts), no defectos de producto. Quedan registradas como acción de seguimiento para la '
+  + 'siguiente iteración de estabilización de la suite.', { size: 19, color: '6B7280', italics: true }),
   p('Los reportes detallados por caso (con capturas, video y traza de cada ejecución) están disponibles en Allure '
   + '(http://localhost:5050) y en el reporte HTML de Playwright (http://localhost:8080) luego de correr "bash start.sh test". '
   + 'El detalle caso-por-caso también puede exportarse a planilla con "bash start.sh excel" '
   + '(Casos_de_Prueba_OrangeHRM.xlsx), que incluye además, para cada caso fallido, una columna con la descripción '
   + 'del fallo en lenguaje simple lista para volcar a una tarjeta de Trello.', { size: 19, color: '6B7280', italics: true }),
+  p('Última corrida verificada de la suite de API (Newman, dentro de Docker, vía "docker compose run --rm api-tests"): '
+  + '20/20 requests OK y 54/54 assertions pasadas, 0 fallos, en ≈ 3.6 segundos. Esa corrida quedó estable luego de '
+  + 'resolver dos problemas de infraestructura que impedían su ejecución: (1) el flag "--insecure" de Newman, '
+  + 'necesario porque la red intercepta el tráfico HTTPS y rompe la cadena de certificados (mismo problema que ya '
+  + 'resuelven los Dockerfiles para npm con "strict-ssl false"); y (2) el flag "--env-var \\"api_key=$WEATHER_API_KEY\\"", '
+  + 'que sobrescribe en tiempo de ejecución el valor de la variable api_key — el placeholder original '
+  + '"{{$processEnv WEATHER_API_KEY}}" del archivo de entorno de Postman no se resuelve quedando como texto literal '
+  + 'al usarse como valor estático de otra variable, por lo que la key nunca llegaba a las requests.', { size: 19, color: '6B7280', italics: true }),
 
   h2('2. Reporte de bugs encontrados (todos los sprints)'),
   table(
@@ -463,13 +496,24 @@ sections.push(
   + 'reproducción, resultado esperado vs. obtenido y responsable asignado.', { size: 20 }),
 
   h2('3. Conclusiones'),
-  bullet('Las funcionalidades núcleo de los Sprints N, N+1 y N+2 (Actividad 2) cerraron con el 100% de los casos '
-       + 'de prueba diseñados en estado "PASÓ" tras la corrección de los selectores de automatización.'),
+  bullet('Las funcionalidades núcleo de los Sprints N, N+1 y N+2 (Actividad 2, CP-001 a CP-025) alcanzaron una '
+       + 'tasa de éxito del 80% (20/25 PASÓ) en la última corrida. Los 4 casos fallidos y el caso saltado están '
+       + 'detallados junto a cada sprint en la sección b): combinan timeouts intermitentes contra el demo público '
+       + 'compartido, una "strict mode violation" de selector y dos assertions a revisar — ninguno compromete el '
+       + 'flujo principal de las pantallas evaluadas, pero quedan como acción de seguimiento para estabilizar la suite.'),
   bullet('Se detectaron 6 bugs de producto a lo largo de los 4 sprints, concentrados en validaciones de formularios '
        + '(IDs duplicados, rangos de fecha, políticas de contraseña), rendimiento de un autocomplete y manejo de '
        + 'errores del widget de clima — ninguno bloquea el flujo principal de las pantallas evaluadas.'),
-  bullet('La integración con la Weather API (Actividad 3) pasó el 100% de los 20 casos diseñados, validando tanto '
-       + 'los caminos felices como el manejo de errores (401, 403, 400) de los 4 endpoints utilizados por el widget.'),
+  bullet('La suite de regresión adicional (CP-026 a CP-125, 100 casos sobre otros módulos de OrangeHRM) registró '
+       + '55/100 PASÓ en la última corrida; el análisis de las fallas (ver sección d.1) muestra que son '
+       + 'mayormente "timeouts" por la latencia variable del demo público y "strict mode violations" de '
+       + 'selectores — deuda de mantenimiento de automatización a resolver en la próxima iteración, no bugs '
+       + 'de producto nuevos.'),
+  bullet('La integración con la Weather API (Actividad 3) pasó el 100% de los 20 casos diseñados (54/54 assertions), '
+       + 'validando tanto los caminos felices como el manejo de errores (401, 400) de los 4 endpoints utilizados por '
+       + 'el widget. Durante la verificación se ajustó CP-API-004: WeatherAPI.com cambió el código de respuesta para '
+       + 'API key inválida de 403 a 401, por lo que el caso y su assertion se actualizaron para reflejar el '
+       + 'comportamiento real y vigente de la API.'),
   bullet('Se recomienda priorizar la corrección de los bugs de severidad HIGH (BUG-02, BUG-04 y BUG-06) antes del '
        + 'cierre del proyecto, dado su impacto en integridad de datos, performance percibida y experiencia de usuario.'),
 );

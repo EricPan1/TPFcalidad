@@ -26,6 +26,9 @@ usage() {
   echo -e "  ${GREEN}api${RESET}     Genera Casos_de_Prueba_API_Clima.pdf en este directorio"
   echo -e "  ${GREEN}excel${RESET}   Genera Casos_de_Prueba_OrangeHRM.xlsx desde el último run de tests"
   echo -e "  ${GREEN}docx${RESET}    Genera Informe_Final_Consigna7.docx (plan, casos, resultados y bugs)"
+  echo -e "  ${GREEN}final${RESET}   Genera TP_Final_Integrador.docx (respuestas teóricas preguntas 1-8 + entrega práctica pregunta 7)"
+  echo -e "  ${GREEN}merge-html${RESET} Fusiona plan-pruebas.html + casos-de-prueba.html + api-casos-de-prueba.html"
+  echo -e "             en Documentacion_HTML_Consolidada.docx y elimina los .html originales"
   echo -e "  ${GREEN}down${RESET}    Detiene y elimina todos los contenedores y volúmenes"
   echo -e "  ${GREEN}logs${RESET}    Muestra logs de todos los servicios en tiempo real\n"
   echo -e "Antes de correr por primera vez:"
@@ -105,6 +108,18 @@ cmd_docx() {
   echo -e "\n${GREEN}✔ Listo: $(pwd)/Informe_Final_Consigna7.docx${RESET}\n"
 }
 
+cmd_final() {
+  echo -e "${BOLD}Generando TP_Final_Integrador.docx (respuestas teóricas + entrega práctica)...${RESET}"
+  docker compose run --rm tp-final-generator
+  echo -e "\n${GREEN}✔ Listo: $(pwd)/TP_Final_Integrador.docx${RESET}\n"
+}
+
+cmd_merge_html() {
+  echo -e "${BOLD}Fusionando los HTML (plan, casos frontend y casos API) en un solo .docx...${RESET}"
+  docker compose run --rm html-merge-generator
+  echo -e "\n${GREEN}✔ Listo: $(pwd)/Documentacion_HTML_Consolidada.docx (los .html originales fueron eliminados)${RESET}\n"
+}
+
 case "$COMANDO" in
   up)    header; cmd_up ;;
   test)  header; cmd_test ;;
@@ -114,6 +129,8 @@ case "$COMANDO" in
   api)   header; cmd_api ;;
   excel) header; cmd_excel ;;
   docx)  header; cmd_docx ;;
+  final) header; cmd_final ;;
+  merge-html) header; cmd_merge_html ;;
   down)  header; cmd_down ;;
   logs)  docker compose logs -f ;;
   *)     usage ;;

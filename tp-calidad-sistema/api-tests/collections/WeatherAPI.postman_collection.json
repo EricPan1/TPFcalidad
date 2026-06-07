@@ -166,14 +166,14 @@
           "response": []
         },
         {
-          "name": "CP-API-004 [UNHAPPY] API key inválida retorna 403 Forbidden",
+          "name": "CP-API-004 [UNHAPPY] API key inválida retorna 401 Unauthorized",
           "event": [
             {
               "listen": "test",
               "script": {
                 "exec": [
-                  "pm.test('Status 403 con API key inválida', function () {",
-                  "    pm.response.to.have.status(403);",
+                  "pm.test('Status 401 con API key inválida', function () {",
+                  "    pm.response.to.have.status(401);",
                   "});",
                   "",
                   "pm.test('Error con código de API key inválida (2006 o 2007)', function () {",

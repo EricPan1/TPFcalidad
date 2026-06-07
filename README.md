@@ -119,7 +119,7 @@ Cuando termina, abre tu navegador y entra a estas páginas:
 
 ## Ejecutar las pruebas
 
-Este comando corre las 25 pruebas del frontend de OrangeHRM y las 20 pruebas de la API del clima:
+Este comando corre las 125 pruebas del frontend de OrangeHRM (25 casos núcleo de la Actividad 2 — Sprint N, N+1 y N+2 — más 100 casos de regresión adicionales sobre otros módulos) y las 20 pruebas de la API del clima:
 
 ```bash
 bash start.sh test
@@ -132,7 +132,7 @@ Puede tardar varios minutos. Cuando termina, los resultados aparecen en:
 
 ---
 
-## Generar los PDFs de entrega
+## Generar los documentos de entrega
 
 **Plan de Pruebas General** (ítem a de la consigna 7):
 
@@ -154,6 +154,66 @@ El archivo `Casos_de_Prueba_Frontend.pdf` aparece en la carpeta `tp-calidad-sist
 
 ---
 
+**Casos de Prueba de la API del Clima** (ítem c de la consigna 7):
+
+```bash
+bash start.sh api
+```
+
+El archivo `Casos_de_Prueba_API_Clima.pdf` aparece en la carpeta `tp-calidad-sistema/`.
+
+---
+
+**Planilla Excel con todos los casos y resultados** (detalle caso por caso de las 125 pruebas E2E,
+con una columna extra que describe cada fallo en lenguaje simple, lista para volcar a una tarjeta de Trello):
+
+```bash
+bash start.sh excel
+```
+
+El archivo `Casos_de_Prueba_OrangeHRM.xlsx` aparece en la carpeta `tp-calidad-sistema/`. Requiere haber
+corrido `bash start.sh test` antes (lee los resultados desde `playwright-report/results.json`).
+
+---
+
+**Informe final consolidado en Word** (un solo documento .docx con el plan de pruebas, el diseño de
+casos frontend y de API, los resultados de ejecución por sprint y el reporte de bugs — ítems a, b, c y d
+de la consigna 7 en un solo archivo):
+
+```bash
+bash start.sh docx
+```
+
+El archivo `Informe_Final_Consigna7.docx` aparece en la carpeta `tp-calidad-sistema/`.
+
+---
+
+**Trabajo Final Integrador completo en Word** (un solo documento .docx que reúne TODO el trabajo:
+las respuestas teóricas de las preguntas 1 a 8 del enunciado — Parte I — y la entrega práctica
+de la pregunta 7 con sus ítems a, b, c y d — Parte II):
+
+```bash
+bash start.sh final
+```
+
+El archivo `TP_Final_Integrador.docx` aparece en la carpeta `tp-calidad-sistema/`. Es el entregable
+único y consolidado para presentar el trabajo final.
+
+---
+
+**Fusionar los documentos HTML en un solo Word** (combina `plan-pruebas.html`,
+`casos-de-prueba.html` y `api-casos-de-prueba.html` en un único archivo .docx y
+**elimina los HTML originales** una vez generado correctamente):
+
+```bash
+bash start.sh merge-html
+```
+
+El archivo `Documentacion_HTML_Consolidada.docx` aparece en la carpeta `tp-calidad-sistema/`
+y los tres `.html` de origen dejan de existir.
+
+---
+
 ## Hacer todo de una vez
 
 Si queres levantar los servicios y correr las pruebas en un solo paso:
@@ -170,7 +230,7 @@ bash start.sh all
 bash start.sh down
 ```
 
-Esto detiene y elimina todos los contenedores. Los PDFs generados quedan guardados en tu disco.
+Esto detiene y elimina todos los contenedores. Los archivos generados (PDF, Excel, Word) quedan guardados en tu disco.
 
 ---
 
@@ -178,9 +238,14 @@ Esto detiene y elimina todos los contenedores. Los PDFs generados quedan guardad
 
 ```bash
 bash start.sh up      # levanta los servicios (dashboard, allure, bug tracker)
-bash start.sh test    # corre todas las pruebas
+bash start.sh test    # corre todas las pruebas (125 E2E + 20 de API)
 bash start.sh pdf     # genera Plan_de_Pruebas_General.pdf
 bash start.sh casos   # genera Casos_de_Prueba_Frontend.pdf
+bash start.sh api     # genera Casos_de_Prueba_API_Clima.pdf
+bash start.sh excel   # genera Casos_de_Prueba_OrangeHRM.xlsx (requiere haber corrido test antes)
+bash start.sh docx    # genera Informe_Final_Consigna7.docx (documento único con a, b, c y d)
+bash start.sh final   # genera TP_Final_Integrador.docx (teoría preguntas 1-8 + práctica pregunta 7)
+bash start.sh merge-html # fusiona los 3 HTML en Documentacion_HTML_Consolidada.docx y los borra
 bash start.sh all     # up + test juntos
 bash start.sh down    # apaga todo
 ```
@@ -192,9 +257,12 @@ bash start.sh down    # apaga todo
 | Ítem consigna 7 | Como se genera | Donde queda |
 |-----------------|----------------|-------------|
 | a) Plan de pruebas | `bash start.sh pdf` | `tp-calidad-sistema/Plan_de_Pruebas_General.pdf` |
-| b) Casos de prueba frontend + resultados | `bash start.sh casos` + `bash start.sh test` | `Casos_de_Prueba_Frontend.pdf` + http://localhost:5050 |
-| c) Colección Postman API del Clima | ya está lista | `api-tests/collections/WeatherAPI.postman_collection.json` |
-| d) Reporte de bugs | levantado automáticamente | http://localhost:3000 |
+| b) Casos de prueba frontend + resultados | `bash start.sh casos` + `bash start.sh test` (+ `bash start.sh excel` para el detalle por caso) | `Casos_de_Prueba_Frontend.pdf` + `Casos_de_Prueba_OrangeHRM.xlsx` + http://localhost:5050 |
+| c) Casos de prueba y colección Postman de la API del Clima | `bash start.sh api` (la colección ya está lista) | `Casos_de_Prueba_API_Clima.pdf` + `api-tests/collections/WeatherAPI.postman_collection.json` |
+| d) Reporte de pruebas ejecutadas + reporte de bugs | `bash start.sh test` (resultados) + Bug Tracker (levantado automáticamente con `bash start.sh up`) | http://localhost:5050 (Allure), http://localhost:8080/api-report/ (Newman) y http://localhost:3000 (Bug Tracker) |
+| Documento único con a + b + c + d | `bash start.sh docx` | `Informe_Final_Consigna7.docx` |
+| Trabajo Final completo (teoría preguntas 1-8 + práctica pregunta 7) | `bash start.sh final` | `TP_Final_Integrador.docx` |
+| Fusión de los 3 HTML (plan + casos frontend + casos API) en un solo Word | `bash start.sh merge-html` | `Documentacion_HTML_Consolidada.docx` (borra los `.html` de origen) |
 
 ---
 
@@ -214,6 +282,17 @@ Ya está resuelto: el Dockerfile usa `mcr.microsoft.com/playwright:v1.60.0-jammy
 ```bash
 docker compose build --no-cache
 bash start.sh pdf
+```
+
+**Las pruebas de la API del clima fallan con "self-signed certificate in certificate chain" o con error 401/2006 a pesar de tener la API key bien puesta**
+Ya está resuelto en `api-tests/package.json`: el script de Newman corre con `--insecure` (evita el corte por
+inspección HTTPS de redes corporativas/antivirus, igual que `strict-ssl false` en los Dockerfiles) y con
+`--env-var "api_key=$WEATHER_API_KEY"` (inyecta la key real desde tu `.env` en tiempo de ejecución, en vez
+de depender del placeholder `{{$processEnv WEATHER_API_KEY}}` del archivo de entorno de Postman, que no se
+resuelve al usarse como valor estático de otra variable). Si volvés a ver este error, asegurate de:
+```bash
+docker compose build api-tests
+docker compose run --rm api-tests
 ```
 
 **"version is obsolete"** (warning amarillo al correr comandos)
@@ -239,12 +318,19 @@ TPFcalidad/
     ├── .env.example                    <- plantilla de configuracion (copiar a .env)
     ├── .env                            <- tu configuracion real (con tu API key)
     ├── start.sh                        <- script principal de comandos
-    ├── plan-pruebas.html               <- fuente del Plan de Pruebas (HTML)
-    ├── casos-de-prueba.html            <- fuente de los Casos de Prueba (HTML)
+    ├── Documentacion_HTML_Consolidada.docx <- fusión de los 3 HTML (plan + casos frontend + casos API) en un solo Word
     ├── Plan_de_Pruebas_General.pdf     <- se genera con: bash start.sh pdf
     ├── Casos_de_Prueba_Frontend.pdf    <- se genera con: bash start.sh casos
-    ├── playwright-tests/               <- 25 pruebas E2E (Sprint N, N+1, N+2)
-    ├── api-tests/                      <- 20 pruebas de API del Clima (Sprint N+3)
+    ├── Casos_de_Prueba_API_Clima.pdf   <- se genera con: bash start.sh api
+    ├── Casos_de_Prueba_OrangeHRM.xlsx  <- se genera con: bash start.sh excel (detalle por caso + columna para Trello)
+    ├── Informe_Final_Consigna7.docx    <- se genera con: bash start.sh docx (documento único a+b+c+d)
+    ├── TP_Final_Integrador.docx        <- se genera con: bash start.sh final (teoría preguntas 1-8 + práctica pregunta 7)
+    ├── playwright-tests/               <- 125 pruebas E2E (25 núcleo Sprint N/N+1/N+2 + 100 de regresión)
+    ├── api-tests/                      <- 20 pruebas de API del Clima (Sprint N+3) + colección Postman/Newman
+    ├── excel-generator/                <- genera Casos_de_Prueba_OrangeHRM.xlsx desde los resultados de Playwright
+    ├── docx-generator/                 <- genera Informe_Final_Consigna7.docx
+    ├── tp-final-generator/             <- genera TP_Final_Integrador.docx (teoría preguntas 1-8 + práctica pregunta 7)
+    ├── html-merge-generator/           <- genera Documentacion_HTML_Consolidada.docx (fusiona y borra los HTML fuente)
     ├── bug-tracker/                    <- bug tracker web con 6 bugs pre-cargados
     ├── dashboard/                      <- pagina de inicio con links a todo
     └── nginx/                          <- servidor web de reportes
