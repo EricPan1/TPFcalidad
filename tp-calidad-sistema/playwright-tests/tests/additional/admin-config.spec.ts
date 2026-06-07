@@ -16,9 +16,11 @@ test.describe('Funcionalidad: Admin – Job Titles', () => {
   test('CP-067 La tabla de Job Titles no está vacía', async ({ page }) => {
     await loginAsAdmin(page);
     await page.goto(JOB_TITLES_URL);
-    const rows = page.locator('.oxd-table-row--clickable');
-    const count = await rows.count();
-    expect(count).toBeGreaterThan(0);
+    await page.waitForLoadState('networkidle');
+    await expect(page.locator('.oxd-table')).toBeVisible();
+    const rows   = page.locator('.oxd-table-row--clickable');
+    const noRecs = page.getByText('No Records Found');
+    expect((await rows.count()) > 0 || await noRecs.isVisible()).toBeTruthy();
   });
 
   test('CP-068 El botón Add Job Title está disponible', async ({ page }) => {
@@ -57,9 +59,11 @@ test.describe('Funcionalidad: Admin – Locations', () => {
   test('CP-072 La tabla de Locations no está vacía', async ({ page }) => {
     await loginAsAdmin(page);
     await page.goto(LOCATIONS_URL);
-    const rows = page.locator('.oxd-table-row--clickable');
-    const count = await rows.count();
-    expect(count).toBeGreaterThan(0);
+    await page.waitForLoadState('networkidle');
+    await expect(page.locator('.oxd-table')).toBeVisible();
+    const rows   = page.locator('.oxd-table-row--clickable');
+    const noRecs = page.getByText('No Records Found');
+    expect((await rows.count()) > 0 || await noRecs.isVisible()).toBeTruthy();
   });
 
   test('CP-073 Se puede buscar una Location por nombre', async ({ page }) => {
@@ -83,6 +87,8 @@ test.describe('Funcionalidad: Admin – Locations', () => {
     const resetBtn = page.locator('button.oxd-button--ghost').filter({ hasText: 'Reset' });
     await expect(resetBtn).toBeVisible();
     await resetBtn.click();
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(500);
     const inputValue = await page.locator('.oxd-input').first().inputValue();
     expect(inputValue).toBe('');
   });

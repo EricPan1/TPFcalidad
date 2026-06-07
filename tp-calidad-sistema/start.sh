@@ -25,6 +25,7 @@ usage() {
   echo -e "  ${GREEN}casos${RESET}   Genera Casos_de_Prueba_Frontend.pdf en este directorio"
   echo -e "  ${GREEN}api${RESET}     Genera Casos_de_Prueba_API_Clima.pdf en este directorio"
   echo -e "  ${GREEN}excel${RESET}   Genera Casos_de_Prueba_OrangeHRM.xlsx desde el último run de tests"
+  echo -e "  ${GREEN}docx${RESET}    Genera Informe_Final_Consigna7.docx (plan, casos, resultados y bugs)"
   echo -e "  ${GREEN}down${RESET}    Detiene y elimina todos los contenedores y volúmenes"
   echo -e "  ${GREEN}logs${RESET}    Muestra logs de todos los servicios en tiempo real\n"
   echo -e "Antes de correr por primera vez:"
@@ -98,6 +99,12 @@ cmd_excel() {
   echo -e "\n${GREEN}✔ Listo: $(pwd)/Casos_de_Prueba_OrangeHRM.xlsx${RESET}\n"
 }
 
+cmd_docx() {
+  echo -e "${BOLD}Generando Informe_Final_Consigna7.docx...${RESET}"
+  docker compose run --rm docx-generator
+  echo -e "\n${GREEN}✔ Listo: $(pwd)/Informe_Final_Consigna7.docx${RESET}\n"
+}
+
 case "$COMANDO" in
   up)    header; cmd_up ;;
   test)  header; cmd_test ;;
@@ -106,6 +113,7 @@ case "$COMANDO" in
   casos) header; cmd_casos ;;
   api)   header; cmd_api ;;
   excel) header; cmd_excel ;;
+  docx)  header; cmd_docx ;;
   down)  header; cmd_down ;;
   logs)  docker compose logs -f ;;
   *)     usage ;;

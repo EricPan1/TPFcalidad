@@ -85,6 +85,17 @@ services:
     networks:
       - qa-network
 
+  # Genera Informe_Final_Consigna7.docx (plan de pruebas, casos, resultados y bugs)
+  docx-generator:
+    build:
+      context: ./docx-generator
+    container_name: qa_docx_generator
+    volumes:
+      - .:/work
+    restart: "no"
+    networks:
+      - qa-network
+
   # ── Servicios permanentes (correr con: docker compose up -d) ──
 
   allure:

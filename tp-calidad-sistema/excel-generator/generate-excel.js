@@ -36,6 +36,74 @@ function extractError(test) {
   return firstLine.replace(/\[[0-9;]*m/g, '').trim();
 }
 
+// Traduce el mensaje técnico de Playwright a una descripción en lenguaje
+// humano, pensada para copiar/pegar como descripción de una tarjeta de Trello.
+function humanizeError(msg) {
+  if (!msg) return '';
+
+  if (/strict mode violation.*resolved to (\d+) element/i.test(msg)) {
+    const n = msg.match(/resolved to (\d+) element/i)?.[1] ?? 'varios';
+    return `El selector usado encontró ${n} elementos en la página en lugar de uno solo `
+         + `(selector ambiguo). Hay que revisar la pantalla y hacer el selector más específico `
+         + `para que apunte a un único elemento.`;
+  }
+
+  if (/toBeGreaterThan.*\n?[\s\S]*Received:\s*0/i.test(msg) || /Expected:\s*>\s*0[\s\S]*Received:\s*0/i.test(msg)) {
+    return `Se esperaba encontrar al menos un resultado/elemento en la lista o tabla, `
+         + `pero apareció vacía. Puede que los datos de prueba no estén cargados, que el `
+         + `filtro no devuelva nada, o que la página no haya terminado de cargar.`;
+  }
+
+  if (/Timed out[\s\S]*toBeVisible[\s\S]*getByRole\('heading'/i.test(msg) || /Timed out[\s\S]*toBeVisible[\s\S]*heading/i.test(msg)) {
+    const name = msg.match(/name:\s*['"]([^'"]+)['"]/i)?.[1];
+    return `No apareció en pantalla el título/encabezado${name ? ` "${name}"` : ''} esperado `
+         + `dentro del tiempo límite. Puede que el texto haya cambiado en la aplicación, `
+         + `que la página tarde más en cargar, o que ya no se muestre como encabezado.`;
+  }
+
+  if (/locator\.click:\s*Timeout|Timed out[\s\S]*waiting for locator[\s\S]*\.click/i.test(msg)) {
+    return `No se pudo hacer clic en el botón/elemento porque no apareció (o no quedó `
+         + `habilitado) a tiempo en la pantalla. Conviene revisar si el selector sigue `
+         + `siendo correcto o si hace falta esperar a que cargue algo antes de hacer clic.`;
+  }
+
+  if (/Timed out[\s\S]*toBeVisible/i.test(msg)) {
+    return `Un elemento que el test espera ver en pantalla no llegó a aparecer dentro `
+         + `del tiempo límite. Puede que el selector ya no coincida con nada, que la `
+         + `pantalla cambió de diseño, o que la carga haya tardado más de lo normal.`;
+  }
+
+  if (/toHaveURL|waitForURL/i.test(msg)) {
+    return `Después de la acción, la página no navegó a la dirección (URL) que el test `
+         + `esperaba. Puede que el flujo cambió de pantalla, que hubo un error al guardar, `
+         + `o que la navegación tardó demasiado.`;
+  }
+
+  if (/toHaveText|toHaveValue|toContainText|Expected (string|substring)/i.test(msg)) {
+    return `El texto o valor mostrado en pantalla no coincide con lo que el test esperaba. `
+         + `Conviene comparar el valor esperado contra lo que realmente muestra la aplicación `
+         + `y actualizar el test o revisar si hay un error en la funcionalidad.`;
+  }
+
+  if (/toBeTruthy|toBeFalsy/i.test(msg)) {
+    return `Una condición que el test verificaba no se cumplió (se esperaba algo presente/ `
+         + `activo y no lo estaba, o viceversa). Hay que revisar manualmente esa pantalla `
+         + `para confirmar si es un error real de la aplicación o un cambio en el comportamiento.`;
+  }
+
+  if (/net::ERR|ERR_CONNECTION|ECONNREFUSED|net::|socket hang up/i.test(msg)) {
+    return `Hubo un problema de conexión con la aplicación durante la prueba (no respondió `
+         + `o se cortó la conexión). Conviene reintentar la ejecución y revisar que el `
+         + `entorno/servidor esté disponible y estable.`;
+  }
+
+  // Mensaje genérico de respaldo: limpiar y acortar la primera línea técnica.
+  const clean = msg.replace(/\s+/g, ' ').trim();
+  const short = clean.length > 220 ? `${clean.slice(0, 220)}…` : clean;
+  return `Fallo inesperado durante la ejecución del test: "${short}". Revisar capturas, `
+       + `video y traza adjuntos en el reporte para entender qué pasó en pantalla.`;
+}
+
 function walk(suites) {
   for (const suite of (suites || [])) {
     if (suite.specs && suite.specs.length > 0) {
@@ -51,6 +119,7 @@ function walk(suites) {
             status,
             retries,
             error,
+            humanError: status === 'unexpected' ? humanizeError(error) : '',
           };
         }),
       });
@@ -78,11 +147,12 @@ const ws = wb.addWorksheet('Casos de Prueba', {
 
 // Encabezado de columnas (fila 1)
 ws.columns = [
-  { header: 'Caso',             key: 'caso',    width: 22 },
-  { header: 'Título',           key: 'titulo',  width: 70 },
-  { header: 'Resultado',        key: 'result',  width: 14 },
-  { header: 'Detalle del fallo', key: 'error',  width: 60 },
-  { header: 'Reintentos',       key: 'retry',   width: 13 },
+  { header: 'Caso',                          key: 'caso',    width: 22 },
+  { header: 'Título',                        key: 'titulo',  width: 70 },
+  { header: 'Resultado',                     key: 'result',  width: 14 },
+  { header: 'Detalle del fallo (técnico)',   key: 'error',   width: 60 },
+  { header: 'Descripción para Trello',       key: 'human',   width: 70 },
+  { header: 'Reintentos',                    key: 'retry',   width: 13 },
 ];
 
 const headerRow = ws.getRow(1);
@@ -101,10 +171,10 @@ groups.forEach((group, gi) => {
   // ── Fila de funcionalidad (cabecera morada) ──────────────────────────────
   const fRow = ws.addRow([
     `Funcionalidad ${gi + 1}: ${group.name}`,
-    '', '', '', '',
+    '', '', '', '', '',
   ]);
   fRow.height = 18;
-  ws.mergeCells(fRow.number, 1, fRow.number, 5);
+  ws.mergeCells(fRow.number, 1, fRow.number, 6);
   const fCell = fRow.getCell(1);
   fCell.fill      = { type: 'pattern', pattern: 'solid', fgColor: { argb: COLOR_HEADER_FILL } };
   fCell.font      = { bold: true, color: { argb: COLOR_HEADER_FONT }, size: 10.5 };
@@ -131,9 +201,10 @@ groups.forEach((group, gi) => {
       c.title,
       resultLabel,
       c.error || '',
+      c.humanError || '',
       c.retries > 0 ? c.retries : '',
     ]);
-    row.height = c.error ? 30 : 16;
+    row.height = c.error ? 50 : 16;
 
     row.eachCell(cell => {
       cell.fill      = { type: 'pattern', pattern: 'solid', fgColor: { argb: fillBg } };
@@ -151,18 +222,25 @@ groups.forEach((group, gi) => {
     };
     resultCell.alignment = { horizontal: 'center', vertical: 'middle' };
 
-    // Columna Detalle del fallo — texto en rojo oscuro si hay error
+    // Columna Detalle del fallo (técnico) — texto en rojo oscuro si hay error
     const errorCell = row.getCell(4);
     if (c.error) {
       errorCell.font      = { color: { argb: 'FF9C0006' }, italic: true, size: 9 };
       errorCell.alignment = { vertical: 'middle', wrapText: true };
     }
 
-    row.getCell(5).alignment = { horizontal: 'center', vertical: 'middle' };
+    // Columna Descripción para Trello — texto en lenguaje simple, listo para copiar
+    const humanCell = row.getCell(5);
+    if (c.humanError) {
+      humanCell.font      = { color: { argb: 'FF1F4E78' }, size: 10 };
+      humanCell.alignment = { vertical: 'middle', wrapText: true };
+    }
+
+    row.getCell(6).alignment = { horizontal: 'center', vertical: 'middle' };
   });
 
   // Fila separadora vacía entre grupos
-  const sep = ws.addRow(['', '', '', '', '']);
+  const sep = ws.addRow(['', '', '', '', '', '']);
   sep.height = 6;
 });
 
@@ -176,13 +254,13 @@ const totals = groups.reduce((a, g) => {
   return a;
 }, { pass: 0, fail: 0, skip: 0 });
 
-ws.addRow(['', '', '', '', '']);
+ws.addRow(['', '', '', '', '', '']);
 const totalRow = ws.addRow([
   `Total: ${caseGlobal} casos`,
   `${totals.pass} PASARON   ·   ${totals.fail} FALLARON   ·   ${totals.skip} SALTADOS`,
-  '', '', '',
+  '', '', '', '',
 ]);
-ws.mergeCells(totalRow.number, 1, totalRow.number, 5);
+ws.mergeCells(totalRow.number, 1, totalRow.number, 6);
 totalRow.getCell(1).fill  = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFD9D9D9' } };
 totalRow.getCell(1).font  = { bold: true, size: 10.5 };
 totalRow.getCell(1).alignment = { vertical: 'middle', horizontal: 'center' };
